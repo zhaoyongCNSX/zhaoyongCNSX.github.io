@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 概述 2. 安装 MongoDB 3. 安装 Leanote 3.1. 二进制安装 3.2. 源码安装   4. 为 MongoDB 的 leanote 数据库设置账号和密码 5. 设置 mongodb 和 leanote 开机自启动   1. 概述 环境：centos 7 64bit 所需依赖 leanote 使用 MongoDB 存储   安装路径 安装包都存放于 /home/too">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/搭建 Leanote 笔记服务.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 概述 2. 安装 MongoDB 3. 安装 Leanote 3.1. 二进制安装 3.2. 源码安装   4. 为 MongoDB 的 leanote 数据库设置账号和密码 5. 设置 mongodb 和 leanote 开机自启动   1. 概述 环境：centos 7 64bit 所需依赖 leanote 使用 MongoDB 存储   安装路径 安装包都存放于 /home/too">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-05T14:52:53.794Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="1. 概述 2. 安装 MongoDB 3. 安装 Leanote 3.1. 二进制安装 3.2. 源码安装   4. 为 MongoDB 的 leanote 数据库设置账号和密码 5. 设置 mongodb 和 leanote 开机自启动   1. 概述 环境：centos 7 64bit 所需依赖 leanote 使用 MongoDB 存储   安装路径 安装包都存放于 /home/too">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/搭建 Leanote 笔记服务.html" class="article-date">
+  <time datetime="2018-09-05T14:52:53.794Z" itemprop="datePublished">2018-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+<ul>
+<li><a href="#1-概述">1. 概述</a></li>
+<li><a href="#2-安装-mongodb">2. 安装 MongoDB</a></li>
+<li><a href="#3-安装-leanote">3. 安装 Leanote</a><ul>
+<li><a href="#31-二进制安装">3.1. 二进制安装</a></li>
+<li><a href="#32-源码安装">3.2. 源码安装</a></li>
+</ul>
+</li>
+<li><a href="#4-为-mongodb-的-leanote-数据库设置账号和密码">4. 为 MongoDB 的 leanote 数据库设置账号和密码</a></li>
+<li><a href="#5-设置-mongodb-和-leanote-开机自启动">5. 设置 mongodb 和 leanote 开机自启动</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
+<li>环境：centos 7 64bit</li>
+<li>所需依赖<ul>
+<li>leanote 使用 MongoDB 存储</li>
+</ul>
+</li>
+<li>安装路径<ul>
+<li>安装包都存放于 <code>/home/tools/</code> 下。</li>
+<li>MongoDB 和 leanote 均安装在<code>/home/Apps/</code>下</li>
+<li>MongoDB 数据库路径：<code>/home/data/mongodb</code></li>
+<li>MongoDB 和 leanote log 存放于：<code>/var/log/</code> 下</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-安装-MongoDB"><a href="#2-安装-MongoDB" class="headerlink" title="2. 安装 MongoDB"></a>2. 安装 MongoDB</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 下载 MongoDB</span></span><br><span class="line"><span class="built_in">cd</span> /home/tools</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 wget 下载。也可使用附件中的包。</span></span><br><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.1.tgz</span><br><span class="line"> </span><br><span class="line">tar -xzvf mongodb-linux-x86_64-3.0.1.tgz</span><br><span class="line">mv mongodb-linux-x86_64-3.0.1 /home/Apps/mongodb</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 创建用于存储的文件夹目录</span></span><br><span class="line">mkdir -p /home/data/mongodb</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 配置 MongoDB 的环境变量：</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="comment"># 在文件末尾追加</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/Apps/mongodb/bin</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 执行以下命令，使环境变量生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 启动 MongoDB( 先不使用 --auth 校验用户密码 方式启动)</span></span><br><span class="line">mongod --dbpath=/home/data/mongodb --logpath=/var/<span class="built_in">log</span>/mongod.log -logappend --port=27017 --fork</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 测试是否启动完成</span></span><br><span class="line"><span class="comment"># 新打开一个终端</span></span><br><span class="line">mongo</span><br><span class="line"></span><br><span class="line">&gt; show dbs</span><br></pre></td></tr></table></figure>
+<h1 id="3-安装-Leanote"><a href="#3-安装-Leanote" class="headerlink" title="3. 安装 Leanote"></a>3. 安装 Leanote</h1><blockquote>
+<ul>
+<li>安装完成后，可以在浏览器输入：<code>http://47.92.146.3:9000</code> <code>admin</code> <code>abc123</code> 登录管理账号。马上修改密码。</li>
+</ul>
+</blockquote>
+<h2 id="3-1-二进制安装"><a href="#3-1-二进制安装" class="headerlink" title="3.1. 二进制安装"></a>3.1. 二进制安装</h2><blockquote>
+<ul>
+<li>也可使用附近中的二进制包，或在 github 下载最新二进制包</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/tools</span><br><span class="line"> </span><br><span class="line"><span class="comment">###### 下载 Leanote 二进制包</span></span><br><span class="line">wget https://iweb.dl.sourceforge.net/project/leanote-bin/2.4/leanote-linux-amd64-v2.4.bin.tar.gz</span><br><span class="line"> </span><br><span class="line">tar -zxvf leanote-linux-amd64-v2.4.bin.tar.gz</span><br><span class="line">mv leanote /home/Apps/</span><br><span class="line"> </span><br><span class="line"><span class="comment">###### 编辑 Leanote 配置文件</span></span><br><span class="line"><span class="built_in">cd</span> /home/Apps/leanote</span><br><span class="line"> </span><br><span class="line">vim conf/app.conf</span><br><span class="line"><span class="comment"># 修改 app.secret= 字段的值（修改几个字符即可).</span></span><br><span class="line"><span class="comment"># 修改 site.url=http://47.92.146.3:9000</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 初始化数据库</span></span><br><span class="line">mongorestore -h localhost -d leanote --dir /home/Apps/leanote/mongodb_backup/leanote_install_data/</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line"><span class="comment"># 另起一个窗口，连接 mongod</span></span><br><span class="line">mongo</span><br><span class="line"> </span><br><span class="line">&gt; show dbs</span><br><span class="line"><span class="comment"># 发现新增了 leanote 数据库</span></span><br><span class="line">&gt; use leanote</span><br><span class="line">&gt; show collections <span class="comment"># 查看表（有很多表，其中 user 表中有两项数据，admin 和 demo)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 后台启动 Leanote 服务</span></span><br><span class="line">nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/<span class="built_in">log</span>/leanote.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-源码安装"><a href="#3-2-源码安装" class="headerlink" title="3.2. 源码安装"></a>3.2. 源码安装</h2><h1 id="4-为-MongoDB-的-leanote-数据库设置账号和密码"><a href="#4-为-MongoDB-的-leanote-数据库设置账号和密码" class="headerlink" title="4. 为 MongoDB 的 leanote 数据库设置账号和密码"></a>4. 为 MongoDB 的 leanote 数据库设置账号和密码</h1><ul>
+<li>为了增加安全性，需要给 leanote 数据库设置账号和密码</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br><span class="line"> </span><br><span class="line">&gt; use leanote;</span><br><span class="line"> </span><br><span class="line">db.createUser(&#123;</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    <span class="built_in">pwd</span>: <span class="string">'yourpassword'</span>,</span><br><span class="line">    roles: [&#123;role: <span class="string">'dbOwner'</span>, db: <span class="string">'leanote'</span>&#125;]</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 测试：</span></span><br><span class="line">&gt; db.auth(<span class="string">"root"</span>, <span class="string">"yourpassword"</span>); <span class="comment"># 使用账号密码登录。（返回 1 表示成功)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 重启 mongodb</span></span><br><span class="line"><span class="comment"># 安全退出</span></span><br><span class="line">&gt; use admin</span><br><span class="line">&gt; db.shutdownServer()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 --auth 参数启动。</span></span><br><span class="line">mongod --dbpath=/home/data/mongodb --logpath=/var/<span class="built_in">log</span>/mongod.log -logappend --auth --port=27017 --fork</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 设置 leanote</span></span><br><span class="line">vim conf/app.conf</span><br><span class="line"><span class="comment"># 修改这两项</span></span><br><span class="line">db.username=root <span class="comment"># if not exists, please leave it blank</span></span><br><span class="line">db.password=yourpassword <span class="comment"># if not exists, please leave it blank</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 重启 leanote</span></span><br><span class="line">ps -ef | grep leanote</span><br><span class="line"><span class="built_in">kill</span> -9 pid 号</span><br><span class="line">nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/<span class="built_in">log</span>/leanote.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h1 id="5-设置-mongodb-和-leanote-开机自启动"><a href="#5-设置-mongodb-和-leanote-开机自启动" class="headerlink" title="5. 设置 mongodb 和 leanote 开机自启动"></a>5. 设置 mongodb 和 leanote 开机自启动</h1><blockquote>
+<p>将后台启动命令增加到 /etc/rc.local 文件中即可。</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加 mongodb 自启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/home/Apps/mongodb/bin/mongod --dbpath=/home/data/mongodb --logpath=/var/log/mongod.log -logappend --auth -port=27017 --fork"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 增加 leanote 开机自启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/log/leanote.log 2&gt;&amp;1 &amp;"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"> </span><br><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/搭建 Leanote 笔记服务.html" data-id="cjlqqkh1m00010wujo6m287nk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/06/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

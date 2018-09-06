@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="[TOC] 概述 seafile 是一个国人开发的，开源网盘服务。 官网：https://www.seafile.com/home/  环境 centos 7 64bit  安装依赖12345678910# 使用 yum 安装 Python 和 MySQL.yum install python python-setuptools python-imaging python-ldap python-">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/搭建 seafile 网盘.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] 概述 seafile 是一个国人开发的，开源网盘服务。 官网：https://www.seafile.com/home/  环境 centos 7 64bit  安装依赖12345678910# 使用 yum 安装 Python 和 MySQL.yum install python python-setuptools python-imaging python-ldap python-">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-02T07:44:14.538Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="[TOC] 概述 seafile 是一个国人开发的，开源网盘服务。 官网：https://www.seafile.com/home/  环境 centos 7 64bit  安装依赖12345678910# 使用 yum 安装 Python 和 MySQL.yum install python python-setuptools python-imaging python-ldap python-">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/搭建 seafile 网盘.html" class="article-date">
+  <time datetime="2018-09-02T07:44:14.538Z" itemprop="datePublished">2018-09-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>seafile 是一个国人开发的，开源网盘服务。</li>
+<li>官网：<a href="https://www.seafile.com/home/" target="_blank" rel="noopener">https://www.seafile.com/home/</a></li>
+</ul>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>centos 7 64bit</li>
+</ul>
+<h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 yum 安装 Python 和 MySQL.</span></span><br><span class="line">yum install python python-setuptools python-imaging python-ldap python-memcached MySQL-python mariadb mariadb-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 MariaDB 服务</span></span><br><span class="line">sudo systemctl start mariadb.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> mariadb.service</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 配置 MySQL （本人设置密码为 纯常用长数字)</span></span><br><span class="line"><span class="comment"># 配置 New password 和 Re-enter new password 字段，其他一路回车即可。</span></span><br><span class="line">/usr/bin/mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<h1 id="安装-seafile"><a href="#安装-seafile" class="headerlink" title="安装 seafile"></a>安装 seafile</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 Seafile 安装包</span></span><br><span class="line">wget https://mc.qcloudimg.com/static/archive/3d8addbe52be88df4f6139ec7e35b453/seafile-server_5.1.4_x86-64.tar.gz</span><br><span class="line"> </span><br><span class="line">tar -zxvf seafile-server_5.1.4_x86-64.tar.gz</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 安装 Seafile 安装包</span></span><br><span class="line">sudo mkdir -p /opt/seafile/installed</span><br><span class="line">sudo mv seafile-server_5.1.4_x86-64.tar.gz /opt/seafile/installed</span><br><span class="line">sudo mv seafile-server-5.1.4/ /opt/seafile</span><br><span class="line"><span class="built_in">cd</span> /opt/seafile/seafile-server-5.1.4</span><br><span class="line"> </span><br><span class="line"><span class="comment"># [server name] 字段输入 Seafile</span></span><br><span class="line"><span class="comment"># [ This server's ip or domain ] 字段输入教程第一步申请的域名</span></span><br><span class="line"><span class="comment"># [ 1 or 2 ] 字段选择 1</span></span><br><span class="line"><span class="comment"># mysql 的 [ root password ] 字段输入 之前的密码</span></span><br><span class="line"><span class="comment"># Enter the password for mysql user "seafile": 输一个密码</span></span><br><span class="line"><span class="comment"># 其他字段一路回车使用默认值</span></span><br><span class="line"> </span><br><span class="line">sudo ./setup-seafile-mysql.sh</span><br></pre></td></tr></table></figure>
+<h1 id="启动-Seafile-及修改防火墙规则"><a href="#启动-Seafile-及修改防火墙规则" class="headerlink" title="启动 Seafile 及修改防火墙规则"></a>启动 Seafile 及修改防火墙规则</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 Seafile</span></span><br><span class="line">sudo ./seafile.sh start</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 其中 [ admin email ] 设置为您登录网盘的帐号，如 admin@qcloudlab.wang，</span></span><br><span class="line"><span class="comment"># [ admin password ] 和 [ admin password again ] 设置为登录网盘的密码，如 admin_1yIv9sWO</span></span><br><span class="line"> </span><br><span class="line">sudo ./seahub.sh start</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改防火墙规则</span></span><br><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8082/tcp</span><br><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8000/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h1 id="访问-seafile"><a href="#访问-seafile" class="headerlink" title="访问 seafile"></a>访问 seafile</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 ip 访问：http://[ This server&apos;s ip or domain ] 中的 ip 或域名：8000</span><br><span class="line">输入之前设置的用户名和密码 zhaoyongCNSX@163.com  数字</span><br></pre></td></tr></table></figure>
+<h1 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/rc.d/rc.local</span><br><span class="line"> </span><br><span class="line"># 增加以下</span><br><span class="line"> </span><br><span class="line">/opt/seafile/seafile-server-5.1.4/seafile.sh start</span><br><span class="line">/opt/seafile/seafile-server-5.1.4/seahub.sh start</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/搭建 seafile 网盘.html" data-id="cjlqqkh1z00060wujcqa8s9h3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/06/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
