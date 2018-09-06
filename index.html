@@ -62,6 +62,363 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hexo 搭建静态博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/Hexo 搭建静态博客/" class="article-date">
+  <time datetime="2018-09-06T15:38:06.303Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+<ul>
+<li><a href="#1-概述">1. 概述</a><ul>
+<li><a href="#11-所需工具">1.1. 所需工具</a></li>
+</ul>
+</li>
+<li><a href="#2-nodejs-安装及配置">2. node.js 安装及配置</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><h2 id="1-1-所需工具"><a href="#1-1-所需工具" class="headerlink" title="1.1. 所需工具"></a>1.1. 所需工具</h2><ul>
+<li>node.js</li>
+<li>git</li>
+<li>hexo</li>
+</ul>
+<h1 id="2-node-js-安装及配置"><a href="#2-node-js-安装及配置" class="headerlink" title="2. node.js 安装及配置"></a>2. node.js 安装及配置</h1><p>export PATH=$PATH:/home/Apps/node/bin</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/Hexo 搭建静态博客/" data-id="cjlqqp1pq0000ywuj0fz3dorm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-centos 常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/centos 常用命令/" class="article-date">
+  <time datetime="2018-09-06T15:38:06.301Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="系统相关"><a href="#系统相关" class="headerlink" title="系统相关"></a>系统相关</h1><ul>
+<li><p>查看系统版本号、linux 内核版本号</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release</span><br><span class="line"> </span><br><span class="line">cat /proc/version</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h1><blockquote>
+<p>使用 yum 管理软件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h1 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改 root 用户的密码</span></span><br><span class="line">passwd root</span><br></pre></td></tr></table></figure>
+<h1 id="杂"><a href="#杂" class="headerlink" title="杂"></a>杂</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 过滤出 /etc/passwd 文件中包含 root 的记录</span></span><br><span class="line">grep <span class="string">'root'</span> /etc/passwd</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 递归地过滤出 /var/log/ 目录中包含 linux 的记录</span></span><br><span class="line">grep -r <span class="string">'linux'</span> /var/<span class="built_in">log</span>/</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用管道 连接 cat 和 grep 命令</span></span><br><span class="line">cat /etc/passwd | grep <span class="string">'root'</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 重定向</span></span><br><span class="line"><span class="comment"># 可以使用 &gt; 或 &lt; 将命令的输出重定向到一个文件中</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'Hello World'</span> &gt; ~/test.txt</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### ping</span></span><br><span class="line"><span class="comment"># 对 cloud.tencent.com 发送 4 个 ping 包，检查与其是否联通</span></span><br><span class="line">ping -c 4 cloud.tencent.com</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### netstat</span></span><br><span class="line"><span class="comment"># 显示各种网络相关信息，如网络连接，路由表，接口状态等等</span></span><br><span class="line"><span class="comment"># 列出所有处于监听状态的 tcp 端口</span></span><br><span class="line">netstat -lt</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 查看所有的端口信息，包括 PID 和进程名称</span></span><br><span class="line">netstat -tulpn</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### ps</span></span><br><span class="line"><span class="comment"># 过滤得到当前系统中的 ssh 进程信息</span></span><br><span class="line">ps -aux | grep <span class="string">'ssh'</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/centos 常用命令/" data-id="cjlqqp1q10001ywujoo1w96nh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-搭建 WordPress 服务" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/搭建 WordPress 服务/" class="article-date">
+  <time datetime="2018-09-06T15:38:06.298Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="相关网页"><a href="#相关网页" class="headerlink" title="相关网页"></a>相关网页</h1><ul>
+<li>安装 Apache，MySQL，PHP 环境：<a href="http://www.jb51.net/article/51390.htm" target="_blank" rel="noopener">http://www.jb51.net/article/51390.htm</a></li>
+<li>安装 vsftpd：<a href="http://www.cnblogs.com/xiongpq/p/3384759.html" target="_blank" rel="noopener">http://www.cnblogs.com/xiongpq/p/3384759.html</a></li>
+<li>安装 wordpress：<a href="http://www.jb51.net/article/51395.htm" target="_blank" rel="noopener">http://www.jb51.net/article/51395.htm</a></li>
+</ul>
+<h1 id="PHP-安装"><a href="#PHP-安装" class="headerlink" title="PHP 安装"></a>PHP 安装</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install php mysql-server php-mysql php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc</span><br></pre></td></tr></table></figure>
+<h1 id="PuTTy"><a href="#PuTTy" class="headerlink" title="PuTTy"></a>PuTTy</h1><ul>
+<li>使用 ssh 远程登录 linux 主机</li>
+</ul>
+<h2 id="显示中文"><a href="#显示中文" class="headerlink" title="显示中文"></a>显示中文</h2><ol>
+<li>打开 putty 主程序，选择 window-〉Appearance-〉Font settings-〉Change…, 选择 Fixedsys 字体，字符集选择 CHINESE_GB2312。 （自己测试的是设置为 consolas 就行)</li>
+<li>在 window-〉Appearance-〉Translation 中，Received data assumed to be in which character set 中，把 Use font encoding 改为 UTF-8.</li>
+<li>打开 putty, 登录成功后，在 shell 中输入：export LC_ALL=’zh_CN.utf8’</li>
+</ol>
+<h1 id="安装-vsftpd"><a href="#安装-vsftpd" class="headerlink" title="安装 vsftpd"></a>安装 vsftpd</h1><ul>
+<li>vsftpd 为 linux 的 ftp 服务器软件。使用 ftp 来传输 wordpress 安装包。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 重启服务</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt; service vsftpd restart</span></span><br><span class="line">// 启动服务</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt; service vsftpd start</span></span><br><span class="line">// 设置为开机自启动</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt; sudo chkconfig vsftpd on</span></span><br><span class="line">// 查看已开启的网络服务</span><br><span class="line">// 使用前需下载 nmap</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt; nmap 127.0.0.1</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/搭建 WordPress 服务/" data-id="cjlqqp1qa0005ywujyhd2ygqx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-搭建 V2Ray 翻墙工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/搭建 V2Ray 翻墙工具/" class="article-date">
+  <time datetime="2018-09-06T15:38:06.290Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h1><ul>
+<li>使用 centos 安装不成功。</li>
+</ul>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>服务器：Debian 8.0 x86_64</li>
+</ul>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1><ul>
+<li><a href="https://toutyrater.github.io/prep/install.html" target="_blank" rel="noopener">https://toutyrater.github.io/prep/install.html</a></li>
+<li><a href="https://www.v2ray.com/chapter_00/start.html" target="_blank" rel="noopener">https://www.v2ray.com/chapter_00/start.html</a></li>
+<li><a href="https://lighti.me/3165.html" target="_blank" rel="noopener">https://lighti.me/3165.html</a></li>
+</ul>
+<h1 id="校准服务器时间"><a href="#校准服务器时间" class="headerlink" title="校准服务器时间"></a>校准服务器时间</h1><blockquote>
+<p>V2Ray 的验证方式包含时间，所以需要保证服务器和客户端的时间误差在<strong>一分钟</strong>内。(V2Ray 会自动转换时区).<br>一般 BWG 的时间是不需要设置的，只需要修改本地时间和北京时间对应即可。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看时间</span></span><br><span class="line">date -R</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置时间</span></span><br><span class="line">sudo date --<span class="built_in">set</span>=<span class="string">"2018-01-01 13:11:11"</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="生成-UUID"><a href="#生成-UUID" class="headerlink" title="生成 UUID"></a>生成 UUID</h1><ul>
+<li>v2Ray 根据 UUID 格式的 ID 和 alterId 以及时间共同进行验证（类似于其他的账号和密码).</li>
+<li>生成：<a href="https://www.uuidgenerator.net/" target="_blank" rel="noopener">https://www.uuidgenerator.net/</a>. 打开该网站或刷新，都会生成一条 UUID.</li>
+</ul>
+<h1 id="服务器安装"><a href="#服务器安装" class="headerlink" title="服务器安装"></a>服务器安装</h1><blockquote>
+<p>推荐使用脚本安装</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">wget https://install.direct/go.sh</span><br><span class="line"> </span><br><span class="line">sudo bash go.sh</span><br><span class="line"><span class="comment"># 出现 V2Ray v2.33 is installed. 类似字样表示安装成功</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 V2Ray</span></span><br><span class="line">sudo systemctl start v2ray</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 停止 V2Ray</span></span><br><span class="line">sudo systemctl stop v2ray</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 重启 V2Ray （更新 V2Ray 就是重新执行安装脚本)</span></span><br><span class="line">sudo systemctl restart v2ray</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"inbound"</span>: &#123;</span><br><span class="line">    "port": 16823, // 服务器监听端口</span><br><span class="line">    "protocol": "vmess",    // 主传入协议</span><br><span class="line">    "settings": &#123;</span><br><span class="line">      "clients": [</span><br><span class="line">        &#123;</span><br><span class="line">          "id": "自己的 ID",  // 用户 ID，客户端与服务器必须相同</span><br><span class="line">          "alterId": 64     // 额外 ID, 客户端与服务器必须相同</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "outbound": &#123;</span><br><span class="line">    "protocol": "freedom",  // 主传出协议</span><br><span class="line">    "settings": &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="客户端安装"><a href="#客户端安装" class="headerlink" title="客户端安装"></a>客户端安装</h1><p>客户端需要知道 vmess 服务器的信息如下：</p>
+<ul>
+<li>ip</li>
+<li>port</li>
+<li>用户 ID (id): UUID 形式的。</li>
+<li>额外 ID (alterId): 一个数字</li>
+</ul>
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><blockquote>
+<p>v2Ray, v2RayN</p>
+<ul>
+<li>下载 v2Ray: <a href="https://github.com/v2ray/v2ray-core/releases/latest" target="_blank" rel="noopener">https://github.com/v2ray/v2ray-core/releases/latest</a> 解压到 X 目录</li>
+<li>下载 v2RayN: <a href="https://github.com/2dust/v2rayN/releases/latest" target="_blank" rel="noopener">https://github.com/2dust/v2rayN/releases/latest</a> 选择 v2rayN.exe, 拷贝到上一步的目录中。</li>
+<li>在 v2RayN 中添加 vmess 服务器。</li>
+</ul>
+</blockquote>
+<ul>
+<li>Firefox 选择使用系统代理</li>
+</ul>
+<h2 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h2><blockquote>
+<p>V2RayX</p>
+<ul>
+<li>说明：<a href="https://233blog.com/post/25/" target="_blank" rel="noopener">https://233blog.com/post/25/</a></li>
+<li>下载：<a href="https://github.com/insisttech/v2rayX-copy/releases" target="_blank" rel="noopener">https://github.com/insisttech/v2rayX-copy/releases</a> 选择 V2RayX.app.zip</li>
+</ul>
+</blockquote>
+<h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><blockquote>
+<p>可用软件：v2RayNG 和 BifrostV</p>
+</blockquote>
+<ul>
+<li>下载：github 地址：<a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">https://github.com/2dust/v2rayNG/releases</a>, 选择 app-universal-release.apk</li>
+<li>Windows V2RayN 中导出分享 URL, 导入到 v2RayNG 即可。</li>
+</ul>
+<h2 id="IOS"><a href="#IOS" class="headerlink" title="IOS"></a>IOS</h2><blockquote>
+<p>Kitsunebi<br>Shadowrocket</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/搭建 V2Ray 翻墙工具/" data-id="cjlqqp1q80004ywuj1xtx064t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-搭建 ShowDoc 在线文档系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/搭建 ShowDoc 在线文档系统/" class="article-date">
+  <time datetime="2018-09-06T15:38:06.288Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>ShowDoc 是一个在线文档管理系统。支持 markdown 语法，很适合 IT 团队编写项目文档。</li>
+<li><a href="http://blog.star7th.com/2016/05/2007.html" target="_blank" rel="noopener">http://blog.star7th.com/2016/05/2007.html</a></li>
+</ul>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>centos 7</li>
+</ul>
+<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 安装 Nginx</span></span><br><span class="line"><span class="comment"># 使用 yum 安装 Nginx</span></span><br><span class="line">yum install nginx</span><br><span class="line"> </span><br><span class="line">修改 /etc/nginx/nginx.conf</span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  127.0.0.1;</span><br><span class="line">        root         /var/www/html;</span><br><span class="line">        index index.php index.html</span><br><span class="line">        error_page  404              /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ .php$ &#123;</span><br><span class="line">            root           /var/www/html;</span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">            fastcgi_index  index.php;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">            include        fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ /.ht &#123;</span><br><span class="line">            deny  all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 Nginx 并设置为开机启动</span></span><br><span class="line">service nginx start</span><br><span class="line">chkconfig nginx on</span><br></pre></td></tr></table></figure>
+<h1 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 yum 安装 php-fpm</span></span><br><span class="line">yum install php php-gd php-fpm php-mcrypt php-mbstring php-mysql php-pdo</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 php-fpm 并设置为开机启动</span></span><br><span class="line">service php-fpm start</span><br><span class="line">chkconfig php-fpm on</span><br></pre></td></tr></table></figure>
+<h1 id="下载安装-Composer"><a href="#下载安装-Composer" class="headerlink" title="下载安装 Composer"></a>下载安装 Composer</h1><ul>
+<li>Composer 是 PHP 的一个依赖管理工具，推荐使用 Composer 创建 ShowDoc 项目<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行如下命令 安装 Composer</span></span><br><span class="line">curl -sS https://getcomposer.org/installer | php</span><br><span class="line">mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置 Composer 使用国内镜像</span></span><br><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 Composer 创建项目</span></span><br><span class="line"><span class="built_in">cd</span> /var/www/html/ &amp;&amp; composer create-project  showdoc/showdoc</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置 showdoc 目录写权限</span></span><br><span class="line">chmod a+w showdoc/install</span><br><span class="line">chmod a+w showdoc/Sqlite</span><br><span class="line">chmod a+w showdoc/Sqlite/showdoc.db.php</span><br><span class="line">chmod a+w showdoc/Public/Uploads/</span><br><span class="line">chmod a+w showdoc/Application/Runtime</span><br><span class="line">chmod a+w showdoc/server/Application/Runtime</span><br><span class="line">chmod a+w showdoc/Application/Common/Conf/config.php</span><br><span class="line">chmod a+w showdoc/Application/Home/Conf/config.php</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">创建完毕，您现在可以通过浏览器访问 http://119.29.239.104/showdoc/install/ ，进行语言的选择以后即可通过 http://119.29.239.104/showdoc 查看站点效果。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/搭建 ShowDoc 在线文档系统/" data-id="cjlqqp1q60003ywuj1d4zyxwk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-搭建 seafile 网盘" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/搭建 seafile 网盘/" class="article-date">
+  <time datetime="2018-09-06T15:38:06.239Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>seafile 是一个国人开发的，开源网盘服务。</li>
+<li>官网：<a href="https://www.seafile.com/home/" target="_blank" rel="noopener">https://www.seafile.com/home/</a></li>
+</ul>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>centos 7 64bit</li>
+</ul>
+<h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 yum 安装 Python 和 MySQL.</span></span><br><span class="line">yum install python python-setuptools python-imaging python-ldap python-memcached MySQL-python mariadb mariadb-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 MariaDB 服务</span></span><br><span class="line">sudo systemctl start mariadb.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> mariadb.service</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 配置 MySQL （本人设置密码为 纯常用长数字)</span></span><br><span class="line"><span class="comment"># 配置 New password 和 Re-enter new password 字段，其他一路回车即可。</span></span><br><span class="line">/usr/bin/mysql_secure_installation</span><br></pre></td></tr></table></figure>
+<h1 id="安装-seafile"><a href="#安装-seafile" class="headerlink" title="安装 seafile"></a>安装 seafile</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 Seafile 安装包</span></span><br><span class="line">wget https://mc.qcloudimg.com/static/archive/3d8addbe52be88df4f6139ec7e35b453/seafile-server_5.1.4_x86-64.tar.gz</span><br><span class="line"> </span><br><span class="line">tar -zxvf seafile-server_5.1.4_x86-64.tar.gz</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 安装 Seafile 安装包</span></span><br><span class="line">sudo mkdir -p /opt/seafile/installed</span><br><span class="line">sudo mv seafile-server_5.1.4_x86-64.tar.gz /opt/seafile/installed</span><br><span class="line">sudo mv seafile-server-5.1.4/ /opt/seafile</span><br><span class="line"><span class="built_in">cd</span> /opt/seafile/seafile-server-5.1.4</span><br><span class="line"> </span><br><span class="line"><span class="comment"># [server name] 字段输入 Seafile</span></span><br><span class="line"><span class="comment"># [ This server's ip or domain ] 字段输入教程第一步申请的域名</span></span><br><span class="line"><span class="comment"># [ 1 or 2 ] 字段选择 1</span></span><br><span class="line"><span class="comment"># mysql 的 [ root password ] 字段输入 之前的密码</span></span><br><span class="line"><span class="comment"># Enter the password for mysql user "seafile": 输一个密码</span></span><br><span class="line"><span class="comment"># 其他字段一路回车使用默认值</span></span><br><span class="line"> </span><br><span class="line">sudo ./setup-seafile-mysql.sh</span><br></pre></td></tr></table></figure>
+<h1 id="启动-Seafile-及修改防火墙规则"><a href="#启动-Seafile-及修改防火墙规则" class="headerlink" title="启动 Seafile 及修改防火墙规则"></a>启动 Seafile 及修改防火墙规则</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 Seafile</span></span><br><span class="line">sudo ./seafile.sh start</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 其中 [ admin email ] 设置为您登录网盘的帐号，如 admin@qcloudlab.wang，</span></span><br><span class="line"><span class="comment"># [ admin password ] 和 [ admin password again ] 设置为登录网盘的密码，如 admin_1yIv9sWO</span></span><br><span class="line"> </span><br><span class="line">sudo ./seahub.sh start</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改防火墙规则</span></span><br><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8082/tcp</span><br><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8000/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h1 id="访问-seafile"><a href="#访问-seafile" class="headerlink" title="访问 seafile"></a>访问 seafile</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 ip 访问：http://[ This server&apos;s ip or domain ] 中的 ip 或域名：8000</span><br><span class="line">输入之前设置的用户名和密码 zhaoyongCNSX@163.com  数字</span><br></pre></td></tr></table></figure>
+<h1 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/rc.d/rc.local</span><br><span class="line"> </span><br><span class="line"># 增加以下</span><br><span class="line"> </span><br><span class="line">/opt/seafile/seafile-server-5.1.4/seafile.sh start</span><br><span class="line">/opt/seafile/seafile-server-5.1.4/seahub.sh start</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/搭建 seafile 网盘/" data-id="cjlqqp1qd0006ywujuwflm3ts" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-搭建 Leanote 笔记服务" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/06/搭建 Leanote 笔记服务/" class="article-date">
+  <time datetime="2018-09-06T15:37:59.581Z" itemprop="datePublished">2018-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+<ul>
+<li><a href="#1-概述">1. 概述</a></li>
+<li><a href="#2-安装-mongodb">2. 安装 MongoDB</a></li>
+<li><a href="#3-安装-leanote">3. 安装 Leanote</a><ul>
+<li><a href="#31-二进制安装">3.1. 二进制安装</a></li>
+<li><a href="#32-源码安装">3.2. 源码安装</a></li>
+</ul>
+</li>
+<li><a href="#4-为-mongodb-的-leanote-数据库设置账号和密码">4. 为 MongoDB 的 leanote 数据库设置账号和密码</a></li>
+<li><a href="#5-设置-mongodb-和-leanote-开机自启动">5. 设置 mongodb 和 leanote 开机自启动</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
+<li>环境：centos 7 64bit</li>
+<li>所需依赖<ul>
+<li>leanote 使用 MongoDB 存储</li>
+</ul>
+</li>
+<li>安装路径<ul>
+<li>安装包都存放于 <code>/home/tools/</code> 下。</li>
+<li>MongoDB 和 leanote 均安装在<code>/home/Apps/</code>下</li>
+<li>MongoDB 数据库路径：<code>/home/data/mongodb</code></li>
+<li>MongoDB 和 leanote log 存放于：<code>/var/log/</code> 下</li>
+</ul>
+</li>
+</ul>
+<h1 id="2-安装-MongoDB"><a href="#2-安装-MongoDB" class="headerlink" title="2. 安装 MongoDB"></a>2. 安装 MongoDB</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 下载 MongoDB</span></span><br><span class="line"><span class="built_in">cd</span> /home/tools</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 wget 下载。也可使用附件中的包。</span></span><br><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.1.tgz</span><br><span class="line"> </span><br><span class="line">tar -xzvf mongodb-linux-x86_64-3.0.1.tgz</span><br><span class="line">mv mongodb-linux-x86_64-3.0.1 /home/Apps/mongodb</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 创建用于存储的文件夹目录</span></span><br><span class="line">mkdir -p /home/data/mongodb</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 配置 MongoDB 的环境变量：</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="comment"># 在文件末尾追加</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/Apps/mongodb/bin</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 执行以下命令，使环境变量生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 启动 MongoDB( 先不使用 --auth 校验用户密码 方式启动)</span></span><br><span class="line">mongod --dbpath=/home/data/mongodb --logpath=/var/<span class="built_in">log</span>/mongod.log -logappend --port=27017 --fork</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 测试是否启动完成</span></span><br><span class="line"><span class="comment"># 新打开一个终端</span></span><br><span class="line">mongo</span><br><span class="line"></span><br><span class="line">&gt; show dbs</span><br></pre></td></tr></table></figure>
+<h1 id="3-安装-Leanote"><a href="#3-安装-Leanote" class="headerlink" title="3. 安装 Leanote"></a>3. 安装 Leanote</h1><blockquote>
+<ul>
+<li>安装完成后，可以在浏览器输入：<code>http://47.92.146.3:9000</code> <code>admin</code> <code>abc123</code> 登录管理账号。马上修改密码。</li>
+</ul>
+</blockquote>
+<h2 id="3-1-二进制安装"><a href="#3-1-二进制安装" class="headerlink" title="3.1. 二进制安装"></a>3.1. 二进制安装</h2><blockquote>
+<ul>
+<li>也可使用附近中的二进制包，或在 github 下载最新二进制包</li>
+</ul>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/tools</span><br><span class="line"> </span><br><span class="line"><span class="comment">###### 下载 Leanote 二进制包</span></span><br><span class="line">wget https://iweb.dl.sourceforge.net/project/leanote-bin/2.4/leanote-linux-amd64-v2.4.bin.tar.gz</span><br><span class="line"> </span><br><span class="line">tar -zxvf leanote-linux-amd64-v2.4.bin.tar.gz</span><br><span class="line">mv leanote /home/Apps/</span><br><span class="line"> </span><br><span class="line"><span class="comment">###### 编辑 Leanote 配置文件</span></span><br><span class="line"><span class="built_in">cd</span> /home/Apps/leanote</span><br><span class="line"> </span><br><span class="line">vim conf/app.conf</span><br><span class="line"><span class="comment"># 修改 app.secret= 字段的值（修改几个字符即可).</span></span><br><span class="line"><span class="comment"># 修改 site.url=http://47.92.146.3:9000</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 初始化数据库</span></span><br><span class="line">mongorestore -h localhost -d leanote --dir /home/Apps/leanote/mongodb_backup/leanote_install_data/</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line"><span class="comment"># 另起一个窗口，连接 mongod</span></span><br><span class="line">mongo</span><br><span class="line"> </span><br><span class="line">&gt; show dbs</span><br><span class="line"><span class="comment"># 发现新增了 leanote 数据库</span></span><br><span class="line">&gt; use leanote</span><br><span class="line">&gt; show collections <span class="comment"># 查看表（有很多表，其中 user 表中有两项数据，admin 和 demo)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 后台启动 Leanote 服务</span></span><br><span class="line">nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/<span class="built_in">log</span>/leanote.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="3-2-源码安装"><a href="#3-2-源码安装" class="headerlink" title="3.2. 源码安装"></a>3.2. 源码安装</h2><h1 id="4-为-MongoDB-的-leanote-数据库设置账号和密码"><a href="#4-为-MongoDB-的-leanote-数据库设置账号和密码" class="headerlink" title="4. 为 MongoDB 的 leanote 数据库设置账号和密码"></a>4. 为 MongoDB 的 leanote 数据库设置账号和密码</h1><ul>
+<li>为了增加安全性，需要给 leanote 数据库设置账号和密码</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br><span class="line"> </span><br><span class="line">&gt; use leanote;</span><br><span class="line"> </span><br><span class="line">db.createUser(&#123;</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    <span class="built_in">pwd</span>: <span class="string">'yourpassword'</span>,</span><br><span class="line">    roles: [&#123;role: <span class="string">'dbOwner'</span>, db: <span class="string">'leanote'</span>&#125;]</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 测试：</span></span><br><span class="line">&gt; db.auth(<span class="string">"root"</span>, <span class="string">"yourpassword"</span>); <span class="comment"># 使用账号密码登录。（返回 1 表示成功)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 重启 mongodb</span></span><br><span class="line"><span class="comment"># 安全退出</span></span><br><span class="line">&gt; use admin</span><br><span class="line">&gt; db.shutdownServer()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 --auth 参数启动。</span></span><br><span class="line">mongod --dbpath=/home/data/mongodb --logpath=/var/<span class="built_in">log</span>/mongod.log -logappend --auth --port=27017 --fork</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 设置 leanote</span></span><br><span class="line">vim conf/app.conf</span><br><span class="line"><span class="comment"># 修改这两项</span></span><br><span class="line">db.username=root <span class="comment"># if not exists, please leave it blank</span></span><br><span class="line">db.password=yourpassword <span class="comment"># if not exists, please leave it blank</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 重启 leanote</span></span><br><span class="line">ps -ef | grep leanote</span><br><span class="line"><span class="built_in">kill</span> -9 pid 号</span><br><span class="line">nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/<span class="built_in">log</span>/leanote.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h1 id="5-设置-mongodb-和-leanote-开机自启动"><a href="#5-设置-mongodb-和-leanote-开机自启动" class="headerlink" title="5. 设置 mongodb 和 leanote 开机自启动"></a>5. 设置 mongodb 和 leanote 开机自启动</h1><blockquote>
+<p>将后台启动命令增加到 /etc/rc.local 文件中即可。</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加 mongodb 自启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/home/Apps/mongodb/bin/mongod --dbpath=/home/data/mongodb --logpath=/var/log/mongod.log -logappend --auth -port=27017 --fork"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 增加 leanote 开机自启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/log/leanote.log 2&gt;&amp;1 &amp;"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"> </span><br><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/06/搭建 Leanote 笔记服务/" data-id="cjlqqp1q40002ywujmvpd4t5c" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/06/hello-world/" class="article-date">
@@ -97,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/06/hello-world/" data-id="cjlqpymhz0000cwujn2jc9hcb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/06/hello-world/" data-id="cjlqqgdtk00008oujuvlpry7b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -138,7 +495,23 @@
       <ul>
         
           <li>
-            <a href="/2018/09/06/hello-world/">Hello World</a>
+            <a href="/2018/09/06/Hexo 搭建静态博客/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/06/centos 常用命令/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/06/搭建 WordPress 服务/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/06/搭建 V2Ray 翻墙工具/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/06/搭建 ShowDoc 在线文档系统/">(no title)</a>
           </li>
         
       </ul>
