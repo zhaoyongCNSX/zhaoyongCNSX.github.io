@@ -14,13 +14,6 @@
 
 
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-center-circle.min.css?v=1.0.2" rel="stylesheet">
-
 
 
 
@@ -110,7 +103,7 @@
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: '博主'
@@ -508,7 +501,25 @@
 <h1 id="7-任意函数，都可通过-func-args-kw-的形式调用"><a href="#7-任意函数，都可通过-func-args-kw-的形式调用" class="headerlink" title="7. 任意函数，都可通过 func(*args, **kw) 的形式调用"></a>7. 任意函数，都可通过 func(*args, **kw) 的形式调用</h1><blockquote>
 <p>以下是验证用到的一些实例</p>
 </blockquote>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证任意函数，都能通过 func(*args, **kw) 的形式调用。</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funcA</span><span class="params">(a, b, c)</span>:</span></span><br><span class="line">    print(a, b, c)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_funcA</span><span class="params">()</span>:</span></span><br><span class="line">    args = (<span class="number">10</span>, <span class="number">20</span>, <span class="string">'hello'</span>)</span><br><span class="line">    funcA(*args)    <span class="comment"># 10 20 hello</span></span><br><span class="line"> </span><br><span class="line">    kw = &#123;<span class="string">'a'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">20</span>, <span class="string">'c'</span>:<span class="string">'hello'</span>&#125;</span><br><span class="line">    funcA(**kw)     <span class="comment"># 10 20 hello</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># -----</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funcB</span><span class="params">(a, b, *l)</span>:</span></span><br><span class="line">    print(a, b, l)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_funcB</span><span class="params">()</span>:</span></span><br><span class="line">    args = (<span class="number">10</span>, <span class="number">20</span>, <span class="string">'hello'</span>)</span><br><span class="line">    funcB(*args)    <span class="comment"># 10 20 ('hello',)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># -----</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funcC</span><span class="params">(a, *l, **d)</span>:</span></span><br><span class="line">    print(a, l, d)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_funcC</span><span class="params">()</span>:</span></span><br><span class="line">    args = (<span class="number">10</span>, <span class="number">20</span>, <span class="string">'hello'</span>)</span><br><span class="line">    kw = &#123;<span class="string">'key1'</span>: <span class="number">1</span>, <span class="string">'key2'</span>: <span class="number">2</span>&#125;</span><br><span class="line">    funcC(*args, **kw)  <span class="comment"># 10 (20, 'hello') &#123;'key1': 1, 'key2': 2&#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># -----</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">funcD</span><span class="params">(a, *, b, c)</span>:</span></span><br><span class="line">    print(<span class="string">'a:'</span>, a, <span class="string">'b:'</span>, b, <span class="string">'c:'</span>, c)</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_funcD</span><span class="params">()</span>:</span></span><br><span class="line">    args = (<span class="number">10</span>, )</span><br><span class="line">    kw = &#123;<span class="string">'b'</span>:<span class="number">1</span>, <span class="string">'c'</span>:<span class="number">2</span>&#125;</span><br><span class="line">    funcD(*args, **kw)  <span class="comment"># a: 10 b: 1 c: 2</span></span><br><span class="line"> </span><br><span class="line">call_funcA()</span><br><span class="line">call_funcB()</span><br><span class="line">call_funcC()</span><br><span class="line">call_funcD()</span><br></pre></td></tr></table></figure>
+<p><code>`</code>py</p>
+<h1 id="验证任意函数，都能通过-func-args-kw-的形式调用。"><a href="#验证任意函数，都能通过-func-args-kw-的形式调用。" class="headerlink" title="验证任意函数，都能通过 func(*args, **kw) 的形式调用。"></a>验证任意函数，都能通过 func(*args, **kw) 的形式调用。</h1><p>def funcA(a, b, c):<br>    print(a, b, c)</p>
+<p>def call_funcA():<br>    args = (10, 20, ‘hello’)<br>    funcA(*args)    # 10 20 hello</p>
+<pre><code>kw = {&apos;a&apos;: 10, &apos;b&apos;: 20, &apos;c&apos;:&apos;hello&apos;}
+funcA(**kw)     # 10 20 hello
+</code></pre><h1 id="—–"><a href="#—–" class="headerlink" title="—–"></a>—–</h1><p>def funcB(a, b, *l):<br>    print(a, b, l)</p>
+<p>def call_funcB():<br>    args = (10, 20, ‘hello’)<br>    funcB(*args)    # 10 20 (‘hello’,)</p>
+<h1 id="—–-1"><a href="#—–-1" class="headerlink" title="—–"></a>—–</h1><p>def funcC(a, *l, **d):<br>    print(a, l, d)</p>
+<p>def call_funcC():<br>    args = (10, 20, ‘hello’)<br>    kw = {‘key1’: 1, ‘key2’: 2}<br>    funcC(*args, **kw)  # 10 (20, ‘hello’) {‘key1’: 1, ‘key2’: 2}</p>
+<h1 id="—–-2"><a href="#—–-2" class="headerlink" title="—–"></a>—–</h1><p>def funcD(a, *, b, c):<br>    print(‘a:’, a, ‘b:’, b, ‘c:’, c)</p>
+<p>def call_funcD():<br>    args = (10, )<br>    kw = {‘b’:1, ‘c’:2}<br>    funcD(*args, **kw)  # a: 10 b: 1 c: 2</p>
+<p>call_funcA()<br>call_funcB()<br>call_funcC()<br>call_funcD()<br><code>`</code>&gt; 友情提示: 本文章在以下网站同步更新</p>
+<blockquote>
+<ul>
+<li><a href="https://zhaoyongcnsx.github.io/">GitHub Pages</a></li>
+<li><a href="http://47.92.146.3/" target="_blank" rel="noopener">国内个人站</a></li>
+</ul>
+</blockquote>
+
       
     </div>
     
@@ -651,7 +662,7 @@
                 alt="zhaoyongCNSX" />
             
               <p class="site-author-name" itemprop="name">zhaoyongCNSX</p>
-              <p class="site-description motion-element" itemprop="description">zhaoyongCNSX 的个人博客</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
           <nav class="site-state motion-element">
@@ -708,6 +719,12 @@
                         <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                   </span>
                 
+                  <span class="links-of-author-item">
+                    <a href="http://47.92.146.3" target="_blank" title="Self">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Self</a>
+                  </span>
+                
             </div>
           
 
@@ -738,7 +755,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-参数传递"><span class="nav-text">2. 参数传递</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-默认参数"><span class="nav-text">3. 默认参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-可变参数"><span class="nav-text">4. 可变参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-关键字参数"><span class="nav-text">5. 关键字参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-lambda-表达式"><span class="nav-text">6. lambda 表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-任意函数，都可通过-func-args-kw-的形式调用"><span class="nav-text">7. 任意函数，都可通过 func(*args, **kw) 的形式调用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-参数传递"><span class="nav-text">2. 参数传递</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-默认参数"><span class="nav-text">3. 默认参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-可变参数"><span class="nav-text">4. 可变参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-关键字参数"><span class="nav-text">5. 关键字参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-lambda-表达式"><span class="nav-text">6. lambda 表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-任意函数，都可通过-func-args-kw-的形式调用"><span class="nav-text">7. 任意函数，都可通过 func(*args, **kw) 的形式调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#验证任意函数，都能通过-func-args-kw-的形式调用。"><span class="nav-text">验证任意函数，都能通过 func(*args, **kw) 的形式调用。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#—–"><span class="nav-text">—–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#—–-1"><span class="nav-text">—–</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#—–-2"><span class="nav-text">—–</span></a></li></ol></div>
             
 
           </div>
