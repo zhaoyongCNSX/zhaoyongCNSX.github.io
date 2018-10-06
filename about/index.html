@@ -85,7 +85,7 @@
 <meta property="og:url" content="https://zhaoyongcnsx.github.io/about/index.html">
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-06T08:54:23.905Z">
+<meta property="og:updated_time" content="2018-10-06T09:43:43.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于">
 
@@ -596,14 +596,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://https-devved-cn.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
 
 
 
@@ -619,12 +611,38 @@
 
 
 
+  
 
 
 
 
 
 
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz',
+        appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
+        placeholder: '说点什么呗',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
@@ -955,7 +973,7 @@
 
   
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("TDDsUDe2bNJ9AuDLtdMqfUNo-gzGzoHsz", "0RHypA7igWU0QbMnfRg9D6DU");</script>
+  <script>AV.initialize("FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz", "iJ3wKfGYSz4XcXvh96ekdljM");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);
