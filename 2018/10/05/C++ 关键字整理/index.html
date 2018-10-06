@@ -455,7 +455,14 @@
       
 
       
-        <h1 id="1-auto"><a href="#1-auto" class="headerlink" title="1. auto"></a>1. auto</h1><p>C++11 引入的新的<strong>类型说明符</strong>. 与具体的 int,double 之类的类型说明符不同，其作用为：让编译器通过<strong>初始值</strong>来推算变量类型。因此 auto 变量必须要有初始值。</p>
+        <blockquote>
+<p>友情提示: 你可以选择以下镜像网站进行阅读:</p>
+<ul>
+<li><a href="https://zhaoyongcnsx.github.io">GitHub Pages</a></li>
+<li><a href="http://47.92.146.3" target="_blank" rel="noopener">国内个人站</a></li>
+</ul>
+</blockquote>
+<h1 id="1-auto"><a href="#1-auto" class="headerlink" title="1. auto"></a>1. auto</h1><p>C++11 引入的新的<strong>类型说明符</strong>. 与具体的 int,double 之类的类型说明符不同，其作用为：让编译器通过<strong>初始值</strong>来推算变量类型。因此 auto 变量必须要有初始值。</p>
 <p>可使用 auto 在一条声明语句中声明多个变量。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//a 为 int 类型变量，b 为 int*变量</span></span><br><span class="line"><span class="keyword">auto</span> a=<span class="number">1</span>, *b=&amp;a;</span><br></pre></td></tr></table></figure></p>
 <p>当以下情况时，auto 推断出的类型与初始值类型并不完全一致：</p>
 <ul>
@@ -797,14 +804,9 @@
 <li>不限制作用域的 enum 需要制定成员大小。</li>
 <li>限定作用域的 enum 可以不指定成员大小，隐式为 int.</li>
 </ul>
-<p><code>cpp
-enum Type : unsigned long long;    // 必须指定成员大小
-enum MyClass::Type; // 限定作用域。可以不指定成员大小，默认为 int.</code>&gt; 友情提示: 本文章在以下网站同步更新</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Type : <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>;    <span class="comment">// 必须指定成员大小</span></span><br><span class="line"><span class="keyword">enum</span> MyClass::Type; <span class="comment">// 限定作用域。可以不指定成员大小，默认为 int.</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<ul>
-<li><a href="https://zhaoyongcnsx.github.io/">GitHub Pages</a></li>
-<li><a href="http://47.92.146.3/" target="_blank" rel="noopener">国内个人站</a></li>
-</ul>
+<p>写在最后, 欢迎读者写下评论, 我们一起交流进步.</p>
 </blockquote>
 
       
@@ -1070,7 +1072,7 @@ enum MyClass::Type; // 限定作用域。可以不指定成员大小，默认为
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.5k</span>
+    <span title="Site words total count">7.6k</span>
   
 </div>
 
