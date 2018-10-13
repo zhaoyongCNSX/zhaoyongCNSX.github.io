@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="感想,知识管理,Python,Node.js," />
+  <meta name="keywords" content="Qt,QEvent," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
-<meta name="keywords" content="感想,知识管理,Python,Node.js">
+<meta name="description" content="讲述如何自定义 Qt 事件的处理过程.">
+<meta name="keywords" content="Qt,QEvent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建属于自己的知识管理系统">
-<meta property="og:url" content="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/index.html">
+<meta property="og:title" content="Qt 对于事件的自定义处理">
+<meta property="og:url" content="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/index.html">
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
-<meta property="og:description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
+<meta property="og:description" content="讲述如何自定义 Qt 事件的处理过程.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-09T01:17:48.000Z">
+<meta property="og:updated_time" content="2018-10-05T08:33:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建属于自己的知识管理系统">
-<meta name="twitter:description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
+<meta name="twitter:title" content="Qt 对于事件的自定义处理">
+<meta name="twitter:description" content="讲述如何自定义 Qt 事件的处理过程.">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/"/>
+  <link rel="canonical" href="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/"/>
 
 
 
 
 
-  <title>搭建属于自己的知识管理系统 | zhaoyongCNSX Blogs</title>
+  <title>Qt 对于事件的自定义处理 | zhaoyongCNSX Blogs</title>
   
 
 
@@ -287,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/">
+    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhaoyongCNSX">
@@ -304,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建属于自己的知识管理系统</h1>
+          <h1 class="post-title" itemprop="name headline">Qt 对于事件的自定义处理</h1>
         
 
         <div class="post-meta">
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-07T00:00:00+08:00">
-                2018-10-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-13T00:00:00+08:00">
+                2018-10-13
               </time>
             
 
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-10-09T09:17:48+08:00">
-                2018-10-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-05T16:33:10+08:00">
+                2018-10-05
               </time>
             
           </span>
@@ -358,6 +358,28 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">Qt</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/Qt/character/" itemprop="url" rel="index">
+                    <span itemprop="name">特性</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -369,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/07/搭建属于自己的知识管理系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/07/搭建属于自己的知识管理系统/" itemprop="commentCount"></span>
+                <a href="/2018/10/13/Qt 对于事件的自定义处理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/Qt 对于事件的自定义处理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,7 +400,7 @@
 
           
           
-             <span id="/2018/10/07/搭建属于自己的知识管理系统/" class="leancloud_visitors" data-flag-title="搭建属于自己的知识管理系统">
+             <span id="/2018/10/13/Qt 对于事件的自定义处理/" class="leancloud_visitors" data-flag-title="Qt 对于事件的自定义处理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,7 +425,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.1k
+                  2.3k
                 </span>
               
 
@@ -419,7 +441,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  9
                 </span>
               
             </div>
@@ -427,7 +449,7 @@
 
           
               <div class="post-description">
-                  本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.
+                  讲述如何自定义 Qt 事件的处理过程.
               </div>
           
 
@@ -451,65 +473,109 @@
 <li><a href="http://47.92.146.3" target="_blank" rel="noopener">国内个人站</a></li>
 </ul>
 </blockquote>
-<!-- URL -->
-<!-- /URL -->
-<h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h1><p>众所周知, 搭建自己的知识管理系统是十分重要的. </p>
-<p>笔者对知识管理系统的需求有以下几点:</p>
-<ul>
-<li>支持多平台. PC, 移动端都得有. 移动端编辑功能可以弱一点, 但是查找功能不能弱. 毕竟移动端最大的使用场景就是随时随地找找笔记.</li>
-<li>支持扩展. 除非功能十分强大, 不然就要对扩展有良好的支持. 总不能软件自身 Markdown 渲染的那么丑, 还不让人自定义吧.</li>
-<li>数据安全性. 这倒不是说笔记有啥机密, 主要都是自己写的东西, 莫名奇妙的丢了也挺心疼的. </li>
-<li>平台可替代性. 如果这家公司倒闭了呢, 总得让我能很方便的把数据导出去吧, 最好能直接把 Markdown 导出, 这样导入到其他软件也很方便. </li>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
+<li>已知了事件传递的过程，可针对每个环节来自定义事件的处理。有五个层次来自定义处理事件。</li>
 </ul>
-<p>以下是对一些软件使用后的吐槽…</p>
+<h2 id="1-1-程序示例"><a href="#1-1-程序示例" class="headerlink" title="1.1. 程序示例"></a>1.1. 程序示例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> :</span> <span class="keyword">public</span> QApplication</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    MyApplication(<span class="keyword">int</span> &amp;argc, <span class="keyword">char</span> **argv): QApplication(argc, argv) &#123; &#125;</span><br><span class="line">    ~MyApplication() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">/*--- [1] application notify ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">notify</span><span class="params">(QObject *object, QEvent *event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"[notify]"</span> &lt;&lt; <span class="string">"objName: "</span> &lt;&lt; object-&gt;objectName();</span><br><span class="line">            <span class="comment">// return false; return true;  只要 return, 该 event 就不会继续传递</span></span><br><span class="line">            <span class="comment">// 若需要继续分发该 event, 则需执行 QApplication::notify</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QApplication::notify(object, event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassFilter</span>:</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ClassFilter(QObject *parent = <span class="number">0</span>) : QObject(parent) &#123;&#125;</span><br><span class="line">    ~ClassFilter() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">eventFilter</span><span class="params">(QObject *watched, QEvent *event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; QString::fromUtf8(<span class="string">"[eventFilter] [%1] "</span>).arg(objectName())  &lt;&lt; <span class="string">"objName: "</span> &lt;&lt; watched-&gt;objectName();</span><br><span class="line">            <span class="comment">//return true;  // 事件终止传递</span></span><br><span class="line">            <span class="comment">//return false; // 事件继续传递</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QObject::eventFilter(watched, event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyButton</span> :</span> <span class="keyword">public</span> QPushButton</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyButton(QWidget *parent = <span class="number">0</span>): QPushButton(parent) &#123;&#125;</span><br><span class="line">    ~MyButton() &#123;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">/*--- [4] 事件接受者的 event ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">event</span><span class="params">(QEvent *e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; QString::fromUtf8(<span class="string">"[event]"</span>);</span><br><span class="line">            <span class="comment">//return true;      // 事件终止传递</span></span><br><span class="line">            <span class="comment">//return false;     // 事件继续向父控件传递</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QPushButton::event(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*--- [5] 事件接受者的 event Handle ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">mouseReleaseEvent</span><span class="params">(QMouseEvent *event)</span> </span>&#123;</span><br><span class="line">        qDebug() &lt;&lt; <span class="string">"[event Handle]"</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 根据需求判断是否需要调用父类 event Handler</span></span><br><span class="line">        QPushButton::mouseReleaseEvent(event);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//event-&gt;accept();      // 事件终止传递</span></span><br><span class="line">        <span class="comment">//event-&gt;ignore();      // 事件继续向父控件传递</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span>:</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyUI(QWidget *parent = <span class="number">0</span>): QWidget(parent) &#123;</span><br><span class="line">        QPushButton *btn = <span class="keyword">new</span> QPushButton(<span class="keyword">this</span>);</span><br><span class="line">        btn-&gt;setObjectName(<span class="string">"pushButton"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">/*--- [3] 在组件上安装事件过滤器 ---*/</span></span><br><span class="line">        ClassFilter* filterWgt = <span class="keyword">new</span> ClassFilter(<span class="keyword">this</span>);</span><br><span class="line">        filterWgt-&gt;setObjectName(<span class="string">"filterWgt"</span>);</span><br><span class="line">        btn-&gt;installEventFilter(filterWgt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">MyApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line"> </span><br><span class="line">    MyUI w;</span><br><span class="line">    w.show();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- [2] 在 application 安装事件过滤器 ---*/</span></span><br><span class="line">    ClassFilter filterApp;</span><br><span class="line">    filterApp.setObjectName(<span class="string">"filterApp"</span>);</span><br><span class="line">    a.installEventFilter(&amp;filterApp);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>为知笔记: 笔者是一个购买了多年为知笔记的用户, 其各平台客户端功能完成度都不错. 虽然 Markdown 编辑器烂成渣, 不过可以在笔记中添加使用第三方编辑器. 这一点还是值得给点赞的. 而为知最大的不足就是搜索. Markdown 笔记内容搜索体验很差. 而且近年感觉为知的更新速度放缓了, 论坛也很少有回复了, 有种渐行渐远的感觉… </li>
-<li>有道云笔记: 搜索渣的连为知都不如, 虽然体量很大, 但体验确实做得不好.</li>
-<li>Leanote: 刚开始接触 Leanote 时, 有种被惊艳到的感觉. 优良的 Markdown 编辑体验, 自带 blog 展示. 还是开源软件, 不仅客户端开源, 服务器端也开源了. 笔者于是很快搭建了自己的 Leanote 服务. 可等到新鲜劲过去之后, 问题也暴露的越来越多. 它的 安卓 和 ios 客户端功能完成度很低. 而且查了下 gitHub, 都有一年以上没更新了… 再加上自建服务器稳定性有待商榷, 所以还是弃坑了. </li>
-<li>VNote: 本地功能很强大, 但是好像目前还没有做同步 和 移动端软件.</li>
-<li>…</li>
+<li><p>执行结果</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[notify] objName:  <span class="string">"MyUIClassWindow"</span></span><br><span class="line"><span class="string">"[eventFilter] [filterApp] "</span> objName:  <span class="string">"MyUIClassWindow"</span></span><br><span class="line">[notify] objName:  <span class="string">"pushButton"</span></span><br><span class="line"><span class="string">"[eventFilter] [filterApp] "</span> objName:  <span class="string">"pushButton"</span></span><br><span class="line"><span class="string">"[eventFilter] [filterWgt] "</span> objName:  <span class="string">"pushButton"</span></span><br><span class="line"><span class="string">"[event]"</span></span><br><span class="line">[event Handle]</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h1 id="2-方案设计"><a href="#2-方案设计" class="headerlink" title="2. 方案设计"></a>2. 方案设计</h1><p>现有的笔记类软件很难满足要求. 在一个个软件的使用和比较中, 总在做着艰难的取舍. 就没有一个符合自己全部要求的方案吗? 有, 那就是自己搞一个! </p>
-<p>历史总是惊人的相似, 轮子总是重复的创造…</p>
-<p>如果从 PC 到 移动端 再到 服务器 完整打造一套软件系统, 所花费的时间成本太大了. 而比较现实的方案是: 先应用一些现有的软件, 辅以扩展性良好的通用数据结构, 打造能基本满足需求的系统. 等之后再从短板开始进行逐一替换.</p>
-<p>那就先说说这个现有的实现方案吧. 使用体验上虽然还不完美, 但也绝对比之前的体验要好. </p>
-<ul>
-<li>使用 Markdown 作为笔记格式, 使用单纯的目录结构来管理笔记.</li>
-<li>使用 git 负责笔记同步, 国内可选择同步到 <a href="https://gitee.com/" target="_blank" rel="noopener">码云</a> 等平台. 可以设置 git 项目属性为 private. </li>
-<li>使用 Hexo 生成博客, 托管到 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 上. </li>
-<li>Win, Mac 下, 可使用<code>VS Code</code>加载笔记文件夹, 且可以通过安装插件, 完成 Markdown 图片粘贴, git 快速同步, Markdown 高级预览.</li>
-<li>ios 下, 有很多支持 git 的软件, 试用了一圈发现还是<code>Working Copy</code>更符合我的使用习惯. 主要是因为其支持 查找文档内容 和 Markdown 预览. 虽然 Markdown 预览有些瑕疵, 但是不影响使用.</li>
-<li>运行在自己服务器中的一些脚本, 用于自动更新 Hexo 生成 blogs.</li>
+<h1 id="2-重写-receiver-EventHandler"><a href="#2-重写-receiver-EventHandler" class="headerlink" title="2. 重写 receiver EventHandler"></a>2. 重写 receiver EventHandler</h1><ul>
+<li>这是最普通简单的方法。实现的功能也最简单，且仅可用于有独立事件处理器的事件（很多不常用的事件就直接在<code>event()</code>中被处理了)</li>
+<li>注意：需时刻注意是否需要通过调用父类的同名函数来确保原有实现仍能进行！不注意这个将可能产生很难调的 Bug.<ul>
+<li>eg: 有一个类 A, 继承自 QPushButton. 在类 A 中将他的 clicked() 信号关联到了槽 slot_a(). 又重写了该类的 mousePressEvent 回调函数。在该函数中并没有调用父类的同名函数 QPushButton::mousePressEvent(). 因为 QPushButton 的 clicked 信号在 QPushButton::mousePressEvent() 中发出，而该函数并未执行。所以按钮的 clicked 信号将永远不会发出。slot_a() 也将永远不会被执行。</li>
 </ul>
-<h1 id="3-效果体现"><a href="#3-效果体现" class="headerlink" title="3. 效果体现"></a>3. 效果体现</h1><p>忙活了好几天, 终于完成了. 最后达到的效果是: </p>
+</li>
+</ul>
+<h2 id="2-1-accept-和ignore"><a href="#2-1-accept-和ignore" class="headerlink" title="2.1. accept()和ignore()"></a>2.1. <code>accept()</code>和<code>ignore()</code></h2><ul>
+<li>调用该事件的<code>accept()</code>, 则这个事件就不会被继续传播给其父组件。</li>
+<li>调用该事件的<code>ignore()</code>, Qt 会从其父组件中寻找另外的接受者。</li>
+</ul>
+<h3 id="2-1-1-使用"><a href="#2-1-1-使用" class="headerlink" title="2.1.1. 使用"></a>2.1.1. 使用</h3><blockquote>
+<p>Tips: 当自己重写了事件处理函数时，若想这个事件继续传播，则调用父类的该事件处理函数。若想事件就此打住，则不用调用父类的事件处理函数。</p>
+</blockquote>
 <ul>
-<li>在任一客户端更改笔记后, 将笔记 push 到码云. </li>
-<li>这会触发一个预先在码云该项目中设置了的 web hook, 它会发送一个 POST 请求到笔者的服务器. </li>
-<li>在该服务器上运行着一个 Node.js 服务. 当收到请求时, 会执行:<ol>
-<li>pull 笔记到本地, 读取文档中的一个配置文件. 该文件说明了 blogs 的生成规则, 包括哪些笔记要生成 blogs, 用到哪些 tags, 是否接受评论, …</li>
-<li>将这些待发布为 blog 的笔记做一些特殊处理后, 生成 md 文件到 Hexo source 目录下. </li>
-<li>复制这些 md 文件中用到的图片到 Hexo source 目录下.</li>
-<li>调用 Hexo 生成 Html 文件. 再 push 到 GitHub Pages 中.</li>
-<li>自动发送邮件给笔者, 通知执行结果, 并把日志文件以附件形式包含在邮件中.</li>
+<li><p>其实自己很少手动调用这两种方法，当我们想忽略该事件时，只需调用父类的相应事件处理函数即可。因为我们不知道父类中的实现。若我们在子类中直接忽略该事件，则父类将接收不到该事件。所以应尽量调用父类取实现。</p>
+</li>
+<li><p>为此 Qt 有默认的设计：</p>
+<ul>
+<li>事件对象默认为<code>accept()</code>的。</li>
+<li>所有组件的父类<code>QWidget</code>默认的实现则是调用<code>ignore()</code></li>
+</ul>
+</li>
+<li><p>这样，若在自己实现的事件处理函数中，不调用 QWidget 的事件处理函数，就相当于调用了<code>accept()</code>. 若想忽略信号，则直接调用 QWidget 的事件处理函数。</p>
+</li>
+<li><p>必须手动调用的特殊场景：</p>
+<ul>
+<li>对于窗口关闭事件<code>QCloseEvent</code>:<ul>
+<li><code>accept()</code>的调用意味着 Qt 将停止事件的传播，窗口关闭。</li>
+<li><code>ignore()</code>的调用意味着事件继续传播，阻止窗口关闭。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-重写接收者的event-函数"><a href="#3-重写接收者的event-函数" class="headerlink" title="3. 重写接收者的event()函数"></a>3. 重写接收者的<code>event()</code>函数</h1><ul>
+<li>event() 函数负责将到来的所有 event 按照 event-&gt;type() 不同，分发给不同的 event Handler. </li>
+<li>可达到的效果：自定义事件的分发。<h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2></li>
+<li>重写该组件的<code>event()</code>后，在分发到各 event Handler 之前，完成一些自定义的事情。如下：<ol>
+<li>直接在该函数中写入对关系的事件的自定义处理。不用一个一个重写各种事件处理器了。（但若在父类的 event() 调用问题上出错，将有很大的影响。)</li>
+<li>直接屏蔽掉一些不关心的事件。( QEvent::type() 判断之后，在不关心的 case 分支下什么都不写。)</li>
 </ol>
 </li>
 </ul>
-<h1 id="4-实现过程中的问题记录"><a href="#4-实现过程中的问题记录" class="headerlink" title="4. 实现过程中的问题记录"></a>4. 实现过程中的问题记录</h1><p>在整个过程中, 遇到了一些问题, 积累点滴, 以供成长.</p>
-<h2 id="4-1-在-Markdown-中插入图片和附件"><a href="#4-1-在-Markdown-中插入图片和附件" class="headerlink" title="4.1. 在 Markdown 中插入图片和附件"></a>4.1. 在 Markdown 中插入图片和附件</h2><p>在 Markdown 文档中插入图片, 一直是一个痛点. 而现有软件的解决思路一般有以下几种:</p>
-<ul>
-<li>插入图片时, 将图片传到自己服务器, 并返回一个 URL. 和使用<strong>网络图床</strong>的解决方法一致.</li>
-<li>插入图片时, 将图片复制到一个指定路径, 并返回该路径. 同步时, 将图片和文档一起同步. </li>
+<h2 id="3-2-缺点"><a href="#3-2-缺点" class="headerlink" title="3.2. 缺点"></a>3.2. 缺点</h2><ul>
+<li>虽然可以在<code>event()</code>中屏蔽掉不关心的事件。但是当需要屏蔽事件的组件很多时，工程量巨大。(eg: 所有组件都不响应鼠标事件，则需要在所有组件中都重写 event(), 在 event() 中不分发鼠标事件).</li>
+<li>所以 Qt 提供了 eventFilter （事件过滤器). 只需将主窗体中为你每个部件都<code>installEventFilter（主窗体)</code>之后，重写主窗体的<code>eventFilter()</code>, 在其中屏蔽掉鼠标事件即可。</li>
 </ul>
-<p>方案一中管理图片时, 需要先登录到图床, 再进行修改. 万一哪天图床挂了, 图床之间的迁移成本太高了. 所以笔者采用了方案二. 具体做法是: 在笔记的同级目录, 创建文件夹 res, 将图片拷贝到该文件夹下. 在 note1.md 中使用 <code>![图片标题](./Res/img1.png)</code> 的方式来引用该图片. 目录结构示意图如下:</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res</span><br><span class="line"> <span class="string">|-- img1.png</span></span><br><span class="line"></span><br><span class="line">note1.md</span><br></pre></td></tr></table></figure>
-<p>VS Code 可使用 <code>Paste Image</code> 插件将剪切板的图像生成图片文件, 存储到特定目录下, 再将路径插入到文档中. 可使用 <code>Markdown Preview Enhanced</code> 来选择现有的图片插入. 该插件会将图片复制到指定目录, 并在文档中增加内容. 只需要在安装完插件后, 增加配置如下:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//----------------- markdown preview Enhanced -------------------</span><br><span class="line">// 使用图片助手插入本地图片时, 图片复制到的路径</span><br><span class="line">"markdown-preview-enhanced.imageFolderPath": "./res/",</span><br><span class="line"></span><br><span class="line">//----------------- paset image -------------------</span><br><span class="line">"pasteImage.path": "$&#123;currentFileDir&#125;/res/",</span><br><span class="line">"pasteImage.prefix": "./",</span><br><span class="line">"pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",</span><br></pre></td></tr></table></figure>
-<h2 id="4-2-Hexo-生成带有图片的-blog"><a href="#4-2-Hexo-生成带有图片的-blog" class="headerlink" title="4.2. Hexo 生成带有图片的 blog"></a>4.2. Hexo 生成带有图片的 blog</h2><p>当待生成 blog 的 markdown 中有图片时, 直接使用 hexo 生成的 Html 是无法正常显示图片的. 因为相对于 html文件而言, 类似于 <code>./res/test.png</code> 的这些路径找不到了. Hexo 是以时间为目录来组织生成的 html 的, 这些 html 分散在很多个以日期标注的文件夹下, 一个个复制到对应文件夹下有点累. 所以笔者的解决方法是, 修改待发布的markdown 中 <code>./res/test.png</code> 为 <code>/res/test.png</code>, 这样只要将用到的图片复制到 hexo 的 <code>source/res/</code> 目录下, hexo 在生成时, 会自动把这些文件拷贝到 html 同级目录中. 这样就能正常显示了.</p>
-<p>这个修改路径的工作可以直接交给脚本去执行. 顺便还能给文件加个公共的Head 和 Tail.</p>
-<p>为了简化 “脚本中查找本文档用到的图片” 逻辑, 笔者在写文档时, 将所有的图片资源引用都放到了文章开头, 格式如下:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 放于前面</span><br><span class="line"><span class="comment">&lt;!-- RES --&gt;</span></span><br><span class="line">[img1]: /res/mdImg/imgTest.png</span><br><span class="line"><span class="comment">&lt;!-- /RES --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![图片名][img1]</span><br></pre></td></tr></table></figure>
-<h2 id="4-3-使用码云的-web-hooks"><a href="#4-3-使用码云的-web-hooks" class="headerlink" title="4.3. 使用码云的 web hooks"></a>4.3. 使用码云的 web hooks</h2><p>可以使用 node.js 快速搭建一个支持 码云 web hooks 请求的服务. 可以直接引用库 <code>gitee-webhook-handler</code>. 在自己的 js 中调用脚本执行即可.</p>
-<p>如果使用的是其他的 git 仓库, 比如 GitHub, Coding 等, 可以直接引用对应的库来使用. </p>
+<h2 id="3-3-代码实例"><a href="#3-3-代码实例" class="headerlink" title="3.3. 代码实例"></a>3.3. 代码实例</h2><blockquote>
+<p>只处理 tab 按键事件，其他都不处理（因为所有信号都未分发)</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> CustomTextEdit::event(QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>只对 tab 事件做了特殊处理（处理后屏蔽). 其他事件不受影响（其他信号分发)</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    <span class="comment">// 不会再传递</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> 父类：:event();    <span class="comment">// 其他事件，不受影响</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="4-事件过滤器"><a href="#4-事件过滤器" class="headerlink" title="4. 事件过滤器"></a>4. 事件过滤器</h1><ul>
+<li><p>每个 QObject 对象都维护一个 <code>QObjectList eventFilters;</code> 成员变量。</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line">QObject *a = <span class="keyword">new</span> QObject;</span><br><span class="line">QObject *b = <span class="keyword">new</span> QObject;</span><br><span class="line"><span class="comment">// 在 a 上安装事件过滤器 b.</span></span><br><span class="line"><span class="comment">// b 被存储在 a 的成员变量 eventFilters 中。</span></span><br><span class="line">a-&gt;installEventFilter(b);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>当事件到达对象 A 的<code>event()</code>之后，会根据事件类型传递给 A 的各事件处理函数。但可以在 A 上安装事件过滤器 <code>A-&gt;installEventFilter(B);</code> , 使得 A 的这些事件在到达事件处理函数之前，先被对象 B 的<code>eventFilter()</code>进行处理。</li>
+<li>根据被安装事件过滤器的对象，可分为以下两种：<ul>
+<li>在<code>QCoreApplication::instance()</code>, 也就是<code>qApp</code>上面安装事件过滤器。这样该应用程序的所有事件将经过该事件过滤函数的过滤。</li>
+<li>在其他对象上安装事件过滤器，只有发送给该对象的事件会被该事件过滤函数过滤。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-1-优缺点"><a href="#4-1-优缺点" class="headerlink" title="4.1. 优缺点"></a>4.1. 优缺点</h2><ul>
+<li>优点：<ul>
+<li>不用继承该控件，就能自定义处理其事件。因为各事件处理函数为 protected, 外部无法直接访问。而安装事件过滤器就能在 事件处理函数 之前，处理事件。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>只能用于<strong>单线程</strong>.  事件过滤器和被安装过滤器的组件必须在<strong>同一线程</strong>，否则，过滤器将不起作用。另外，如果在安装过滤器之后，这两个组件到了不同的线程，那么，只有等到二者重新回到同一线程的时候过滤器才会有效。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-2-方法"><a href="#4-2-方法" class="headerlink" title="4.2. 方法"></a>4.2. 方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装</span></span><br><span class="line"><span class="keyword">void</span> QObject::installEventFilter(QObject * filterObj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 卸载</span></span><br><span class="line"><span class="keyword">void</span> QObject::removeEventFilter(QObject * obj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 事件过滤函数</span></span><br><span class="line"><span class="comment">// 返回值：不想该事件被继续传递下去（包括发送给 receiver), 返回 true. 否则返回 false.</span></span><br><span class="line"><span class="comment">// 注意：若在事件过滤函数中 delete 了某个组件，则必须返回`true`. 否则 Qt 还将事件分发给这个组件，程序崩溃</span></span><br><span class="line"><span class="keyword">bool</span> QObject::eventFilter(QObject * watched, QEvent * event) [<span class="keyword">virtual</span>];</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-特别注意"><a href="#4-3-特别注意" class="headerlink" title="4.3. 特别注意"></a>4.3. 特别注意</h2><ul>
+<li><p>在 <code>QAbstractScollArea</code> 及其子类上安装事件过滤器时，要安装在其<strong>视口</strong>上。</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">QTextEdit edit;</span><br><span class="line">edit.installEventFilter(<span class="keyword">this</span>);</span><br><span class="line">edit.viewPort()-&gt;installEventFilter(<span class="keyword">this</span>);    <span class="comment">// 在视口上安装事件过滤器</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">eventFilter</span><span class="params">(QObject *watcher, QEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (watcher == edit) &#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type == QEvent::KeyPress) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> QWidgert::eventFilter(watcher, event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在一个控件或 qApp 安装了多个事件过滤器</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">btn-&gt;installEventFilter(A);</span><br><span class="line">btn-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到，不做处理时，A::eventFilter 收到</span></span><br><span class="line"> </span><br><span class="line">qApp-&gt;installEventFilter(A);</span><br><span class="line">qApp-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到，不做处理时，A::eventFilter 收到</span></span><br></pre></td></tr></table></figure>
+<h1 id="5-重写-notify-函数"><a href="#5-重写-notify-函数" class="headerlink" title="5. 重写 notify() 函数"></a>5. 重写 <code>notify()</code> 函数</h1><ul>
+<li>这种方法是影响最大的方法，因为该函数负责将事件发送给接收者。</li>
+<li>该方法不受线程限制，其可用于<strong>多线程</strong>. 但是全局范围内只能有一个被使用（因为 QCoreApplication 是单例的）。</li>
+<li>QApplication 重写了 QCoreApplication 的 notify(). 具体可查看上一节的源码分析部分。</li>
+<li>根据本程序是 QCoreApplication 还是 QAPplication, 选择子类化哪个类。</li>
+</ul>
 <blockquote>
 <p>写在最后, 欢迎读者写下评论, 我们一起交流进步.</p>
 </blockquote>
@@ -533,7 +599,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/" title="搭建属于自己的知识管理系统">https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/</a>
+    <a href="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/" title="Qt 对于事件的自定义处理">https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -548,13 +614,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/thinks/" rel="tag"># 感想</a>
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
           
-            <a href="/tags/manager-nodes/" rel="tag"># 知识管理</a>
-          
-            <a href="/tags/Python/" rel="tag"># Python</a>
-          
-            <a href="/tags/nodejs/" rel="tag"># Node.js</a>
+            <a href="/tags/QEvent/" rel="tag"># QEvent</a>
           
         </div>
       
@@ -567,14 +629,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/10/07/搭建属于自己的知识管理系统/" rel="next" title="搭建属于自己的知识管理系统">
+                <i class="fa fa-chevron-left"></i> 搭建属于自己的知识管理系统
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/13/Qt 对于事件的自定义处理/" rel="prev" title="Qt 对于事件的自定义处理">
-                Qt 对于事件的自定义处理 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/13/Qt 事件系统/" rel="prev" title="Qt 事件系统">
+                Qt 事件系统 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -744,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-问题描述"><span class="nav-text">1. 问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-方案设计"><span class="nav-text">2. 方案设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-效果体现"><span class="nav-text">3. 效果体现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-实现过程中的问题记录"><span class="nav-text">4. 实现过程中的问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-在-Markdown-中插入图片和附件"><span class="nav-text">4.1. 在 Markdown 中插入图片和附件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Hexo-生成带有图片的-blog"><span class="nav-text">4.2. Hexo 生成带有图片的 blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-使用码云的-web-hooks"><span class="nav-text">4.3. 使用码云的 web hooks</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-程序示例"><span class="nav-text">1.1. 程序示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-重写-receiver-EventHandler"><span class="nav-text">2. 重写 receiver EventHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-accept-和ignore"><span class="nav-text">2.1. accept()和ignore()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-使用"><span class="nav-text">2.1.1. 使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-重写接收者的event-函数"><span class="nav-text">3. 重写接收者的event()函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-作用"><span class="nav-text">3.1. 作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-缺点"><span class="nav-text">3.2. 缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-代码实例"><span class="nav-text">3.3. 代码实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-事件过滤器"><span class="nav-text">4. 事件过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-优缺点"><span class="nav-text">4.1. 优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-方法"><span class="nav-text">4.2. 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-特别注意"><span class="nav-text">4.3. 特别注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-重写-notify-函数"><span class="nav-text">5. 重写 notify() 函数</span></a></li></ol></div>
             
 
           </div>

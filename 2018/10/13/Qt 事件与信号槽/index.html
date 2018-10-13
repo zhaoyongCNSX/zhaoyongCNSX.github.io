@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Qt,QEvent,signal," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta name="keywords" content="C++ Qt Python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhaoyongCNSX Blogs">
-<meta property="og:url" content="https://blogs.devved.cn/archives/index.html">
+<meta name="description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
+<meta name="keywords" content="Qt,QEvent,signal">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt 事件与信号槽">
+<meta property="og:url" content="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/index.html">
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-13T08:26:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhaoyongCNSX Blogs">
+<meta name="twitter:title" content="Qt 事件与信号槽">
+<meta name="twitter:description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://blogs.devved.cn/archives/"/>
+  <link rel="canonical" href="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/"/>
 
 
 
 
 
-  <title>归档 | zhaoyongCNSX Blogs</title>
+  <title>Qt 事件与信号槽 | zhaoyongCNSX Blogs</title>
   
 
 
@@ -141,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,185 +273,312 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaoyongCNSX">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myLogo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhaoyongCNSX Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Qt 事件与信号槽</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-13T00:00:00+08:00">
+                2018-10-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-10-13T16:26:17+08:00">
+                2018-10-13
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 4 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
 
-      
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/Qt/" itemprop="url" rel="index">
+                    <span itemprop="name">Qt</span>
+                  </a>
+                </span>
 
-        
-        
-        
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programming/Qt/character/" itemprop="url" rel="index">
+                    <span itemprop="name">特性</span>
+                  </a>
+                </span>
 
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/13/Qt 事件与信号槽/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/Qt 事件与信号槽/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2018/10/13/Qt 事件与信号槽/" class="leancloud_visitors" data-flag-title="Qt 事件与信号槽">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/13/Qt 事件与信号槽/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Qt 事件与信号槽</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  417
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-13T00:00:00+08:00"
-              content="2018-10-13" >
-          10-13
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
+          
+              <div class="post-description">
+                  探讨 Qt 事件与信号槽在使用场景上的不同.
+              </div>
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/13/Qt 事件系统/" itemprop="url">
-              
-                <span itemprop="name">Qt 事件系统</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-13T00:00:00+08:00"
-              content="2018-10-13" >
-          10-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/13/Qt 对于事件的自定义处理/" itemprop="url">
-              
-                <span itemprop="name">Qt 对于事件的自定义处理</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-13T00:00:00+08:00"
-              content="2018-10-13" >
-          10-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote>
+<p>友情提示: 你可以选择以下镜像网站进行阅读:</p>
+<ul>
+<li><a href="https://zhaoyongcnsx.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
+<li><a href="http://47.92.146.3" target="_blank" rel="noopener">国内个人站</a></li>
+</ul>
+</blockquote>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
+<li>事件机制比信号槽更底层。在事件中会默认的发送相应信号，所以一般使用，只需操作信号槽即可。</li>
+<li>当我们需要<strong>自定义组件</strong>或<strong>修改现有组件的行为</strong>时，就需要从事件的层面着手了。</li>
+</ul>
+<h1 id="2-区别"><a href="#2-区别" class="headerlink" title="2. 区别"></a>2. 区别</h1><ul>
+<li>信号槽：其针对的是对象与对象之间的连接。当信号发射后，与其相连的槽函数总是会被执行的。</li>
+<li>事件：可以经过消息队列传输，也可直接传输。在传输过程中，可经过事件过滤器和事件处理函数等手段来干预其。</li>
+</ul>
+<h1 id="3-联系"><a href="#3-联系" class="headerlink" title="3. 联系"></a>3. 联系</h1><ul>
+<li>跨线程的<strong>信号槽</strong>机制是通过<strong>事件机制</strong>完成的。</li>
+<li><p>查看相关 Qt 源码可了解调用过程：</p>
+<blockquote>
+<ul>
+<li>以下情况的信号槽连接会通过 <code>poseEvent()</code>实现：<pre><code>- 信号槽为 `Qt::AutoConnection` 连接模式下
+    - 发送信号线程非当前线程时  或  信号与槽不在同一线程
+- 信号槽为 `Qt::QueuedConnection` 连接模式下
+</code></pre></li>
+</ul>
+</blockquote>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// （自动连接模式 &amp;&amp; （信号线程非本线程 || 信号与槽非同一线程) || 对列连接模式)</span></span><br><span class="line"><span class="keyword">if</span> ((c-&gt;connectionType == Qt::AutoConnection</span><br><span class="line">　　     &amp;&amp; (currentThreadData != sender-&gt;d_func()-&gt;threadData</span><br><span class="line">　　         || receiver-&gt;d_func()-&gt;threadData != sender-&gt;d_func()-&gt;threadData))</span><br><span class="line">　　    || (c-&gt;connectionType == Qt::QueuedConnection))</span><br><span class="line">&#123;</span><br><span class="line">    queued_activate(sender, signal, *c, argv);</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 阻塞对列模式</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (c-&gt;connectionType == Qt::BlockingQueuedConnection)</span><br><span class="line">&#123;</span><br><span class="line">    blocking_activate(sender, signal, *c, argv);</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 其中 queued_activate 会调用 :</span></span><br><span class="line">QCoreApplication::postEvent(c.receiver, <span class="keyword">new</span> QMetaCallEvent(c.method, sender, signal, nargs, types, args, semaphore));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>写在最后, 欢迎读者写下评论, 我们一起交流进步.</p>
+</blockquote>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/10/07/搭建属于自己的知识管理系统/" itemprop="url">
-              
-                <span itemprop="name">搭建属于自己的知识管理系统</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-10-07T00:00:00+08:00"
-              content="2018-10-07" >
-          10-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    zhaoyongCNSX
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/" title="Qt 事件与信号槽">https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
+          
+            <a href="/tags/QEvent/" rel="tag"># QEvent</a>
+          
+            <a href="/tags/signal/" rel="tag"># signal</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/Qt 事件系统/" rel="next" title="Qt 事件系统">
+                <i class="fa fa-chevron-left"></i> Qt 事件系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -455,6 +586,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -477,8 +615,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -570,6 +717,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-区别"><span class="nav-text">2. 区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-联系"><span class="nav-text">3. 联系</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -727,6 +890,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
