@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
 <meta property="og:description" content="讲述如何自定义 Qt 事件的处理过程.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-09T18:00:18.000Z">
+<meta property="og:updated_time" content="2018-11-11T04:00:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt 对于事件的自定义处理">
 <meta name="twitter:description" content="讲述如何自定义 Qt 事件的处理过程.">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-10T02:00:18+08:00">
-                2018-11-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-11T12:00:59+08:00">
+                2018-11-11
               </time>
             
           </span>
@@ -474,7 +474,7 @@
 </ul>
 </blockquote>
 <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
-<li>已知了事件传递的过程，可针对每个环节来自定义事件的处理。有五个层次来自定义处理事件。</li>
+<li>已知了事件传递的过程, 可针对每个环节来自定义事件的处理. 有五个层次来自定义处理事件. </li>
 </ul>
 <h2 id="1-1-程序示例"><a href="#1-1-程序示例" class="headerlink" title="1.1. 程序示例"></a>1.1. 程序示例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> :</span> <span class="keyword">public</span> QApplication</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    MyApplication(<span class="keyword">int</span> &amp;argc, <span class="keyword">char</span> **argv): QApplication(argc, argv) &#123; &#125;</span><br><span class="line">    ~MyApplication() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">/*--- [1] application notify ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">notify</span><span class="params">(QObject *object, QEvent *event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"[notify]"</span> &lt;&lt; <span class="string">"objName: "</span> &lt;&lt; object-&gt;objectName();</span><br><span class="line">            <span class="comment">// return false; return true;  只要 return, 该 event 就不会继续传递</span></span><br><span class="line">            <span class="comment">// 若需要继续分发该 event, 则需执行 QApplication::notify</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QApplication::notify(object, event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassFilter</span>:</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ClassFilter(QObject *parent = <span class="number">0</span>) : QObject(parent) &#123;&#125;</span><br><span class="line">    ~ClassFilter() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">eventFilter</span><span class="params">(QObject *watched, QEvent *event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; QString::fromUtf8(<span class="string">"[eventFilter] [%1] "</span>).arg(objectName())  &lt;&lt; <span class="string">"objName: "</span> &lt;&lt; watched-&gt;objectName();</span><br><span class="line">            <span class="comment">//return true;  // 事件终止传递</span></span><br><span class="line">            <span class="comment">//return false; // 事件继续传递</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QObject::eventFilter(watched, event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyButton</span> :</span> <span class="keyword">public</span> QPushButton</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyButton(QWidget *parent = <span class="number">0</span>): QPushButton(parent) &#123;&#125;</span><br><span class="line">    ~MyButton() &#123;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">/*--- [4] 事件接受者的 event ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">event</span><span class="params">(QEvent *e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; QString::fromUtf8(<span class="string">"[event]"</span>);</span><br><span class="line">            <span class="comment">//return true;      // 事件终止传递</span></span><br><span class="line">            <span class="comment">//return false;     // 事件继续向父控件传递</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QPushButton::event(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*--- [5] 事件接受者的 event Handle ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">mouseReleaseEvent</span><span class="params">(QMouseEvent *event)</span> </span>&#123;</span><br><span class="line">        qDebug() &lt;&lt; <span class="string">"[event Handle]"</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 根据需求判断是否需要调用父类 event Handler</span></span><br><span class="line">        QPushButton::mouseReleaseEvent(event);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//event-&gt;accept();      // 事件终止传递</span></span><br><span class="line">        <span class="comment">//event-&gt;ignore();      // 事件继续向父控件传递</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span>:</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyUI(QWidget *parent = <span class="number">0</span>): QWidget(parent) &#123;</span><br><span class="line">        QPushButton *btn = <span class="keyword">new</span> QPushButton(<span class="keyword">this</span>);</span><br><span class="line">        btn-&gt;setObjectName(<span class="string">"pushButton"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">/*--- [3] 在组件上安装事件过滤器 ---*/</span></span><br><span class="line">        ClassFilter* filterWgt = <span class="keyword">new</span> ClassFilter(<span class="keyword">this</span>);</span><br><span class="line">        filterWgt-&gt;setObjectName(<span class="string">"filterWgt"</span>);</span><br><span class="line">        btn-&gt;installEventFilter(filterWgt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">MyApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line"> </span><br><span class="line">    MyUI w;</span><br><span class="line">    w.show();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- [2] 在 application 安装事件过滤器 ---*/</span></span><br><span class="line">    ClassFilter filterApp;</span><br><span class="line">    filterApp.setObjectName(<span class="string">"filterApp"</span>);</span><br><span class="line">    a.installEventFilter(&amp;filterApp);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -483,98 +483,98 @@
 </li>
 </ul>
 <h1 id="2-重写-receiver-EventHandler"><a href="#2-重写-receiver-EventHandler" class="headerlink" title="2. 重写 receiver EventHandler"></a>2. 重写 receiver EventHandler</h1><ul>
-<li>这是最普通简单的方法。实现的功能也最简单，且仅可用于有独立事件处理器的事件（很多不常用的事件就直接在<code>event()</code>中被处理了)</li>
-<li>注意：需时刻注意是否需要通过调用父类的同名函数来确保原有实现仍能进行！不注意这个将可能产生很难调的 Bug.<ul>
-<li>eg: 有一个类 A, 继承自 QPushButton. 在类 A 中将他的 clicked() 信号关联到了槽 slot_a(). 又重写了该类的 mousePressEvent 回调函数。在该函数中并没有调用父类的同名函数 QPushButton::mousePressEvent(). 因为 QPushButton 的 clicked 信号在 QPushButton::mousePressEvent() 中发出，而该函数并未执行。所以按钮的 clicked 信号将永远不会发出。slot_a() 也将永远不会被执行。</li>
+<li>这是最普通简单的方法. 实现的功能也最简单, 且仅可用于有独立事件处理器的事件（很多不常用的事件就直接在<code>event()</code>中被处理了)</li>
+<li>注意: 需时刻注意是否需要通过调用父类的同名函数来确保原有实现仍能进行！不注意这个将可能产生很难调的 Bug.<ul>
+<li>eg: 有一个类 A, 继承自 QPushButton. 在类 A 中将他的 clicked() 信号关联到了槽 slot_a(). 又重写了该类的 mousePressEvent 回调函数. 在该函数中并没有调用父类的同名函数 QPushButton::mousePressEvent(). 因为 QPushButton 的 clicked 信号在 QPushButton::mousePressEvent() 中发出, 而该函数并未执行. 所以按钮的 clicked 信号将永远不会发出. slot_a() 也将永远不会被执行. </li>
 </ul>
 </li>
 </ul>
 <h2 id="2-1-accept-和ignore"><a href="#2-1-accept-和ignore" class="headerlink" title="2.1. accept()和ignore()"></a>2.1. <code>accept()</code>和<code>ignore()</code></h2><ul>
-<li>调用该事件的<code>accept()</code>, 则这个事件就不会被继续传播给其父组件。</li>
-<li>调用该事件的<code>ignore()</code>, Qt 会从其父组件中寻找另外的接受者。</li>
+<li>调用该事件的<code>accept()</code>, 则这个事件就不会被继续传播给其父组件. </li>
+<li>调用该事件的<code>ignore()</code>, Qt 会从其父组件中寻找另外的接受者. </li>
 </ul>
 <h3 id="2-1-1-使用"><a href="#2-1-1-使用" class="headerlink" title="2.1.1. 使用"></a>2.1.1. 使用</h3><blockquote>
-<p>Tips: 当自己重写了事件处理函数时，若想这个事件继续传播，则调用父类的该事件处理函数。若想事件就此打住，则不用调用父类的事件处理函数。</p>
+<p>Tips: 当自己重写了事件处理函数时, 若想这个事件继续传播, 则调用父类的该事件处理函数. 若想事件就此打住, 则不用调用父类的事件处理函数. </p>
 </blockquote>
 <ul>
-<li><p>其实自己很少手动调用这两种方法，当我们想忽略该事件时，只需调用父类的相应事件处理函数即可。因为我们不知道父类中的实现。若我们在子类中直接忽略该事件，则父类将接收不到该事件。所以应尽量调用父类取实现。</p>
+<li><p>其实自己很少手动调用这两种方法, 当我们想忽略该事件时, 只需调用父类的相应事件处理函数即可. 因为我们不知道父类中的实现. 若我们在子类中直接忽略该事件, 则父类将接收不到该事件. 所以应尽量调用父类取实现. </p>
 </li>
-<li><p>为此 Qt 有默认的设计：</p>
+<li><p>为此 Qt 有默认的设计: </p>
 <ul>
-<li>事件对象默认为<code>accept()</code>的。</li>
+<li>事件对象默认为<code>accept()</code>的. </li>
 <li>所有组件的父类<code>QWidget</code>默认的实现则是调用<code>ignore()</code></li>
 </ul>
 </li>
-<li><p>这样，若在自己实现的事件处理函数中，不调用 QWidget 的事件处理函数，就相当于调用了<code>accept()</code>. 若想忽略信号，则直接调用 QWidget 的事件处理函数。</p>
+<li><p>这样, 若在自己实现的事件处理函数中, 不调用 QWidget 的事件处理函数, 就相当于调用了<code>accept()</code>. 若想忽略信号, 则直接调用 QWidget 的事件处理函数. </p>
 </li>
-<li><p>必须手动调用的特殊场景：</p>
+<li><p>必须手动调用的特殊场景: </p>
 <ul>
 <li>对于窗口关闭事件<code>QCloseEvent</code>:<ul>
-<li><code>accept()</code>的调用意味着 Qt 将停止事件的传播，窗口关闭。</li>
-<li><code>ignore()</code>的调用意味着事件继续传播，阻止窗口关闭。</li>
+<li><code>accept()</code>的调用意味着 Qt 将停止事件的传播, 窗口关闭. </li>
+<li><code>ignore()</code>的调用意味着事件继续传播, 阻止窗口关闭. </li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h1 id="3-重写接收者的event-函数"><a href="#3-重写接收者的event-函数" class="headerlink" title="3. 重写接收者的event()函数"></a>3. 重写接收者的<code>event()</code>函数</h1><ul>
-<li>event() 函数负责将到来的所有 event 按照 event-&gt;type() 不同，分发给不同的 event Handler. </li>
-<li>可达到的效果：自定义事件的分发。<h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2></li>
-<li>重写该组件的<code>event()</code>后，在分发到各 event Handler 之前，完成一些自定义的事情。如下：<ol>
-<li>直接在该函数中写入对关系的事件的自定义处理。不用一个一个重写各种事件处理器了。（但若在父类的 event() 调用问题上出错，将有很大的影响。)</li>
-<li>直接屏蔽掉一些不关心的事件。( QEvent::type() 判断之后，在不关心的 case 分支下什么都不写。)</li>
+<li>event() 函数负责将到来的所有 event 按照 event-&gt;type() 不同, 分发给不同的 event Handler. </li>
+<li>可达到的效果: 自定义事件的分发. <h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2></li>
+<li>重写该组件的<code>event()</code>后, 在分发到各 event Handler 之前, 完成一些自定义的事情. 如下: <ol>
+<li>直接在该函数中写入对关系的事件的自定义处理. 不用一个一个重写各种事件处理器了. （但若在父类的 event() 调用问题上出错, 将有很大的影响. )</li>
+<li>直接屏蔽掉一些不关心的事件. ( QEvent::type() 判断之后, 在不关心的 case 分支下什么都不写. )</li>
 </ol>
 </li>
 </ul>
 <h2 id="3-2-缺点"><a href="#3-2-缺点" class="headerlink" title="3.2. 缺点"></a>3.2. 缺点</h2><ul>
-<li>虽然可以在<code>event()</code>中屏蔽掉不关心的事件。但是当需要屏蔽事件的组件很多时，工程量巨大。(eg: 所有组件都不响应鼠标事件，则需要在所有组件中都重写 event(), 在 event() 中不分发鼠标事件).</li>
-<li>所以 Qt 提供了 eventFilter （事件过滤器). 只需将主窗体中为你每个部件都<code>installEventFilter（主窗体)</code>之后，重写主窗体的<code>eventFilter()</code>, 在其中屏蔽掉鼠标事件即可。</li>
+<li>虽然可以在<code>event()</code>中屏蔽掉不关心的事件. 但是当需要屏蔽事件的组件很多时, 工程量巨大. (eg: 所有组件都不响应鼠标事件, 则需要在所有组件中都重写 event(), 在 event() 中不分发鼠标事件).</li>
+<li>所以 Qt 提供了 eventFilter （事件过滤器). 只需将主窗体中为你每个部件都<code>installEventFilter（主窗体)</code>之后, 重写主窗体的<code>eventFilter()</code>, 在其中屏蔽掉鼠标事件即可. </li>
 </ul>
 <h2 id="3-3-代码实例"><a href="#3-3-代码实例" class="headerlink" title="3.3. 代码实例"></a>3.3. 代码实例</h2><blockquote>
-<p>只处理 tab 按键事件，其他都不处理（因为所有信号都未分发)</p>
+<p>只处理 tab 按键事件, 其他都不处理（因为所有信号都未分发)</p>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> CustomTextEdit::event(QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>只对 tab 事件做了特殊处理（处理后屏蔽). 其他事件不受影响（其他信号分发)</p>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    <span class="comment">// 不会再传递</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> 父类：:event();    <span class="comment">// 其他事件，不受影响</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    <span class="comment">// 不会再传递</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> 父类: :event();    <span class="comment">// 其他事件, 不受影响</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="4-事件过滤器"><a href="#4-事件过滤器" class="headerlink" title="4. 事件过滤器"></a>4. 事件过滤器</h1><ul>
-<li><p>每个 QObject 对象都维护一个 <code>QObjectList eventFilters;</code> 成员变量。</p>
-  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line">QObject *a = <span class="keyword">new</span> QObject;</span><br><span class="line">QObject *b = <span class="keyword">new</span> QObject;</span><br><span class="line"><span class="comment">// 在 a 上安装事件过滤器 b.</span></span><br><span class="line"><span class="comment">// b 被存储在 a 的成员变量 eventFilters 中。</span></span><br><span class="line">a-&gt;installEventFilter(b);</span><br></pre></td></tr></table></figure>
+<li><p>每个 QObject 对象都维护一个 <code>QObjectList eventFilters;</code> 成员变量. </p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line">QObject *a = <span class="keyword">new</span> QObject;</span><br><span class="line">QObject *b = <span class="keyword">new</span> QObject;</span><br><span class="line"><span class="comment">// 在 a 上安装事件过滤器 b.</span></span><br><span class="line"><span class="comment">// b 被存储在 a 的成员变量 eventFilters 中. </span></span><br><span class="line">a-&gt;installEventFilter(b);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ul>
-<li>当事件到达对象 A 的<code>event()</code>之后，会根据事件类型传递给 A 的各事件处理函数。但可以在 A 上安装事件过滤器 <code>A-&gt;installEventFilter(B);</code> , 使得 A 的这些事件在到达事件处理函数之前，先被对象 B 的<code>eventFilter()</code>进行处理。</li>
-<li>根据被安装事件过滤器的对象，可分为以下两种：<ul>
-<li>在<code>QCoreApplication::instance()</code>, 也就是<code>qApp</code>上面安装事件过滤器。这样该应用程序的所有事件将经过该事件过滤函数的过滤。</li>
-<li>在其他对象上安装事件过滤器，只有发送给该对象的事件会被该事件过滤函数过滤。</li>
+<li>当事件到达对象 A 的<code>event()</code>之后, 会根据事件类型传递给 A 的各事件处理函数. 但可以在 A 上安装事件过滤器 <code>A-&gt;installEventFilter(B);</code> , 使得 A 的这些事件在到达事件处理函数之前, 先被对象 B 的<code>eventFilter()</code>进行处理. </li>
+<li>根据被安装事件过滤器的对象, 可分为以下两种: <ul>
+<li>在<code>QCoreApplication::instance()</code>, 也就是<code>qApp</code>上面安装事件过滤器. 这样该应用程序的所有事件将经过该事件过滤函数的过滤. </li>
+<li>在其他对象上安装事件过滤器, 只有发送给该对象的事件会被该事件过滤函数过滤. </li>
 </ul>
 </li>
 </ul>
 <h2 id="4-1-优缺点"><a href="#4-1-优缺点" class="headerlink" title="4.1. 优缺点"></a>4.1. 优缺点</h2><ul>
-<li>优点：<ul>
-<li>不用继承该控件，就能自定义处理其事件。因为各事件处理函数为 protected, 外部无法直接访问。而安装事件过滤器就能在 事件处理函数 之前，处理事件。</li>
+<li>优点: <ul>
+<li>不用继承该控件, 就能自定义处理其事件. 因为各事件处理函数为 protected, 外部无法直接访问. 而安装事件过滤器就能在 事件处理函数 之前, 处理事件. </li>
 </ul>
 </li>
-<li>缺点：<ul>
-<li>只能用于<strong>单线程</strong>.  事件过滤器和被安装过滤器的组件必须在<strong>同一线程</strong>，否则，过滤器将不起作用。另外，如果在安装过滤器之后，这两个组件到了不同的线程，那么，只有等到二者重新回到同一线程的时候过滤器才会有效。</li>
+<li>缺点: <ul>
+<li>只能用于<strong>单线程</strong>.  事件过滤器和被安装过滤器的组件必须在<strong>同一线程</strong>, 否则, 过滤器将不起作用. 另外, 如果在安装过滤器之后, 这两个组件到了不同的线程, 那么, 只有等到二者重新回到同一线程的时候过滤器才会有效. </li>
 </ul>
 </li>
 </ul>
-<h2 id="4-2-方法"><a href="#4-2-方法" class="headerlink" title="4.2. 方法"></a>4.2. 方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装</span></span><br><span class="line"><span class="keyword">void</span> QObject::installEventFilter(QObject * filterObj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 卸载</span></span><br><span class="line"><span class="keyword">void</span> QObject::removeEventFilter(QObject * obj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 事件过滤函数</span></span><br><span class="line"><span class="comment">// 返回值：不想该事件被继续传递下去（包括发送给 receiver), 返回 true. 否则返回 false.</span></span><br><span class="line"><span class="comment">// 注意：若在事件过滤函数中 delete 了某个组件，则必须返回`true`. 否则 Qt 还将事件分发给这个组件，程序崩溃</span></span><br><span class="line"><span class="keyword">bool</span> QObject::eventFilter(QObject * watched, QEvent * event) [<span class="keyword">virtual</span>];</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-方法"><a href="#4-2-方法" class="headerlink" title="4.2. 方法"></a>4.2. 方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装</span></span><br><span class="line"><span class="keyword">void</span> QObject::installEventFilter(QObject * filterObj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 卸载</span></span><br><span class="line"><span class="keyword">void</span> QObject::removeEventFilter(QObject * obj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 事件过滤函数</span></span><br><span class="line"><span class="comment">// 返回值: 不想该事件被继续传递下去（包括发送给 receiver), 返回 true. 否则返回 false.</span></span><br><span class="line"><span class="comment">// 注意: 若在事件过滤函数中 delete 了某个组件, 则必须返回`true`. 否则 Qt 还将事件分发给这个组件, 程序崩溃</span></span><br><span class="line"><span class="keyword">bool</span> QObject::eventFilter(QObject * watched, QEvent * event) [<span class="keyword">virtual</span>];</span><br></pre></td></tr></table></figure>
 <h2 id="4-3-特别注意"><a href="#4-3-特别注意" class="headerlink" title="4.3. 特别注意"></a>4.3. 特别注意</h2><ul>
-<li><p>在 <code>QAbstractScollArea</code> 及其子类上安装事件过滤器时，要安装在其<strong>视口</strong>上。</p>
+<li><p>在 <code>QAbstractScollArea</code> 及其子类上安装事件过滤器时, 要安装在其<strong>视口</strong>上. </p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">QTextEdit edit;</span><br><span class="line">edit.installEventFilter(<span class="keyword">this</span>);</span><br><span class="line">edit.viewPort()-&gt;installEventFilter(<span class="keyword">this</span>);    <span class="comment">// 在视口上安装事件过滤器</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">eventFilter</span><span class="params">(QObject *watcher, QEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (watcher == edit) &#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type == QEvent::KeyPress) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> QWidgert::eventFilter(watcher, event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在一个控件或 qApp 安装了多个事件过滤器</p>
 </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">btn-&gt;installEventFilter(A);</span><br><span class="line">btn-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到，不做处理时，A::eventFilter 收到</span></span><br><span class="line"> </span><br><span class="line">qApp-&gt;installEventFilter(A);</span><br><span class="line">qApp-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到，不做处理时，A::eventFilter 收到</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">btn-&gt;installEventFilter(A);</span><br><span class="line">btn-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到, 不做处理时, A::eventFilter 收到</span></span><br><span class="line"> </span><br><span class="line">qApp-&gt;installEventFilter(A);</span><br><span class="line">qApp-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到, 不做处理时, A::eventFilter 收到</span></span><br></pre></td></tr></table></figure>
 <h1 id="5-重写-notify-函数"><a href="#5-重写-notify-函数" class="headerlink" title="5. 重写 notify() 函数"></a>5. 重写 <code>notify()</code> 函数</h1><ul>
-<li>这种方法是影响最大的方法，因为该函数负责将事件发送给接收者。</li>
-<li>该方法不受线程限制，其可用于<strong>多线程</strong>. 但是全局范围内只能有一个被使用（因为 QCoreApplication 是单例的）。</li>
-<li>QApplication 重写了 QCoreApplication 的 notify(). 具体可查看上一节的源码分析部分。</li>
-<li>根据本程序是 QCoreApplication 还是 QAPplication, 选择子类化哪个类。</li>
+<li>这种方法是影响最大的方法, 因为该函数负责将事件发送给接收者. </li>
+<li>该方法不受线程限制, 其可用于<strong>多线程</strong>. 但是全局范围内只能有一个被使用（因为 QCoreApplication 是单例的）. </li>
+<li>QApplication 重写了 QCoreApplication 的 notify(). 具体可查看上一节的源码分析部分. </li>
+<li>根据本程序是 QCoreApplication 还是 QAPplication, 选择子类化哪个类. </li>
 </ul>
 <blockquote>
 <p>写在最后, 欢迎读者写下评论, 我们一起交流进步.</p>

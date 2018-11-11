@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
 <meta property="og:description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-09T18:00:18.000Z">
+<meta property="og:updated_time" content="2018-11-11T04:00:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt 事件与信号槽">
 <meta name="twitter:description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-10T02:00:18+08:00">
-                2018-11-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-11T12:00:59+08:00">
+                2018-11-11
               </time>
             
           </span>
@@ -474,19 +474,19 @@
 </ul>
 </blockquote>
 <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
-<li>事件机制比信号槽更底层。在事件中会默认的发送相应信号，所以一般使用，只需操作信号槽即可。</li>
-<li>当我们需要<strong>自定义组件</strong>或<strong>修改现有组件的行为</strong>时，就需要从事件的层面着手了。</li>
+<li>事件机制比信号槽更底层. 在事件中会默认的发送相应信号, 所以一般使用, 只需操作信号槽即可. </li>
+<li>当我们需要<strong>自定义组件</strong>或<strong>修改现有组件的行为</strong>时, 就需要从事件的层面着手了. </li>
 </ul>
 <h1 id="2-区别"><a href="#2-区别" class="headerlink" title="2. 区别"></a>2. 区别</h1><ul>
-<li>信号槽：其针对的是对象与对象之间的连接。当信号发射后，与其相连的槽函数总是会被执行的。</li>
-<li>事件：可以经过消息队列传输，也可直接传输。在传输过程中，可经过事件过滤器和事件处理函数等手段来干预其。</li>
+<li>信号槽: 其针对的是对象与对象之间的连接. 当信号发射后, 与其相连的槽函数总是会被执行的. </li>
+<li>事件: 可以经过消息队列传输, 也可直接传输. 在传输过程中, 可经过事件过滤器和事件处理函数等手段来干预其. </li>
 </ul>
 <h1 id="3-联系"><a href="#3-联系" class="headerlink" title="3. 联系"></a>3. 联系</h1><ul>
-<li>跨线程的<strong>信号槽</strong>机制是通过<strong>事件机制</strong>完成的。</li>
-<li><p>查看相关 Qt 源码可了解调用过程：</p>
+<li>跨线程的<strong>信号槽</strong>机制是通过<strong>事件机制</strong>完成的. </li>
+<li><p>查看相关 Qt 源码可了解调用过程: </p>
 <blockquote>
 <ul>
-<li>以下情况的信号槽连接会通过 <code>poseEvent()</code>实现：<pre><code>- 信号槽为 `Qt::AutoConnection` 连接模式下
+<li>以下情况的信号槽连接会通过 <code>poseEvent()</code>实现: <pre><code>- 信号槽为 `Qt::AutoConnection` 连接模式下
     - 发送信号线程非当前线程时  或  信号与槽不在同一线程
 - 信号槽为 `Qt::QueuedConnection` 连接模式下
 </code></pre></li>

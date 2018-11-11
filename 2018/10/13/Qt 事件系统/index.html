@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
 <meta property="og:description" content="结合源码, 理清楚 Qt 事件系统的来龙去脉.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-09T18:00:18.000Z">
+<meta property="og:updated_time" content="2018-11-11T04:00:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt 事件系统">
 <meta name="twitter:description" content="结合源码, 理清楚 Qt 事件系统的来龙去脉.">
@@ -332,8 +332,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-10T02:00:18+08:00">
-                2018-11-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-11T12:00:59+08:00">
+                2018-11-11
               </time>
             
           </span>
@@ -477,90 +477,90 @@
 <p>可查阅 Qt 帮助<code>The Event System</code>和<code>QEvent</code>部分</p>
 </blockquote>
 <ul>
-<li>详细的 Qt 事件系统讲解，带源码分析：<a href="http://blog.csdn.net/zerokkqq/article/details/6685389" target="_blank" rel="noopener">http://blog.csdn.net/zerokkqq/article/details/6685389</a></li>
-<li>Qt 豆子相关文档：<a href="https://www.devbean.net/2012/10/qt-study-road-2-event-summary/" target="_blank" rel="noopener">https://www.devbean.net/2012/10/qt-study-road-2-event-summary/</a></li>
+<li>详细的 Qt 事件系统讲解, 带源码分析: <a href="http://blog.csdn.net/zerokkqq/article/details/6685389" target="_blank" rel="noopener">http://blog.csdn.net/zerokkqq/article/details/6685389</a></li>
+<li>Qt 豆子相关文档: <a href="https://www.devbean.net/2012/10/qt-study-road-2-event-summary/" target="_blank" rel="noopener">https://www.devbean.net/2012/10/qt-study-road-2-event-summary/</a></li>
 </ul>
 <h1 id="2-附件说明"><a href="#2-附件说明" class="headerlink" title="2. 附件说明"></a>2. 附件说明</h1><ul>
 <li><a href="./res/Attachments/Qt事件传递过程.xmind">Qt 事件传递过程图解</a></li>
 </ul>
 <h1 id="3-相关类"><a href="#3-相关类" class="headerlink" title="3. 相关类"></a>3. 相关类</h1><ul>
-<li><code>QAbstractEventDispatcher</code> 事件分发器。</li>
+<li><code>QAbstractEventDispatcher</code> 事件分发器. </li>
 <li><code>QEvent</code></li>
 <li><code>QCoreApplication</code>, <code>QApplication</code></li>
 <li><code>QEventLoop</code></li>
 </ul>
 <h1 id="4-概述"><a href="#4-概述" class="headerlink" title="4. 概述"></a>4. 概述</h1><ul>
-<li>每个事件均为<code>QEvent</code>子类的一个实例，每种事件均有一个枚举值用以识别事件类型。可以使用<code>QEvent::type()</code>来返回事件类型的枚举值，从而用于比较。<ul>
-<li>可使用 <code>QEvent::registerEventType()</code> 返回一个可用的枚举值。</li>
+<li>每个事件均为<code>QEvent</code>子类的一个实例, 每种事件均有一个枚举值用以识别事件类型. 可以使用<code>QEvent::type()</code>来返回事件类型的枚举值, 从而用于比较. <ul>
+<li>可使用 <code>QEvent::registerEventType()</code> 返回一个可用的枚举值. </li>
 </ul>
 </li>
 </ul>
 <h1 id="5-事件分类"><a href="#5-事件分类" class="headerlink" title="5. 事件分类"></a>5. 事件分类</h1><ul>
-<li><p>根据事件发生与分发的不同，可将事件分为三类：</p>
+<li><p>根据事件发生与分发的不同, 可将事件分为三类: </p>
 <ul>
-<li><strong>Spontaneous 事件</strong>,  从系统中得到消息（比如系统的按键，鼠标等) , 转换为 QEvent 后，被 Qt 事件系统处理。</li>
-<li><strong>Posted 事件</strong>, 由 Qt 或应用程序产生，被放入事件队列中 , 再通过事件循环处理。使用 QCoreApplication::postEvnet() 发送事件。</li>
-<li><strong>Send 事件</strong>, 由 Qt 或应用程序产生，使用 QCoreApplication::sendEvent() 发送的事件。</li>
+<li><strong>Spontaneous 事件</strong>,  从系统中得到消息（比如系统的按键, 鼠标等) , 转换为 QEvent 后, 被 Qt 事件系统处理. </li>
+<li><strong>Posted 事件</strong>, 由 Qt 或应用程序产生, 被放入事件队列中 , 再通过事件循环处理. 使用 QCoreApplication::postEvnet() 发送事件. </li>
+<li><strong>Send 事件</strong>, 由 Qt 或应用程序产生, 使用 QCoreApplication::sendEvent() 发送的事件. </li>
 </ul>
 </li>
-<li><p>示例：窗口的重绘事件处理函数<code>PaintEvent()</code>,  可被以上这三种类型事件调用：</p>
+<li><p>示例: 窗口的重绘事件处理函数<code>PaintEvent()</code>,  可被以上这三种类型事件调用: </p>
 <ul>
-<li>窗口被覆盖或再次重新显示时，系统产生自发事件 spontaneous 来请求重绘窗口。</li>
-<li>手动调用<code>update()</code>函数，产生 Posted 事件，并放入消息队列。由事件循环来请求重绘窗口。该过程会被 Qt 优化（详见 <a href="#wiz://open_document?guid=3f259a9a-bd7c-4f46-919b-7b017edb7a1a&amp;kbguid=&amp;private_kbguid=5575dcb3-4b7d-4cd6-9ea6-b816a3288991">Qt paintEvent()</a>).</li>
-<li>手动调用<code>repaint()</code>函数，产生 Send 事件，直接调用该处理函数。该过程不会被 Qt 优化。</li>
+<li>窗口被覆盖或再次重新显示时, 系统产生自发事件 spontaneous 来请求重绘窗口. </li>
+<li>手动调用<code>update()</code>函数, 产生 Posted 事件, 并放入消息队列. 由事件循环来请求重绘窗口. 该过程会被 Qt 优化（详见 <a href="#wiz://open_document?guid=3f259a9a-bd7c-4f46-919b-7b017edb7a1a&amp;kbguid=&amp;private_kbguid=5575dcb3-4b7d-4cd6-9ea6-b816a3288991">Qt paintEvent()</a>).</li>
+<li>手动调用<code>repaint()</code>函数, 产生 Send 事件, 直接调用该处理函数. 该过程不会被 Qt 优化. </li>
 </ul>
 </li>
 </ul>
 <h2 id="5-1-Spontaneous-事件发送"><a href="#5-1-Spontaneous-事件发送" class="headerlink" title="5.1. Spontaneous 事件发送"></a>5.1. Spontaneous 事件发送</h2><ul>
-<li>系统底层事件通过<code>QAbstractEventDispatcher</code>转换到 Qt 的事件循环中。</li>
+<li>系统底层事件通过<code>QAbstractEventDispatcher</code>转换到 Qt 的事件循环中. </li>
 </ul>
 <h2 id="5-2-Post-事件发送"><a href="#5-2-Post-事件发送" class="headerlink" title="5.2. Post 事件发送"></a>5.2. Post 事件发送</h2><ul>
-<li>需要在<strong>堆上开辟内存</strong>, 用完后会被自动删除。</li>
+<li>需要在<strong>堆上开辟内存</strong>, 用完后会被自动删除. </li>
 <li>使用 postEvent() 将事件放入<strong>事件队列</strong>, 并<strong>立即返回</strong>.</li>
-<li>事件循环 QEventLoop 在空闲时判断事件队列是否为空，最后使用 sendEvent() 派发这些事件队列中的事件。</li>
-<li>可以手动使用：QCoreApplication::sendPostedEvents() 来派发事件队列中的所有事件（相当于清空了当前事件队列).</li>
+<li>事件循环 QEventLoop 在空闲时判断事件队列是否为空, 最后使用 sendEvent() 派发这些事件队列中的事件. </li>
+<li>可以手动使用: QCoreApplication::sendPostedEvents() 来派发事件队列中的所有事件（相当于清空了当前事件队列).</li>
 <li><strong>每个线程都有一个事件队列</strong>.</li>
 <li><p>函数原型</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">static</span>] <span class="keyword">void</span> QCoreApplication::postEvent(QObject *receiver,</span><br><span class="line">    QEvent *event,</span><br><span class="line">    <span class="keyword">int</span> priority = Qt::NormalEventPriority);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用示例：</p>
+<li><p>使用示例: </p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">QApplication::postEvent(mainWin,</span><br><span class="line">    <span class="keyword">new</span> QMouseEvent(QEvent::MouseButtonPress, pos, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="5-3-Send-事件发送"><a href="#5-3-Send-事件发送" class="headerlink" title="5.3. Send 事件发送"></a>5.3. Send 事件发送</h2><ul>
 <li>需要在<strong>栈上开辟内存</strong>.</li>
-<li>使用 sendEvent() 发送。该函数会调用 notify() 进行事件分发，并返回事件执行的<strong>返回值</strong>.</li>
-<li>本过程不涉及 事件队列，事件循环 等。但仍可以进行事件过滤，可使用全部的事件处理手段。</li>
+<li>使用 sendEvent() 发送. 该函数会调用 notify() 进行事件分发, 并返回事件执行的<strong>返回值</strong>.</li>
+<li>本过程不涉及 事件队列, 事件循环 等. 但仍可以进行事件过滤, 可使用全部的事件处理手段. </li>
 <li><p>函数原型</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">static</span>] <span class="keyword">bool</span> QCoreApplication::sendEvent(</span><br><span class="line">    QObject *receiver,</span><br><span class="line">    QEvent *event);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>使用示例：</p>
+<li><p>使用示例: </p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QMouseEvent <span class="title">event</span><span class="params">(QEvent::MouseButtonPress, pos, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">QApplication::sendEvent(mainWindow, &amp;event);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h1 id="6-事件发送"><a href="#6-事件发送" class="headerlink" title="6. 事件发送"></a>6. 事件发送</h1><ul>
-<li>事件分发器 <code>QAbstractEventDispatcher</code> 管理着 Qt 的事件队列，从系统或其他事件源接收事件，再发送给 QCoreApplication 或 QApplication 实例来进行处理。</li>
+<li>事件分发器 <code>QAbstractEventDispatcher</code> 管理着 Qt 的事件队列, 从系统或其他事件源接收事件, 再发送给 QCoreApplication 或 QApplication 实例来进行处理. </li>
 </ul>
 <h2 id="6-1-直接派发"><a href="#6-1-直接派发" class="headerlink" title="6.1. 直接派发"></a>6.1. 直接派发</h2><ul>
-<li>sendEvent 事件通过调用 QApplication::notify() 分发，直接进入事件的派发和处理。</li>
+<li>sendEvent 事件通过调用 QApplication::notify() 分发, 直接进入事件的派发和处理. </li>
 </ul>
 <h2 id="6-2-通过事件循环方式"><a href="#6-2-通过事件循环方式" class="headerlink" title="6.2. 通过事件循环方式"></a>6.2. 通过<strong>事件循环</strong>方式</h2><blockquote>
 <p>postEvent 和 自发事件</p>
 </blockquote>
 <ul>
 <li>Qt 主线程事件循环<ul>
-<li>使用 QCoreApplication::exec() 启动。</li>
-<li>在 QCoreApplication::exit() 后退出。</li>
+<li>使用 QCoreApplication::exec() 启动. </li>
+<li>在 QCoreApplication::exit() 后退出. </li>
 </ul>
 </li>
-<li>本地事件循环使用 QEventLoop 构建。</li>
+<li>本地事件循环使用 QEventLoop 构建. </li>
 </ul>
 <h3 id="6-2-1-事件循环源码解析"><a href="#6-2-1-事件循环源码解析" class="headerlink" title="6.2.1. 事件循环源码解析"></a>6.2.1. 事件循环源码解析</h3><ul>
 <li><p>步骤</p>
 <ol>
-<li>处理 <strong>Qt 事件队列</strong>中的事件（也就是 post 事件), 直至为空。</li>
-<li>处理<strong>系统消息队列</strong>中的消息（也就是自发事件), 直至为空。</li>
-<li>执行第 2 步时，会产生新的 Qt 事件，然后继续处理 Qt 事件队列中的事件。</li>
+<li>处理 <strong>Qt 事件队列</strong>中的事件（也就是 post 事件), 直至为空. </li>
+<li>处理<strong>系统消息队列</strong>中的消息（也就是自发事件), 直至为空. </li>
+<li>执行第 2 步时, 会产生新的 Qt 事件, 然后继续处理 Qt 事件队列中的事件. </li>
 </ol>
 </li>
 <li><p>源码</p>
@@ -568,52 +568,52 @@
 </li>
 </ul>
 <h1 id="7-事件传递"><a href="#7-事件传递" class="headerlink" title="7. 事件传递"></a>7. 事件传递</h1><ul>
-<li>一个事件产生后，会先传送给最上层的<strong>子控件</strong>, 若在这个传送过程中没有被标记为被处理，将会继续传送给其<strong>父控件组</strong>中其他可接受该事件的控件，直到该事件被标记为已处理，或到最顶层窗体。</li>
-<li>事件的传播是在<strong>组件层次</strong>上面的，而不是依靠类继承机制。eg: 若该组件不接受本事件，则会继续传递给其父组件列表中能处理该事件的组件，而不是父对象。</li>
+<li>一个事件产生后, 会先传送给最上层的<strong>子控件</strong>, 若在这个传送过程中没有被标记为被处理, 将会继续传送给其<strong>父控件组</strong>中其他可接受该事件的控件, 直到该事件被标记为已处理, 或到最顶层窗体. </li>
+<li>事件的传播是在<strong>组件层次</strong>上面的, 而不是依靠类继承机制. eg: 若该组件不接受本事件, 则会继续传递给其父组件列表中能处理该事件的组件, 而不是父对象. </li>
 </ul>
 <h2 id="7-1-过程"><a href="#7-1-过程" class="headerlink" title="7.1. 过程"></a>7.1. 过程</h2><ul>
-<li>一个事件产生后，会根据<em>事件类型</em> 不同，而被以不同的方式分发出去。</li>
-<li>不同方式分发出去的事件，最终都要经过 <code>QCoreApplication::notify()</code> 来对事件进行处理。</li>
-<li>在 notify() 函数中，先要将本事件传递给 receiver 处理。<ul>
-<li>如果在本 QCoreApplication 安装了事件过滤器，本程序中发送给所有对象的事件都要经过这些事件过滤器处理。若在其中<strong>都</strong>没有 return, 则继续传递。</li>
-<li>如果在 receiver 安装了事件过滤器，发送给该 receiver 的事件要先经过这些事件过滤器处理。若在其中<strong>都</strong>没有 return, 则继续传递。</li>
-<li>传递给 receiver 的 event() 函数进行处理。若该事件为自定义事件，会在函数中调用 customEvent() 函数。而其他 Qt 事件，一般会分发给其他 event handler 函数。</li>
-<li>传递到特定 event handler 函数，在其中对事件进行处理。<ul>
-<li>event-&gt;accept(), 本事件传递结束。</li>
-<li>event-&gt;ignore(), 本事件继续向 receiver 的父控件传递。</li>
+<li>一个事件产生后, 会根据<em>事件类型</em> 不同, 而被以不同的方式分发出去. </li>
+<li>不同方式分发出去的事件, 最终都要经过 <code>QCoreApplication::notify()</code> 来对事件进行处理. </li>
+<li>在 notify() 函数中, 先要将本事件传递给 receiver 处理. <ul>
+<li>如果在本 QCoreApplication 安装了事件过滤器, 本程序中发送给所有对象的事件都要经过这些事件过滤器处理. 若在其中<strong>都</strong>没有 return, 则继续传递. </li>
+<li>如果在 receiver 安装了事件过滤器, 发送给该 receiver 的事件要先经过这些事件过滤器处理. 若在其中<strong>都</strong>没有 return, 则继续传递. </li>
+<li>传递给 receiver 的 event() 函数进行处理. 若该事件为自定义事件, 会在函数中调用 customEvent() 函数. 而其他 Qt 事件, 一般会分发给其他 event handler 函数. </li>
+<li>传递到特定 event handler 函数, 在其中对事件进行处理. <ul>
+<li>event-&gt;accept(), 本事件传递结束. </li>
+<li>event-&gt;ignore(), 本事件继续向 receiver 的父控件传递. </li>
 </ul>
 </li>
 </ul>
 </li>
-<li>传递本事件给 receiver 的父控件们，直到传递过程被终止 (return), 事件被 accept, 或 到达顶层窗体。</li>
+<li>传递本事件给 receiver 的父控件们, 直到传递过程被终止 (return), 事件被 accept, 或 到达顶层窗体. </li>
 </ul>
 <h2 id="7-2-终止事件传递的方法"><a href="#7-2-终止事件传递的方法" class="headerlink" title="7.2. 终止事件传递的方法"></a>7.2. 终止事件传递的方法</h2><ul>
 <li><code>QApplication::notify()</code> 有 bool 返回值<ul>
-<li>只要返回，就会终止事件传递过程。且如果是 sendEvent(), 会返回值。</li>
+<li>只要返回, 就会终止事件传递过程. 且如果是 sendEvent(), 会返回值. </li>
 </ul>
 </li>
-<li><code>QObject::eventFilter()</code>, <code>QObject::event()</code> 有 bool 返回值。<ul>
-<li>return true : 表示事件已被处理，不会继续传递</li>
+<li><code>QObject::eventFilter()</code>, <code>QObject::event()</code> 有 bool 返回值. <ul>
+<li>return true : 表示事件已被处理, 不会继续传递</li>
 <li>return false : 表示事件需要继续传递</li>
 </ul>
 </li>
-<li>对于各事件处理函数 (eg: mouseReleaseEvent()), 无返回值。<ul>
-<li>event-&gt;accept() : 表示事件已被处理，不会继续传递</li>
+<li>对于各事件处理函数 (eg: mouseReleaseEvent()), 无返回值. <ul>
+<li>event-&gt;accept() : 表示事件已被处理, 不会继续传递</li>
 <li>event-&gt;ignore() : 表示事件需要继续传递</li>
 </ul>
 </li>
 </ul>
 <h1 id="8-notify"><a href="#8-notify" class="headerlink" title="8. notify()"></a>8. <code>notify()</code></h1><ul>
-<li>不论是哪种事件，最后都由 notify() 负责派发。</li>
-<li>在 notify 中，负责调用各事件过滤器，event() 等。可在本源码中明白事件传递的过程。</li>
+<li>不论是哪种事件, 最后都由 notify() 负责派发. </li>
+<li>在 notify 中, 负责调用各事件过滤器, event() 等. 可在本源码中明白事件传递的过程. </li>
 </ul>
 <h2 id="8-1-notify-相关源码解析"><a href="#8-1-notify-相关源码解析" class="headerlink" title="8.1. notify 相关源码解析"></a>8.1. notify 相关源码解析</h2><ul>
-<li>QApplication 重写了 QCoreApplication 的 notify(). 实现了众多 event 的分发。</li>
-<li>每个 event 分发过程类似，都会遍历 receiver 及其 父控件们。直到中断整个事件传递过程。</li>
+<li>QApplication 重写了 QCoreApplication 的 notify(). 实现了众多 event 的分发. </li>
+<li>每个 event 分发过程类似, 都会遍历 receiver 及其 父控件们. 直到中断整个事件传递过程. </li>
 </ul>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> QCoreApplication::notify(QObject *receiver, QEvent *event)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// no events are delivered after ~QCoreApplication() has started</span></span><br><span class="line">    <span class="keyword">if</span> (QCoreApplicationPrivate::is_app_closing)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> doNotify(receiver, event);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">doNotify</span><span class="params">(QObject *receiver, QEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (receiver == <span class="number">0</span>) &#123;                        <span class="comment">// serious error</span></span><br><span class="line">        qWarning(<span class="string">"QCoreApplication::notify: Unexpected null receiver"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//... 省略了一些内容</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> receiver-&gt;isWidgetType() ? <span class="literal">false</span> : QCoreApplicationPrivate::notify_helper(receiver, event);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 将事件传递给事件过滤器和接受者</span></span><br><span class="line"><span class="keyword">bool</span> QCoreApplicationPrivate::notify_helper(QObject *receiver, QEvent * event)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/*--- 1. 发送给所有 Application 的 eventFilter  ---*/</span></span><br><span class="line">    <span class="comment">// send to all application event filters (only does anything in the main thread)</span></span><br><span class="line">    <span class="keyword">if</span> (QCoreApplication::self</span><br><span class="line">            &amp;&amp; receiver-&gt;d_func()-&gt;threadData-&gt;thread == mainThread()</span><br><span class="line">            &amp;&amp; QCoreApplication::self-&gt;d_func()-&gt;sendThroughApplicationEventFilters(receiver, event))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- 2. 发送给所有 receiver 的 eventFilter   ---*/</span></span><br><span class="line">    <span class="keyword">if</span> (sendThroughObjectEventFilters(receiver, event))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- 3. 调用接受者的 event   ---*/</span></span><br><span class="line">    <span class="keyword">return</span> receiver-&gt;event(event);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">bool</span> QApplication::notify(QObject *receiver, QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">case</span> QEvent::ToolTip:</span><br><span class="line">    <span class="keyword">case</span> QEvent::WhatsThis:</span><br><span class="line">    <span class="keyword">case</span> QEvent::QueryWhatsThis:</span><br><span class="line">        &#123;</span><br><span class="line">            QWidget* w = <span class="keyword">static_cast</span>&lt;QWidget *&gt;(receiver);    <span class="comment">// 接受者</span></span><br><span class="line">            QHelpEvent *help = <span class="keyword">static_cast</span>&lt;QHelpEvent*&gt;(e);</span><br><span class="line">            QPoint relpos = help-&gt;pos();</span><br><span class="line">            <span class="keyword">bool</span> eventAccepted = help-&gt;isAccepted();</span><br><span class="line">            <span class="keyword">while</span> (w) &#123;    <span class="comment">// 遍历接受者及其父控件</span></span><br><span class="line">                QHelpEvent he(help-&gt;type(), relpos, help-&gt;globalPos());</span><br><span class="line">                he.spont = e-&gt;spontaneous();    <span class="comment">// 是否为自发事件</span></span><br><span class="line">                <span class="comment">// 发送本事件到某控件，并接受返回值</span></span><br><span class="line">                res = d-&gt;notify_helper(w, w == receiver ? help : &amp;he);</span><br><span class="line">                e-&gt;spont = <span class="literal">false</span>;</span><br><span class="line">                <span class="comment">// 查看事件是否 accept</span></span><br><span class="line">                eventAccepted = (w == receiver ? help : &amp;he)-&gt;isAccepted();</span><br><span class="line">                <span class="comment">// 返回 true, 且事件被 accept 或 本控件为一个独立的窗体 则不继续传递该事件</span></span><br><span class="line">                <span class="keyword">if</span> ((res &amp;&amp; eventAccepted) || w-&gt;isWindow())</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line">                relpos += w-&gt;pos();</span><br><span class="line">                w = w-&gt;parentWidget();</span><br><span class="line">            &#125;</span><br><span class="line">            help-&gt;setAccepted(eventAccepted);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> QCoreApplication::notify(QObject *receiver, QEvent *event)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// no events are delivered after ~QCoreApplication() has started</span></span><br><span class="line">    <span class="keyword">if</span> (QCoreApplicationPrivate::is_app_closing)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> doNotify(receiver, event);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">doNotify</span><span class="params">(QObject *receiver, QEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (receiver == <span class="number">0</span>) &#123;                        <span class="comment">// serious error</span></span><br><span class="line">        qWarning(<span class="string">"QCoreApplication::notify: Unexpected null receiver"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//... 省略了一些内容</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> receiver-&gt;isWidgetType() ? <span class="literal">false</span> : QCoreApplicationPrivate::notify_helper(receiver, event);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 将事件传递给事件过滤器和接受者</span></span><br><span class="line"><span class="keyword">bool</span> QCoreApplicationPrivate::notify_helper(QObject *receiver, QEvent * event)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/*--- 1. 发送给所有 Application 的 eventFilter  ---*/</span></span><br><span class="line">    <span class="comment">// send to all application event filters (only does anything in the main thread)</span></span><br><span class="line">    <span class="keyword">if</span> (QCoreApplication::self</span><br><span class="line">            &amp;&amp; receiver-&gt;d_func()-&gt;threadData-&gt;thread == mainThread()</span><br><span class="line">            &amp;&amp; QCoreApplication::self-&gt;d_func()-&gt;sendThroughApplicationEventFilters(receiver, event))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- 2. 发送给所有 receiver 的 eventFilter   ---*/</span></span><br><span class="line">    <span class="keyword">if</span> (sendThroughObjectEventFilters(receiver, event))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- 3. 调用接受者的 event   ---*/</span></span><br><span class="line">    <span class="keyword">return</span> receiver-&gt;event(event);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">bool</span> QApplication::notify(QObject *receiver, QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">case</span> QEvent::ToolTip:</span><br><span class="line">    <span class="keyword">case</span> QEvent::WhatsThis:</span><br><span class="line">    <span class="keyword">case</span> QEvent::QueryWhatsThis:</span><br><span class="line">        &#123;</span><br><span class="line">            QWidget* w = <span class="keyword">static_cast</span>&lt;QWidget *&gt;(receiver);    <span class="comment">// 接受者</span></span><br><span class="line">            QHelpEvent *help = <span class="keyword">static_cast</span>&lt;QHelpEvent*&gt;(e);</span><br><span class="line">            QPoint relpos = help-&gt;pos();</span><br><span class="line">            <span class="keyword">bool</span> eventAccepted = help-&gt;isAccepted();</span><br><span class="line">            <span class="keyword">while</span> (w) &#123;    <span class="comment">// 遍历接受者及其父控件</span></span><br><span class="line">                QHelpEvent he(help-&gt;type(), relpos, help-&gt;globalPos());</span><br><span class="line">                he.spont = e-&gt;spontaneous();    <span class="comment">// 是否为自发事件</span></span><br><span class="line">                <span class="comment">// 发送本事件到某控件, 并接受返回值</span></span><br><span class="line">                res = d-&gt;notify_helper(w, w == receiver ? help : &amp;he);</span><br><span class="line">                e-&gt;spont = <span class="literal">false</span>;</span><br><span class="line">                <span class="comment">// 查看事件是否 accept</span></span><br><span class="line">                eventAccepted = (w == receiver ? help : &amp;he)-&gt;isAccepted();</span><br><span class="line">                <span class="comment">// 返回 true, 且事件被 accept 或 本控件为一个独立的窗体 则不继续传递该事件</span></span><br><span class="line">                <span class="keyword">if</span> ((res &amp;&amp; eventAccepted) || w-&gt;isWindow())</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line">                relpos += w-&gt;pos();</span><br><span class="line">                w = w-&gt;parentWidget();</span><br><span class="line">            &#125;</span><br><span class="line">            help-&gt;setAccepted(eventAccepted);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="9-event"><a href="#9-event" class="headerlink" title="9. event()"></a>9. <code>event()</code></h1><ul>
-<li>源码如下：</li>
+<li>源码如下: </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> QObject::event(QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (e-&gt;type()) &#123;</span><br><span class="line">    <span class="keyword">case</span> QEvent::Timer:</span><br><span class="line">        timerEvent((QTimerEvent*)e);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> QEvent::ChildAdded:</span><br><span class="line">    <span class="keyword">case</span> QEvent::ChildPolished:</span><br><span class="line">    <span class="keyword">case</span> QEvent::ChildRemoved:</span><br><span class="line">        childEvent((QChildEvent*)e);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> QEvent::DeferredDelete:</span><br><span class="line">        qDeleteInEventHandler(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> QEvent::MetaCall: &#123;</span><br><span class="line">            <span class="comment">//... 省略</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> QEvent::ThreadChange: &#123;</span><br><span class="line">        <span class="comment">//... 省略</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">// 自定义事件</span></span><br><span class="line">        <span class="keyword">if</span> (e-&gt;type() &gt;= QEvent::User) &#123;</span><br><span class="line">            customEvent(e);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
