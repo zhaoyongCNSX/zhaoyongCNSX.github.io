@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -50,47 +62,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Qt,QEvent," />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="讲述如何自定义 Qt 事件的处理过程.">
-<meta name="keywords" content="Qt,QEvent">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Qt 对于事件的自定义处理">
-<meta property="og:url" content="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/index.html">
-<meta property="og:site_name" content="zhaoyongCNSX Blogs">
-<meta property="og:description" content="讲述如何自定义 Qt 事件的处理过程.">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-11T04:00:59.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Qt 对于事件的自定义处理">
-<meta name="twitter:description" content="讲述如何自定义 Qt 事件的处理过程.">
 
 
 
@@ -99,15 +89,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -119,12 +107,38 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="讲述如何自定义 Qt 事件的处理过程.">
+<meta name="keywords" content="Qt,QEvent">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt 对于事件的自定义处理">
+<meta property="og:url" content="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/index.html">
+<meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:description" content="讲述如何自定义 Qt 事件的处理过程.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-07T18:00:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt 对于事件的自定义处理">
+<meta name="twitter:description" content="讲述如何自定义 Qt 事件的处理过程.">
+
+
+
+
+
 
   <link rel="canonical" href="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>Qt 对于事件的自定义处理 | zhaoyongCNSX Blogs</title>
   
@@ -135,6 +149,36 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -154,19 +198,17 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">zhaoyongCNSX Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -174,66 +216,97 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -249,7 +322,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -264,12 +337,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -280,6 +361,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -304,37 +387,50 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Qt 对于事件的自定义处理</h1>
+          <h1 class="post-title" itemprop="name headline">Qt 对于事件的自定义处理
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-13T00:00:00+08:00">
-                2018-10-13
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-13T00:00:00+08:00">2018-10-13</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-08 02:00:15" itemprop="dateModified" datetime="2018-12-08T02:00:15+08:00">2018-12-08</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-11T12:00:59+08:00">
-                2018-11-11
-              </time>
             
           </span>
 
@@ -347,36 +443,24 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/Qt/" itemprop="url" rel="index">
-                    <span itemprop="name">Qt</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/Qt/" itemprop="url" rel="index"><span itemprop="name">Qt</span></a></span>
 
                 
                 
-                  ， 
+                  , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/Qt/character/" itemprop="url" rel="index">
-                    <span itemprop="name">特性</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/Qt/character/" itemprop="url" rel="index"><span itemprop="name">特性</span></a></span>
 
                 
                 
@@ -392,7 +476,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/13/Qt 对于事件的自定义处理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/Qt 对于事件的自定义处理/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/Qt 对于事件的自定义处理/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,7 +490,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
+                 <span class="post-meta-item-text">Views: </span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -415,42 +499,9 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
 
           
-              <div class="post-description">
-                  讲述如何自定义 Qt 事件的处理过程.
-              </div>
+              <div class="post-description">讲述如何自定义 Qt 事件的处理过程.</div>
           
 
         </div>
@@ -473,26 +524,31 @@
 <li><a href="http://47.92.146.3" target="_blank" rel="noopener">国内个人站</a></li>
 </ul>
 </blockquote>
+<p><a id="toc_anchor" name="1-概述"></a></p>
 <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
 <li>已知了事件传递的过程, 可针对每个环节来自定义事件的处理. 有五个层次来自定义处理事件. </li>
 </ul>
+<p><a id="toc_anchor" name="11-程序示例"></a></p>
 <h2 id="1-1-程序示例"><a href="#1-1-程序示例" class="headerlink" title="1.1. 程序示例"></a>1.1. 程序示例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> :</span> <span class="keyword">public</span> QApplication</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    MyApplication(<span class="keyword">int</span> &amp;argc, <span class="keyword">char</span> **argv): QApplication(argc, argv) &#123; &#125;</span><br><span class="line">    ~MyApplication() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">/*--- [1] application notify ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">notify</span><span class="params">(QObject *object, QEvent *event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"[notify]"</span> &lt;&lt; <span class="string">"objName: "</span> &lt;&lt; object-&gt;objectName();</span><br><span class="line">            <span class="comment">// return false; return true;  只要 return, 该 event 就不会继续传递</span></span><br><span class="line">            <span class="comment">// 若需要继续分发该 event, 则需执行 QApplication::notify</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QApplication::notify(object, event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ClassFilter</span>:</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ClassFilter(QObject *parent = <span class="number">0</span>) : QObject(parent) &#123;&#125;</span><br><span class="line">    ~ClassFilter() &#123;&#125;</span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">eventFilter</span><span class="params">(QObject *watched, QEvent *event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; QString::fromUtf8(<span class="string">"[eventFilter] [%1] "</span>).arg(objectName())  &lt;&lt; <span class="string">"objName: "</span> &lt;&lt; watched-&gt;objectName();</span><br><span class="line">            <span class="comment">//return true;  // 事件终止传递</span></span><br><span class="line">            <span class="comment">//return false; // 事件继续传递</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QObject::eventFilter(watched, event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyButton</span> :</span> <span class="keyword">public</span> QPushButton</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyButton(QWidget *parent = <span class="number">0</span>): QPushButton(parent) &#123;&#125;</span><br><span class="line">    ~MyButton() &#123;&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="comment">/*--- [4] 事件接受者的 event ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">event</span><span class="params">(QEvent *e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (e-&gt;type() == QEvent::MouseButtonRelease) &#123;</span><br><span class="line">            qDebug() &lt;&lt; QString::fromUtf8(<span class="string">"[event]"</span>);</span><br><span class="line">            <span class="comment">//return true;      // 事件终止传递</span></span><br><span class="line">            <span class="comment">//return false;     // 事件继续向父控件传递</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> QPushButton::event(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*--- [5] 事件接受者的 event Handle ---*/</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">mouseReleaseEvent</span><span class="params">(QMouseEvent *event)</span> </span>&#123;</span><br><span class="line">        qDebug() &lt;&lt; <span class="string">"[event Handle]"</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 根据需求判断是否需要调用父类 event Handler</span></span><br><span class="line">        QPushButton::mouseReleaseEvent(event);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//event-&gt;accept();      // 事件终止传递</span></span><br><span class="line">        <span class="comment">//event-&gt;ignore();      // 事件继续向父控件传递</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyUI</span>:</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyUI(QWidget *parent = <span class="number">0</span>): QWidget(parent) &#123;</span><br><span class="line">        QPushButton *btn = <span class="keyword">new</span> QPushButton(<span class="keyword">this</span>);</span><br><span class="line">        btn-&gt;setObjectName(<span class="string">"pushButton"</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">/*--- [3] 在组件上安装事件过滤器 ---*/</span></span><br><span class="line">        ClassFilter* filterWgt = <span class="keyword">new</span> ClassFilter(<span class="keyword">this</span>);</span><br><span class="line">        filterWgt-&gt;setObjectName(<span class="string">"filterWgt"</span>);</span><br><span class="line">        btn-&gt;installEventFilter(filterWgt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">MyApplication <span class="title">a</span><span class="params">(argc, argv)</span></span>;</span><br><span class="line"> </span><br><span class="line">    MyUI w;</span><br><span class="line">    w.show();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*--- [2] 在 application 安装事件过滤器 ---*/</span></span><br><span class="line">    ClassFilter filterApp;</span><br><span class="line">    filterApp.setObjectName(<span class="string">"filterApp"</span>);</span><br><span class="line">    a.installEventFilter(&amp;filterApp);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>执行结果</p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[notify] objName:  <span class="string">"MyUIClassWindow"</span></span><br><span class="line"><span class="string">"[eventFilter] [filterApp] "</span> objName:  <span class="string">"MyUIClassWindow"</span></span><br><span class="line">[notify] objName:  <span class="string">"pushButton"</span></span><br><span class="line"><span class="string">"[eventFilter] [filterApp] "</span> objName:  <span class="string">"pushButton"</span></span><br><span class="line"><span class="string">"[eventFilter] [filterWgt] "</span> objName:  <span class="string">"pushButton"</span></span><br><span class="line"><span class="string">"[event]"</span></span><br><span class="line">[event Handle]</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="2-重写-receiver-EventHandler"><a href="#2-重写-receiver-EventHandler" class="headerlink" title="2. 重写 receiver EventHandler"></a>2. 重写 receiver EventHandler</h1><ul>
-<li>这是最普通简单的方法. 实现的功能也最简单, 且仅可用于有独立事件处理器的事件（很多不常用的事件就直接在<code>event()</code>中被处理了)</li>
+<p><a id="toc_anchor" name="2-重写receiverEventHandler"></a></p>
+<h1 id="2-重写receiverEventHandler"><a href="#2-重写receiverEventHandler" class="headerlink" title="2. 重写receiverEventHandler"></a>2. 重写receiverEventHandler</h1><ul>
+<li>这是最普通简单的方法. 实现的功能也最简单, 且仅可用于有独立事件处理器的事件(很多不常用的事件就直接在<code>event()</code>中被处理了)</li>
 <li>注意: 需时刻注意是否需要通过调用父类的同名函数来确保原有实现仍能进行！不注意这个将可能产生很难调的 Bug.<ul>
 <li>eg: 有一个类 A, 继承自 QPushButton. 在类 A 中将他的 clicked() 信号关联到了槽 slot_a(). 又重写了该类的 mousePressEvent 回调函数. 在该函数中并没有调用父类的同名函数 QPushButton::mousePressEvent(). 因为 QPushButton 的 clicked 信号在 QPushButton::mousePressEvent() 中发出, 而该函数并未执行. 所以按钮的 clicked 信号将永远不会发出. slot_a() 也将永远不会被执行. </li>
 </ul>
 </li>
 </ul>
+<p><a id="toc_anchor" name="21-`accept()`和`ignore()`"></a></p>
 <h2 id="2-1-accept-和ignore"><a href="#2-1-accept-和ignore" class="headerlink" title="2.1. accept()和ignore()"></a>2.1. <code>accept()</code>和<code>ignore()</code></h2><ul>
 <li>调用该事件的<code>accept()</code>, 则这个事件就不会被继续传播给其父组件. </li>
 <li>调用该事件的<code>ignore()</code>, Qt 会从其父组件中寻找另外的接受者. </li>
 </ul>
+<p><a id="toc_anchor" name="211-使用"></a></p>
 <h3 id="2-1-1-使用"><a href="#2-1-1-使用" class="headerlink" title="2.1.1. 使用"></a>2.1.1. 使用</h3><blockquote>
 <p>Tips: 当自己重写了事件处理函数时, 若想这个事件继续传播, 则调用父类的该事件处理函数. 若想事件就此打住, 则不用调用父类的事件处理函数. </p>
 </blockquote>
@@ -517,27 +573,31 @@
 </ul>
 </li>
 </ul>
+<p><a id="toc_anchor" name="3-重写接收者的`event()`函数"></a></p>
 <h1 id="3-重写接收者的event-函数"><a href="#3-重写接收者的event-函数" class="headerlink" title="3. 重写接收者的event()函数"></a>3. 重写接收者的<code>event()</code>函数</h1><ul>
 <li>event() 函数负责将到来的所有 event 按照 event-&gt;type() 不同, 分发给不同的 event Handler. </li>
-<li>可达到的效果: 自定义事件的分发. <h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2></li>
+<li>可达到的效果: 自定义事件的分发.<br><a id="toc_anchor" name="31-作用"></a><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2></li>
 <li>重写该组件的<code>event()</code>后, 在分发到各 event Handler 之前, 完成一些自定义的事情. 如下: <ol>
-<li>直接在该函数中写入对关系的事件的自定义处理. 不用一个一个重写各种事件处理器了. （但若在父类的 event() 调用问题上出错, 将有很大的影响. )</li>
+<li>直接在该函数中写入对关系的事件的自定义处理. 不用一个一个重写各种事件处理器了. (但若在父类的 event() 调用问题上出错, 将有很大的影响. )</li>
 <li>直接屏蔽掉一些不关心的事件. ( QEvent::type() 判断之后, 在不关心的 case 分支下什么都不写. )</li>
 </ol>
 </li>
 </ul>
+<p><a id="toc_anchor" name="32-缺点"></a></p>
 <h2 id="3-2-缺点"><a href="#3-2-缺点" class="headerlink" title="3.2. 缺点"></a>3.2. 缺点</h2><ul>
 <li>虽然可以在<code>event()</code>中屏蔽掉不关心的事件. 但是当需要屏蔽事件的组件很多时, 工程量巨大. (eg: 所有组件都不响应鼠标事件, 则需要在所有组件中都重写 event(), 在 event() 中不分发鼠标事件).</li>
-<li>所以 Qt 提供了 eventFilter （事件过滤器). 只需将主窗体中为你每个部件都<code>installEventFilter（主窗体)</code>之后, 重写主窗体的<code>eventFilter()</code>, 在其中屏蔽掉鼠标事件即可. </li>
+<li>所以 Qt 提供了 eventFilter (事件过滤器). 只需将主窗体中为你每个部件都<code>installEventFilter(主窗体)</code>之后, 重写主窗体的<code>eventFilter()</code>, 在其中屏蔽掉鼠标事件即可. </li>
 </ul>
+<p><a id="toc_anchor" name="33-代码实例"></a></p>
 <h2 id="3-3-代码实例"><a href="#3-3-代码实例" class="headerlink" title="3.3. 代码实例"></a>3.3. 代码实例</h2><blockquote>
-<p>只处理 tab 按键事件, 其他都不处理（因为所有信号都未分发)</p>
+<p>只处理 tab 按键事件, 其他都不处理(因为所有信号都未分发)</p>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> CustomTextEdit::event(QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>只对 tab 事件做了特殊处理（处理后屏蔽). 其他事件不受影响（其他信号分发)</p>
+<p>只对 tab 事件做了特殊处理(处理后屏蔽). 其他事件不受影响(其他信号分发)</p>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">     <span class="keyword">if</span> (e-&gt;type() == QEvent::KeyPress) &#123;    <span class="comment">// 事件</span></span><br><span class="line">        QKeyEvent *keyEvent = <span class="keyword">static_cast</span>&lt;QKeyEvent *&gt;(e);</span><br><span class="line">        <span class="keyword">if</span> (keyEvent-&gt;key() == Qt::Key_Tab) &#123;    <span class="comment">// 只接受 tab</span></span><br><span class="line">            qDebug() &lt;&lt; <span class="string">"You press tab."</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;    <span class="comment">// 不会再传递</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> 父类: :event();    <span class="comment">// 其他事件, 不受影响</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="4-事件过滤器"></a></p>
 <h1 id="4-事件过滤器"><a href="#4-事件过滤器" class="headerlink" title="4. 事件过滤器"></a>4. 事件过滤器</h1><ul>
 <li><p>每个 QObject 对象都维护一个 <code>QObjectList eventFilters;</code> 成员变量. </p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例</span></span><br><span class="line">QObject *a = <span class="keyword">new</span> QObject;</span><br><span class="line">QObject *b = <span class="keyword">new</span> QObject;</span><br><span class="line"><span class="comment">// 在 a 上安装事件过滤器 b.</span></span><br><span class="line"><span class="comment">// b 被存储在 a 的成员变量 eventFilters 中. </span></span><br><span class="line">a-&gt;installEventFilter(b);</span><br></pre></td></tr></table></figure>
@@ -551,6 +611,7 @@
 </ul>
 </li>
 </ul>
+<p><a id="toc_anchor" name="41-优缺点"></a></p>
 <h2 id="4-1-优缺点"><a href="#4-1-优缺点" class="headerlink" title="4.1. 优缺点"></a>4.1. 优缺点</h2><ul>
 <li>优点: <ul>
 <li>不用继承该控件, 就能自定义处理其事件. 因为各事件处理函数为 protected, 外部无法直接访问. 而安装事件过滤器就能在 事件处理函数 之前, 处理事件. </li>
@@ -561,7 +622,9 @@
 </ul>
 </li>
 </ul>
-<h2 id="4-2-方法"><a href="#4-2-方法" class="headerlink" title="4.2. 方法"></a>4.2. 方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装</span></span><br><span class="line"><span class="keyword">void</span> QObject::installEventFilter(QObject * filterObj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 卸载</span></span><br><span class="line"><span class="keyword">void</span> QObject::removeEventFilter(QObject * obj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 事件过滤函数</span></span><br><span class="line"><span class="comment">// 返回值: 不想该事件被继续传递下去（包括发送给 receiver), 返回 true. 否则返回 false.</span></span><br><span class="line"><span class="comment">// 注意: 若在事件过滤函数中 delete 了某个组件, 则必须返回`true`. 否则 Qt 还将事件分发给这个组件, 程序崩溃</span></span><br><span class="line"><span class="keyword">bool</span> QObject::eventFilter(QObject * watched, QEvent * event) [<span class="keyword">virtual</span>];</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="42-方法"></a></p>
+<h2 id="4-2-方法"><a href="#4-2-方法" class="headerlink" title="4.2. 方法"></a>4.2. 方法</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装</span></span><br><span class="line"><span class="keyword">void</span> QObject::installEventFilter(QObject * filterObj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 卸载</span></span><br><span class="line"><span class="keyword">void</span> QObject::removeEventFilter(QObject * obj);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 事件过滤函数</span></span><br><span class="line"><span class="comment">// 返回值: 不想该事件被继续传递下去(包括发送给 receiver), 返回 true. 否则返回 false.</span></span><br><span class="line"><span class="comment">// 注意: 若在事件过滤函数中 delete 了某个组件, 则必须返回`true`. 否则 Qt 还将事件分发给这个组件, 程序崩溃</span></span><br><span class="line"><span class="keyword">bool</span> QObject::eventFilter(QObject * watched, QEvent * event) [<span class="keyword">virtual</span>];</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="43-特别注意"></a></p>
 <h2 id="4-3-特别注意"><a href="#4-3-特别注意" class="headerlink" title="4.3. 特别注意"></a>4.3. 特别注意</h2><ul>
 <li><p>在 <code>QAbstractScollArea</code> 及其子类上安装事件过滤器时, 要安装在其<strong>视口</strong>上. </p>
   <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">QTextEdit edit;</span><br><span class="line">edit.installEventFilter(<span class="keyword">this</span>);</span><br><span class="line">edit.viewPort()-&gt;installEventFilter(<span class="keyword">this</span>);    <span class="comment">// 在视口上安装事件过滤器</span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">eventFilter</span><span class="params">(QObject *watcher, QEvent *event)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (watcher == edit) &#123;</span><br><span class="line">        <span class="keyword">if</span> (event-&gt;type == QEvent::KeyPress) &#123;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> QWidgert::eventFilter(watcher, event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -570,9 +633,10 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">btn-&gt;installEventFilter(A);</span><br><span class="line">btn-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到, 不做处理时, A::eventFilter 收到</span></span><br><span class="line"> </span><br><span class="line">qApp-&gt;installEventFilter(A);</span><br><span class="line">qApp-&gt;installEventFilter(B);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// B::eventFilter 先收到, 不做处理时, A::eventFilter 收到</span></span><br></pre></td></tr></table></figure>
-<h1 id="5-重写-notify-函数"><a href="#5-重写-notify-函数" class="headerlink" title="5. 重写 notify() 函数"></a>5. 重写 <code>notify()</code> 函数</h1><ul>
+<p><a id="toc_anchor" name="5-重写`notify()`函数"></a></p>
+<h1 id="5-重写notify-函数"><a href="#5-重写notify-函数" class="headerlink" title="5. 重写notify()函数"></a>5. 重写<code>notify()</code>函数</h1><ul>
 <li>这种方法是影响最大的方法, 因为该函数负责将事件发送给接收者. </li>
-<li>该方法不受线程限制, 其可用于<strong>多线程</strong>. 但是全局范围内只能有一个被使用（因为 QCoreApplication 是单例的）. </li>
+<li>该方法不受线程限制, 其可用于<strong>多线程</strong>. 但是全局范围内只能有一个被使用(因为 QCoreApplication 是单例的). </li>
 <li>QApplication 重写了 QCoreApplication 的 notify(). 具体可查看上一节的源码分析部分. </li>
 <li>根据本程序是 QCoreApplication 还是 QAPplication, 选择子类化哪个类. </li>
 </ul>
@@ -582,6 +646,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -589,25 +656,10 @@
     
 
     
-
+       
     
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    zhaoyongCNSX
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/" title="Qt 对于事件的自定义处理">https://blogs.devved.cn/2018/10/13/Qt 对于事件的自定义处理/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
+    
 
-      </div>
     
 
     <footer class="post-footer">
@@ -657,22 +709,16 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-
   
     <div class="comments" id="comments">
     </div>
+
   
 
 
@@ -700,10 +746,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -720,81 +766,116 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/zhaoyongCNSX" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:zhaoyongCNSX@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://47.92.146.3" target="_blank" title="Self">
-                      
-                        <i class="fa fa-fw fa-globe"></i>Self</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhaoyongCNSX" title="GitHub &rarr; https://github.com/zhaoyongCNSX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhaoyongCNSX@163.com" title="E-Mail &rarr; mailto:zhaoyongCNSX@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://devved.cn" title="Self &rarr; http://devved.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Self</a>
+                </span>
+              
             </div>
           
 
           
-          
-            <div class="cc-license motion-element" itemprop="license">
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-              </a>
-            </div>
-          
 
           
           
 
+          
+            
+          
           
 
         </div>
@@ -810,7 +891,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-程序示例"><span class="nav-text">1.1. 程序示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-重写-receiver-EventHandler"><span class="nav-text">2. 重写 receiver EventHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-accept-和ignore"><span class="nav-text">2.1. accept()和ignore()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-使用"><span class="nav-text">2.1.1. 使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-重写接收者的event-函数"><span class="nav-text">3. 重写接收者的event()函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-作用"><span class="nav-text">3.1. 作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-缺点"><span class="nav-text">3.2. 缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-代码实例"><span class="nav-text">3.3. 代码实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-事件过滤器"><span class="nav-text">4. 事件过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-优缺点"><span class="nav-text">4.1. 优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-方法"><span class="nav-text">4.2. 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-特别注意"><span class="nav-text">4.3. 特别注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-重写-notify-函数"><span class="nav-text">5. 重写 notify() 函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-number">1.</span> <span class="nav-text">1. 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-程序示例"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 程序示例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-重写receiverEventHandler"><span class="nav-number">2.</span> <span class="nav-text">2. 重写receiverEventHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-accept-和ignore"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. accept()和ignore()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-使用"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1. 使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-重写接收者的event-函数"><span class="nav-number">3.</span> <span class="nav-text">3. 重写接收者的event()函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-作用"><span class="nav-number">3.1.</span> <span class="nav-text">3.1. 作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-缺点"><span class="nav-number">3.2.</span> <span class="nav-text">3.2. 缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-代码实例"><span class="nav-number">3.3.</span> <span class="nav-text">3.3. 代码实例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-事件过滤器"><span class="nav-number">4.</span> <span class="nav-text">4. 事件过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-优缺点"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-方法"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-特别注意"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. 特别注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-重写notify-函数"><span class="nav-number">5.</span> <span class="nav-text">5. 重写notify()函数</span></a></li></ol></div>
             
 
           </div>
@@ -830,26 +911,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zhaoyongCNSX</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">6.9k</span>
+
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.7.1</div>
 
 
 
@@ -857,12 +931,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
         
+
 
 
 
@@ -884,7 +959,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -903,17 +981,20 @@
 
 
 
-  
-
-
-
-
-
 
 
 
   
-  
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -922,16 +1003,6 @@
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -949,23 +1020,13 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
@@ -973,29 +1034,15 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
 
 
 
@@ -1003,11 +1050,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -1017,12 +1060,14 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
+    guest = guest.split(',').filter(function (item) {
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
@@ -1033,8 +1078,9 @@
         appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
         placeholder: '说点什么呗',
         avatar:'mm',
-        guest_info:guest,
+        meta:guest,
         pageSize:'10' || 10,
+        visitor: false
     });
   </script>
 
@@ -1091,6 +1137,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1124,6 +1172,7 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -1366,107 +1415,61 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz", "iJ3wKfGYSz4XcXvh96ekdljM");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
+    
     function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
       var url = $visitors.attr('id').trim();
       var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
 
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
           if (results.length > 0) {
             var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
           } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
           }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
       });
     }
+    
 
     $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz",
+                'X-LC-Key': "iJ3wKfGYSz4XcXvh96ekdljM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
     });
   </script>
 
@@ -1475,11 +1478,45 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
 
   
   
 
   
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('manual', "#more");
+  
+  </script>
+
 
   
 

@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -50,43 +62,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="keywords" content="C++ Qt Python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhaoyongCNSX Blogs">
-<meta property="og:url" content="https://blogs.devved.cn/tags/Python/index.html">
-<meta property="og:site_name" content="zhaoyongCNSX Blogs">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhaoyongCNSX Blogs">
 
 
 
@@ -95,15 +89,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -115,14 +107,36 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="keywords" content="C++ Qt Python">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zhaoyongCNSX Blogs">
+<meta property="og:url" content="https://blogs.devved.cn/tags/Python/index.html">
+<meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zhaoyongCNSX Blogs">
+
+
+
+
+
 
   <link rel="canonical" href="https://blogs.devved.cn/tags/Python/"/>
 
 
 
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
-
-  <title>标签: Python | zhaoyongCNSX Blogs</title>
+  <title>Tag: Python | zhaoyongCNSX Blogs</title>
   
 
 
@@ -131,6 +145,36 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -150,19 +194,17 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">zhaoyongCNSX Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -170,66 +212,116 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
   
 
   
@@ -245,7 +337,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -260,12 +352,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -276,7 +376,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Python<small>标签</small>
+        <h1>Python<small>Tag</small>
         </h1>
       </div>
 
@@ -322,9 +422,6 @@
           </div>
           
 
-
-          
-
         </div>
         
           
@@ -359,81 +456,116 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/zhaoyongCNSX" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:zhaoyongCNSX@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://47.92.146.3" target="_blank" title="Self">
-                      
-                        <i class="fa fa-fw fa-globe"></i>Self</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhaoyongCNSX" title="GitHub &rarr; https://github.com/zhaoyongCNSX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhaoyongCNSX@163.com" title="E-Mail &rarr; mailto:zhaoyongCNSX@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://devved.cn" title="Self &rarr; http://devved.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Self</a>
+                </span>
+              
             </div>
           
 
           
-          
-            <div class="cc-license motion-element" itemprop="license">
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-              </a>
-            </div>
-          
 
           
           
 
+          
+            
+          
           
 
         </div>
@@ -453,26 +585,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zhaoyongCNSX</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">6.9k</span>
+
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.7.1</div>
 
 
 
@@ -480,12 +605,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
         
+
 
 
 
@@ -507,7 +633,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -526,17 +655,20 @@
 
 
 
-  
-
-
-
-
-
 
 
 
   
-  
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -545,16 +677,6 @@
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -572,23 +694,13 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
@@ -600,21 +712,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
 
 
 
@@ -622,11 +720,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -636,12 +730,14 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
+    guest = guest.split(',').filter(function (item) {
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
@@ -652,8 +748,9 @@
         appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
         placeholder: '说点什么呗',
         avatar:'mm',
-        guest_info:guest,
+        meta:guest,
         pageSize:'10' || 10,
+        visitor: false
     });
   </script>
 
@@ -710,6 +807,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -743,6 +842,7 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -985,11 +1085,9 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz", "iJ3wKfGYSz4XcXvh96ekdljM");</script>
   <script>
+    
     function showTime(Counter) {
-      var query = new AV.Query(Counter);
       var entries = [];
       var $visitors = $(".leancloud_visitors");
 
@@ -997,9 +1095,8 @@
         entries.push( $(this).attr("id").trim() );
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
           var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
 
           if (results.length === 0) {
@@ -1009,8 +1106,8 @@
 
           for (var i = 0; i < results.length; i++) {
             var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
+            var url = item.url;
+            var time = item.time;
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
@@ -1024,68 +1121,33 @@
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
         });
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
+    
 
     $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz",
+                'X-LC-Key': "iJ3wKfGYSz4XcXvh96ekdljM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
     });
   </script>
 
@@ -1094,11 +1156,45 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
 
   
   
 
   
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.loadBookmark();
+  
+  </script>
+
 
   
 

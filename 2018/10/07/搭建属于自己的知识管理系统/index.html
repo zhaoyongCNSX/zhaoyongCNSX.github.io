@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
@@ -9,8 +18,11 @@
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
+
+
+
 
 
 
@@ -50,47 +62,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="感想,知识管理,Python,Node.js," />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
-<meta name="keywords" content="感想,知识管理,Python,Node.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="搭建属于自己的知识管理系统">
-<meta property="og:url" content="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/index.html">
-<meta property="og:site_name" content="zhaoyongCNSX Blogs">
-<meta property="og:description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-11T04:00:59.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建属于自己的知识管理系统">
-<meta name="twitter:description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
 
 
 
@@ -99,15 +89,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -119,12 +107,38 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
+<meta name="keywords" content="感想,知识管理,Python,Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建属于自己的知识管理系统">
+<meta property="og:url" content="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/index.html">
+<meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-12-07T18:00:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建属于自己的知识管理系统">
+<meta name="twitter:description" content="本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.">
+
+
+
+
+
 
   <link rel="canonical" href="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>搭建属于自己的知识管理系统 | zhaoyongCNSX Blogs</title>
   
@@ -135,6 +149,36 @@
 
 
 
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
 
@@ -154,19 +198,17 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">zhaoyongCNSX Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -174,66 +216,97 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -249,7 +322,7 @@
     </span>
     <div class="local-search-input-wrapper">
       <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
+             placeholder="Searching..." spellcheck="false"
              type="text" id="local-search-input">
     </div>
   </div>
@@ -264,12 +337,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
 
@@ -280,6 +361,8 @@
 
   
   
+  
+
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -304,37 +387,50 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建属于自己的知识管理系统</h1>
+          <h1 class="post-title" itemprop="name headline">搭建属于自己的知识管理系统
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-07T00:00:00+08:00">
-                2018-10-07
-              </time>
+
+              
+                
+              
+
+              <time title="Created: 2018-10-07 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-07T00:00:00+08:00">2018-10-07</time>
             
 
             
-              <span class="post-meta-divider">|</span>
-            
+              
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-08 02:00:15" itemprop="dateModified" datetime="2018-12-08T02:00:15+08:00">2018-12-08</time>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-11T12:00:59+08:00">
-                2018-11-11
-              </time>
             
           </span>
 
@@ -347,14 +443,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">分类于</span>
+                <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
 
                 
                 
@@ -370,7 +462,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/10/07/搭建属于自己的知识管理系统/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/07/搭建属于自己的知识管理系统/" itemprop="commentCount"></span>
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/07/搭建属于自己的知识管理系统/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,7 +476,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
+                 <span class="post-meta-item-text">Views: </span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -393,42 +485,9 @@
           
 
           
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  7
-                </span>
-              
-            </div>
-          
 
           
-              <div class="post-description">
-                  本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.
-              </div>
+              <div class="post-description">本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.</div>
           
 
         </div>
@@ -453,6 +512,7 @@
 </blockquote>
 <!-- URL -->
 <!-- /URL -->
+<p><a id="toc_anchor" name="1-问题描述"></a></p>
 <h1 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h1><p>众所周知, 搭建自己的知识管理系统是十分重要的. </p>
 <p>笔者对知识管理系统的需求有以下几点:</p>
 <ul>
@@ -469,6 +529,7 @@
 <li>VNote: 本地功能很强大, 但是好像目前还没有做同步 和 移动端软件.</li>
 <li>…</li>
 </ul>
+<p><a id="toc_anchor" name="2-方案设计"></a></p>
 <h1 id="2-方案设计"><a href="#2-方案设计" class="headerlink" title="2. 方案设计"></a>2. 方案设计</h1><p>现有的笔记类软件很难满足要求. 在一个个软件的使用和比较中, 总在做着艰难的取舍. 就没有一个符合自己全部要求的方案吗? 有, 那就是自己搞一个! </p>
 <p>历史总是惊人的相似, 轮子总是重复的创造…</p>
 <p>如果从 PC 到 移动端 再到 服务器 完整打造一套软件系统, 所花费的时间成本太大了. 而比较现实的方案是: 先应用一些现有的软件, 辅以扩展性良好的通用数据结构, 打造能基本满足需求的系统. 等之后再从短板开始进行逐一替换.</p>
@@ -481,6 +542,7 @@
 <li>ios 下, 有很多支持 git 的软件, 试用了一圈发现还是<code>Working Copy</code>更符合我的使用习惯. 主要是因为其支持 查找文档内容 和 Markdown 预览. 虽然 Markdown 预览有些瑕疵, 但是不影响使用.</li>
 <li>运行在自己服务器中的一些脚本, 用于自动更新 Hexo 生成 blogs.</li>
 </ul>
+<p><a id="toc_anchor" name="3-效果体现"></a></p>
 <h1 id="3-效果体现"><a href="#3-效果体现" class="headerlink" title="3. 效果体现"></a>3. 效果体现</h1><p>忙活了好几天, 终于完成了. 最后达到的效果是: </p>
 <ul>
 <li>在任一客户端更改笔记后, 将笔记 push 到码云. </li>
@@ -494,8 +556,10 @@
 </ol>
 </li>
 </ul>
+<p><a id="toc_anchor" name="4-实现过程中的问题记录"></a></p>
 <h1 id="4-实现过程中的问题记录"><a href="#4-实现过程中的问题记录" class="headerlink" title="4. 实现过程中的问题记录"></a>4. 实现过程中的问题记录</h1><p>在整个过程中, 遇到了一些问题, 积累点滴, 以供成长.</p>
-<h2 id="4-1-在-Markdown-中插入图片和附件"><a href="#4-1-在-Markdown-中插入图片和附件" class="headerlink" title="4.1. 在 Markdown 中插入图片和附件"></a>4.1. 在 Markdown 中插入图片和附件</h2><p>在 Markdown 文档中插入图片, 一直是一个痛点. 而现有软件的解决思路一般有以下几种:</p>
+<p><a id="toc_anchor" name="41-在Markdown中插入图片和附件"></a></p>
+<h2 id="4-1-在Markdown中插入图片和附件"><a href="#4-1-在Markdown中插入图片和附件" class="headerlink" title="4.1. 在Markdown中插入图片和附件"></a>4.1. 在Markdown中插入图片和附件</h2><p>在 Markdown 文档中插入图片, 一直是一个痛点. 而现有软件的解决思路一般有以下几种:</p>
 <ul>
 <li>插入图片时, 将图片传到自己服务器, 并返回一个 URL. 和使用<strong>网络图床</strong>的解决方法一致.</li>
 <li>插入图片时, 将图片复制到一个指定路径, 并返回该路径. 同步时, 将图片和文档一起同步. </li>
@@ -504,11 +568,13 @@
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">res</span><br><span class="line"> <span class="string">|-- img1.png</span></span><br><span class="line"></span><br><span class="line">note1.md</span><br></pre></td></tr></table></figure>
 <p>VS Code 可使用 <code>Paste Image</code> 插件将剪切板的图像生成图片文件, 存储到特定目录下, 再将路径插入到文档中. 可使用 <code>Markdown Preview Enhanced</code> 来选择现有的图片插入. 该插件会将图片复制到指定目录, 并在文档中增加内容. 只需要在安装完插件后, 增加配置如下:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//----------------- markdown preview Enhanced -------------------</span><br><span class="line">// 使用图片助手插入本地图片时, 图片复制到的路径</span><br><span class="line">"markdown-preview-enhanced.imageFolderPath": "./res/",</span><br><span class="line"></span><br><span class="line">//----------------- paset image -------------------</span><br><span class="line">"pasteImage.path": "$&#123;currentFileDir&#125;/res/",</span><br><span class="line">"pasteImage.prefix": "./",</span><br><span class="line">"pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",</span><br></pre></td></tr></table></figure>
-<h2 id="4-2-Hexo-生成带有图片的-blog"><a href="#4-2-Hexo-生成带有图片的-blog" class="headerlink" title="4.2. Hexo 生成带有图片的 blog"></a>4.2. Hexo 生成带有图片的 blog</h2><p>当待生成 blog 的 markdown 中有图片时, 直接使用 hexo 生成的 Html 是无法正常显示图片的. 因为相对于 html文件而言, 类似于 <code>./res/test.png</code> 的这些路径找不到了. Hexo 是以时间为目录来组织生成的 html 的, 这些 html 分散在很多个以日期标注的文件夹下, 一个个复制到对应文件夹下有点累. 所以笔者的解决方法是, 修改待发布的markdown 中 <code>./res/test.png</code> 为 <code>/res/test.png</code>, 这样只要将用到的图片复制到 hexo 的 <code>source/res/</code> 目录下, hexo 在生成时, 会自动把这些文件拷贝到 html 同级目录中. 这样就能正常显示了.</p>
+<p><a id="toc_anchor" name="42-Hexo生成带有图片的blog"></a></p>
+<h2 id="4-2-Hexo生成带有图片的blog"><a href="#4-2-Hexo生成带有图片的blog" class="headerlink" title="4.2. Hexo生成带有图片的blog"></a>4.2. Hexo生成带有图片的blog</h2><p>当待生成 blog 的 markdown 中有图片时, 直接使用 hexo 生成的 Html 是无法正常显示图片的. 因为相对于 html文件而言, 类似于 <code>./res/test.png</code> 的这些路径找不到了. Hexo 是以时间为目录来组织生成的 html 的, 这些 html 分散在很多个以日期标注的文件夹下, 一个个复制到对应文件夹下有点累. 所以笔者的解决方法是, 修改待发布的markdown 中 <code>./res/test.png</code> 为 <code>/res/test.png</code>, 这样只要将用到的图片复制到 hexo 的 <code>source/res/</code> 目录下, hexo 在生成时, 会自动把这些文件拷贝到 html 同级目录中. 这样就能正常显示了.</p>
 <p>这个修改路径的工作可以直接交给脚本去执行. 顺便还能给文件加个公共的Head 和 Tail.</p>
 <p>为了简化 “脚本中查找本文档用到的图片” 逻辑, 笔者在写文档时, 将所有的图片资源引用都放到了文章开头, 格式如下:</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 放于前面</span><br><span class="line"><span class="comment">&lt;!-- RES --&gt;</span></span><br><span class="line">[img1]: /res/mdImg/imgTest.png</span><br><span class="line"><span class="comment">&lt;!-- /RES --&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">![图片名][img1]</span><br></pre></td></tr></table></figure>
-<h2 id="4-3-使用码云的-web-hooks"><a href="#4-3-使用码云的-web-hooks" class="headerlink" title="4.3. 使用码云的 web hooks"></a>4.3. 使用码云的 web hooks</h2><p>可以使用 node.js 快速搭建一个支持 码云 web hooks 请求的服务. 可以直接引用库 <code>gitee-webhook-handler</code>. 在自己的 js 中调用脚本执行即可.</p>
+<p><a id="toc_anchor" name="43-使用码云的webhooks"></a></p>
+<h2 id="4-3-使用码云的webhooks"><a href="#4-3-使用码云的webhooks" class="headerlink" title="4.3. 使用码云的webhooks"></a>4.3. 使用码云的webhooks</h2><p>可以使用 node.js 快速搭建一个支持 码云 web hooks 请求的服务. 可以直接引用库 <code>gitee-webhook-handler</code>. 在自己的 js 中调用脚本执行即可.</p>
 <p>如果使用的是其他的 git 仓库, 比如 GitHub, Coding 等, 可以直接引用对应的库来使用. </p>
 <blockquote>
 <p>写在最后, 欢迎读者写下评论, 我们一起交流进步.</p>
@@ -516,6 +582,9 @@
 
       
     </div>
+
+    
+
     
     
     
@@ -523,25 +592,10 @@
     
 
     
-
+       
     
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者：</strong>
-    zhaoyongCNSX
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/" title="搭建属于自己的知识管理系统">https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>
-    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
+    
 
-      </div>
     
 
     <footer class="post-footer">
@@ -591,22 +645,16 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-
   
     <div class="comments" id="comments">
     </div>
+
   
 
 
@@ -634,10 +682,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -654,81 +702,116 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">4</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/zhaoyongCNSX" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:zhaoyongCNSX@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="http://47.92.146.3" target="_blank" title="Self">
-                      
-                        <i class="fa fa-fw fa-globe"></i>Self</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhaoyongCNSX" title="GitHub &rarr; https://github.com/zhaoyongCNSX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhaoyongCNSX@163.com" title="E-Mail &rarr; mailto:zhaoyongCNSX@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://devved.cn" title="Self &rarr; http://devved.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Self</a>
+                </span>
+              
             </div>
           
 
           
-          
-            <div class="cc-license motion-element" itemprop="license">
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-              </a>
-            </div>
-          
 
           
           
 
+          
+            
+          
           
 
         </div>
@@ -744,7 +827,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-问题描述"><span class="nav-text">1. 问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-方案设计"><span class="nav-text">2. 方案设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-效果体现"><span class="nav-text">3. 效果体现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-实现过程中的问题记录"><span class="nav-text">4. 实现过程中的问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-在-Markdown-中插入图片和附件"><span class="nav-text">4.1. 在 Markdown 中插入图片和附件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Hexo-生成带有图片的-blog"><span class="nav-text">4.2. Hexo 生成带有图片的 blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-使用码云的-web-hooks"><span class="nav-text">4.3. 使用码云的 web hooks</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-问题描述"><span class="nav-number">1.</span> <span class="nav-text">1. 问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-方案设计"><span class="nav-number">2.</span> <span class="nav-text">2. 方案设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-效果体现"><span class="nav-number">3.</span> <span class="nav-text">3. 效果体现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-实现过程中的问题记录"><span class="nav-number">4.</span> <span class="nav-text">4. 实现过程中的问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-在Markdown中插入图片和附件"><span class="nav-number">4.1.</span> <span class="nav-text">4.1. 在Markdown中插入图片和附件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Hexo生成带有图片的blog"><span class="nav-number">4.2.</span> <span class="nav-text">4.2. Hexo生成带有图片的blog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-使用码云的webhooks"><span class="nav-number">4.3.</span> <span class="nav-text">4.3. 使用码云的webhooks</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -764,26 +847,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zhaoyongCNSX</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">6.9k</span>
+
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.7.1</div>
 
 
 
@@ -791,12 +867,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
         
+
 
 
 
@@ -818,7 +895,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -837,17 +917,20 @@
 
 
 
-  
-
-
-
-
-
 
 
 
   
-  
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -856,16 +939,6 @@
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -883,23 +956,13 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
@@ -907,29 +970,15 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
 
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
 
 
 
@@ -937,11 +986,7 @@
 
 
 
-
-
   
-
-
 
 
 
@@ -951,12 +996,14 @@
 
 
   <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
   <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
     var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item=>{
+    guest = guest.split(',').filter(function (item) {
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
@@ -967,8 +1014,9 @@
         appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
         placeholder: '说点什么呗',
         avatar:'mm',
-        guest_info:guest,
+        meta:guest,
         pageSize:'10' || 10,
+        visitor: false
     });
   </script>
 
@@ -1025,6 +1073,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1058,6 +1108,7 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -1300,107 +1351,61 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz", "iJ3wKfGYSz4XcXvh96ekdljM");</script>
   <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
+    
     function addCount(Counter) {
       var $visitors = $(".leancloud_visitors");
       var url = $visitors.attr('id').trim();
       var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
 
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
           if (results.length > 0) {
             var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
           } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
           }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
       });
     }
+    
 
     $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz",
+                'X-LC-Key': "iJ3wKfGYSz4XcXvh96ekdljM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
     });
   </script>
 
@@ -1409,11 +1414,45 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
 
   
   
 
   
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('manual', "#more");
+  
+  </script>
+
 
   
 
