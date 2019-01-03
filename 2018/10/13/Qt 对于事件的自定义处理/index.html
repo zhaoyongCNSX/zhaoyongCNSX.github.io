@@ -120,7 +120,7 @@
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
 <meta property="og:description" content="讲述如何自定义 Qt 事件的处理过程.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T18:00:15.000Z">
+<meta property="og:updated_time" content="2019-01-02T18:00:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt 对于事件的自定义处理">
 <meta name="twitter:description" content="讲述如何自定义 Qt 事件的处理过程.">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-12-08 02:00:15" itemprop="dateModified" datetime="2018-12-08T02:00:15+08:00">2018-12-08</time>
+                <time title="Modified: 2019-01-03 02:00:16" itemprop="dateModified" datetime="2019-01-03T02:00:16+08:00">2019-01-03</time>
               
             
           </span>
@@ -580,7 +580,10 @@
 <p><a id="toc_anchor" name="3-重写接收者的`event()`函数"></a></p>
 <h1 id="3-重写接收者的event-函数"><a href="#3-重写接收者的event-函数" class="headerlink" title="3. 重写接收者的event()函数"></a>3. 重写接收者的<code>event()</code>函数</h1><ul>
 <li>event() 函数负责将到来的所有 event 按照 event-&gt;type() 不同, 分发给不同的 event Handler. </li>
-<li>可达到的效果: 自定义事件的分发.<br><a id="toc_anchor" name="31-作用"></a><h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2></li>
+<li>可达到的效果: 自定义事件的分发. </li>
+</ul>
+<p><a id="toc_anchor" name="31-作用"></a></p>
+<h2 id="3-1-作用"><a href="#3-1-作用" class="headerlink" title="3.1. 作用"></a>3.1. 作用</h2><ul>
 <li>重写该组件的<code>event()</code>后, 在分发到各 event Handler 之前, 完成一些自定义的事情. 如下: <ol>
 <li>直接在该函数中写入对关系的事件的自定义处理. 不用一个一个重写各种事件处理器了. (但若在父类的 event() 调用问题上出错, 将有很大的影响. )</li>
 <li>直接屏蔽掉一些不关心的事件. ( QEvent::type() 判断之后, 在不关心的 case 分支下什么都不写. )</li>
@@ -915,7 +918,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; 2018 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
