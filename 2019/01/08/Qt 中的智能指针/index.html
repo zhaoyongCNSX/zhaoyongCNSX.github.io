@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="讲述 Qt 中各类智能指针的使用">
+<meta name="keywords" content="Qt,智能指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt 中的智能指针">
+<meta property="og:url" content="https://blogs.devved.cn/2019/01/08/Qt 中的智能指针/index.html">
+<meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:description" content="讲述 Qt 中各类智能指针的使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-07T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt 中的智能指针">
+<meta name="twitter:description" content="讲述 Qt 中各类智能指针的使用">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blogs.devved.cn/2019/01/08/Qt 中的智能指针/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Qt 中的智能指针 | zhaoyongCNSX Blogs</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhaoyongCNSX Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">学习四步骤: 搜寻知识、模仿实践、思考延伸、传授感悟</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2019/01/08/Qt 中的智能指针/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaoyongCNSX">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myLogo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhaoyongCNSX Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Qt 中的智能指针
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-08T00:00:00+08:00">2019-01-08</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/cpp/" itemprop="url" rel="index"><span itemprop="name">C++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/programming/cpp/qt/" itemprop="url" rel="index"><span itemprop="name">Qt</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/08/Qt 中的智能指针/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/01/08/Qt 中的智能指针/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/01/08/Qt 中的智能指针/" class="leancloud_visitors" data-flag-title="Qt 中的智能指针">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">讲述 Qt 中各类智能指针的使用</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>友情提示: 你可以选择以下镜像网站进行阅读:</p>
+<ul>
+<li><a href="https://zhaoyongcnsx.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
+<li><a href="http://www.devved.cn" target="_blank" rel="noopener">个人网站</a></li>
+</ul>
+</blockquote>
+<p><a id="toc_anchor" name="1-Qt智能指针概述"></a></p>
+<h1 id="1-Qt智能指针概述"><a href="#1-Qt智能指针概述" class="headerlink" title="1. Qt智能指针概述"></a>1. Qt智能指针概述</h1><ul>
+<li>Qt 提供了一套基于父子对象的内存管理机制, 所以我们很少需要去手动 delete. 但程序中不一定所有类都是QObject的子类, 这种情况下仍然需要使用一些智能指针. </li>
+<li>注意: 在 Qt 中使用智能指针时, 一定要避免发生多次析构.</li>
+</ul>
+<p><a id="toc_anchor" name="2-Qt中的智能指针分类"></a></p>
+<h1 id="2-Qt中的智能指针分类"><a href="#2-Qt中的智能指针分类" class="headerlink" title="2. Qt中的智能指针分类"></a>2. Qt中的智能指针分类</h1><p>根据不同的使用场景, 可分为以下几种:</p>
+<ul>
+<li><strong>共享数据</strong>. 隐式或显式的共享数据(不共享指针), 也被称为 侵入式指针.<ul>
+<li><code>QSharedDataPointer</code> 指向<strong>隐式共享</strong>对象的指针.</li>
+<li><code>QExplicitlySharedDataPointer</code> 指向<strong>显式共享</strong>对象的指针.</li>
+</ul>
+</li>
+<li><strong>共享指针</strong>. 线程安全.<ul>
+<li><code>QSharedPointer</code>. 有点像 <code>std::shared_ptr</code>, <code>boost::shared_ptr</code>. 维护引用计数, 使用上最像原生指针.</li>
+<li><code>QWeakPointer</code>, 类似于<code>boost::weak_ptr</code>. 作为 <code>QSharedPointer</code> 的助手使用. 未重载<code>*</code>和<code>-&gt;</code>. 用于解决强引用形成的相互引用.</li>
+</ul>
+</li>
+<li><strong>范围指针</strong>. 为了<strong>RAII</strong>[^raii]目的, 维护指针所有权, 并保证其在超出作用域后恰当的被销毁, 非共享.<ul>
+<li><code>QScopedPointer</code>. 相当于 <code>std::unique_ptr</code>.<ul>
+<li>所有权唯一, 其拷贝和赋值操作均为私有. 无法用于容器中.</li>
+</ul>
+</li>
+<li><code>QScopedArrayPointer</code></li>
+</ul>
+</li>
+<li><strong>追踪给定 QObject 对象生命</strong>, 并在其析构时自动设置为 NULL.<ul>
+<li><code>QPointer</code>.</li>
+</ul>
+</li>
+</ul>
+<p><a id="toc_anchor" name="3-共享数据"></a></p>
+<h1 id="3-共享数据"><a href="#3-共享数据" class="headerlink" title="3. 共享数据"></a>3. 共享数据</h1><ul>
+<li>共享数据是为了实现 “读时共享, 写时复制”. 其本质上是延迟了 执行深拷贝 的时机到了需要修改其值的时候. </li>
+<li>C++实现为 在拷贝构造和赋值运算符函数中不直接深度拷贝, 而是维护一个引用计数并获得一个引用或指针. 在需要改变值的方法中再执行深度拷贝.</li>
+<li>隐式共享为, 我们无需管理深度拷贝的时机, 它会自动执行.</li>
+<li>显式共享为, 我们需要人为判断什么时候需要深度拷贝, 并手动执行拷贝.</li>
+<li><code>QSharedData</code> 作为共享数据对象的基类. 其在内部提供 线程安全的引用计数. </li>
+<li>其与 <code>QSharedDataPointer</code> 和 <code>QExplicitlySharedDataPointer</code> 一起使用. </li>
+<li>以上三个类都是可重入的.</li>
+</ul>
+<p><a id="toc_anchor" name="31-隐式共享"></a></p>
+<h2 id="3-1-隐式共享"><a href="#3-1-隐式共享" class="headerlink" title="3.1. 隐式共享"></a>3.1. 隐式共享</h2><ul>
+<li><code>QSharedDataPointer</code>表示指向隐式共享对象的指针. </li>
+<li>其在写操作时, 会<strong>自动调用</strong><code>detach()</code>. 该函数在当共享数据对象引用计数大于1, 会执行深拷贝, 并将该指针指向新拷贝内容. (这是在该类的非 const 成员函数中自动调用的, 我们使用时不需要关心).</li>
+</ul>
+<blockquote>
+<p>比如, 我们现在有一个类 MyClass, 现在要将其改造成支持隐式共享的类.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 1   <span class="comment">// MyClass 原始版本</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MyClass()&#123;&#125;</span><br><span class="line">	MyClass(<span class="keyword">const</span> MyClass &amp;other) &#123;</span><br><span class="line">		m_id = other.GetId();</span><br><span class="line">		m_path = other.GetPath();</span><br><span class="line">	&#125;</span><br><span class="line">	~MyClass()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">GetId</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> m_id; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetId</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123; m_id = val; &#125;</span><br><span class="line">	<span class="function">QString <span class="title">GetPath</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> m_path; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetPath</span><span class="params">(QString val)</span> </span>&#123; m_path = val; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> m_id = <span class="number">-1</span>;</span><br><span class="line">	QString m_path;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span> <span class="comment">// MyClass 支持隐式共享</span></span></span><br><span class="line"><span class="comment">// 1. 将 MyClass 的所有数据成员都放到 MyClassData 中. </span></span><br><span class="line"><span class="comment">// 2. 在 MyClass 中维护一个 QSharedDataPointer&lt;MyClassData&gt; d.</span></span><br><span class="line"><span class="comment">// 3. MyClass 中通过 d-&gt; 的形式访问数据.</span></span><br><span class="line"><span class="comment">// 4. MyClassData 继承自 QSharedData.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QSharedData&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QSharedDataPointer&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClassData</span> :</span> <span class="keyword">public</span> QSharedData</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MyClassData()&#123;&#125;</span><br><span class="line">	MyClassData(<span class="keyword">const</span> MyClassData &amp;other)</span><br><span class="line">		: QSharedData(other), id(other.id), path(other.path) &#123;&#125;</span><br><span class="line">	~MyClassData()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> id = <span class="number">-1</span>;</span><br><span class="line">	QString path;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MyClass()&#123; d = <span class="keyword">new</span> MyClassData(); &#125;</span><br><span class="line">	MyClass(<span class="keyword">int</span> id, <span class="keyword">const</span> QString &amp; path) &#123;</span><br><span class="line">		d = <span class="keyword">new</span> MyClassData();</span><br><span class="line">		SetId(id);</span><br><span class="line">		SetPath(path);</span><br><span class="line">	&#125;</span><br><span class="line">	MyClass(<span class="keyword">const</span> MyClass &amp;other) : d(other.d)&#123;&#125;</span><br><span class="line">	~MyClass()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">GetId</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> d-&gt;id; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetId</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123; d-&gt;id = val; &#125;</span><br><span class="line">	<span class="function">QString <span class="title">GetPath</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> d-&gt;path; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetPath</span><span class="params">(QString val)</span> </span>&#123; d-&gt;path = val; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	QSharedDataPointer&lt;MyClassData&gt; d;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="32-显式共享"></a></p>
+<h2 id="3-2-显式共享"><a href="#3-2-显式共享" class="headerlink" title="3.2. 显式共享"></a>3.2. 显式共享</h2><ul>
+<li><code>QExplicitlySharedDataPointer</code> 表示指向显式共享对象的指针. </li>
+<li>与<code>QSharedDataPointer</code>不同的地方在于, 它不会在非const成员函数执行写操作时, 自动调用 <code>detach()</code>.</li>
+<li>所以需要我们在写操作时, <strong>手动调用</strong> detach(). </li>
+<li>它的行为很像 C++ 常规指针, 不过比指针好的地方在于, 它也维护一套引用计数, 当引用计数为0时会自动设置为 NULL. 避免了悬空指针的危害.</li>
+</ul>
+<blockquote>
+<ul>
+<li>修改上面例子中用到的 QSharedDataPointer 为 QExplicitlySharedDataPointer.</li>
+<li>注意: 如果在使用时发现所有写操作的函数中都调用了 detach(), 那就可以直接使用 QSharedDataPointer 了.</li>
+</ul>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QExplicitlySharedDataPointer&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	MyClass()&#123; d = <span class="keyword">new</span> MyClassData(); &#125;</span><br><span class="line">	MyClass(<span class="keyword">int</span> id, <span class="keyword">const</span> QString &amp; path) &#123;</span><br><span class="line">		d = <span class="keyword">new</span> MyClassData();</span><br><span class="line">		SetId(id);</span><br><span class="line">		SetPath(path);</span><br><span class="line">	&#125;</span><br><span class="line">	MyClass(<span class="keyword">const</span> MyClass &amp;other) : d(other.d)&#123;&#125;</span><br><span class="line">	~MyClass()&#123;&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">GetId</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> d-&gt;id; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetId</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123; </span><br><span class="line">		<span class="comment">// 需要手动调用 detach()</span></span><br><span class="line">		d.detach();</span><br><span class="line">		d-&gt;id = val; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">QString <span class="title">GetPath</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> d-&gt;path; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">SetPath</span><span class="params">(QString val)</span> </span>&#123; </span><br><span class="line">		<span class="comment">// 需要手动调用 detach()</span></span><br><span class="line">		d.detach();</span><br><span class="line">		d-&gt;path = val; </span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	QExplicitlySharedDataPointer&lt;MyClassData&gt; d;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="4-共享指针"></a></p>
+<h1 id="4-共享指针"><a href="#4-共享指针" class="headerlink" title="4. 共享指针"></a>4. 共享指针</h1><p><a id="toc_anchor" name="41-QSharedPointer"></a></p>
+<h2 id="4-1-QSharedPointer"><a href="#4-1-QSharedPointer" class="headerlink" title="4.1. QSharedPointer"></a>4.1. QSharedPointer</h2><ul>
+<li>可用于容器中.</li>
+<li>可提供自定义 Deleter, 所以可用于 <code>delete []</code> 的场景.</li>
+<li>线程安全. 多线程同时修改其对象无需加锁. 但其指向的内存不一定线程安全, 所以多线程同时修改其指向的数据, 还需要加锁.</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定 Deleter</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doDeleteLater</span><span class="params">(MyObject *obj)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    obj-&gt;deleteLater();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TestSPtr</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    QSharedPointer&lt;MyObject&gt; obj(<span class="keyword">new</span> MyObject, doDeleteLater);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 调用 clear 清除引用计数, 并调用 Deleter 删除指针对象.</span></span><br><span class="line">    <span class="comment">// 此处将调用 doDeleteLater</span></span><br><span class="line">    obj.clear();</span><br><span class="line"></span><br><span class="line">    QSharedPointer&lt;MyObject&gt; pObj1 = obj;</span><br><span class="line">    pObj1-&gt;show();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pObj1) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*------------- 实现单例 -------------*/</span></span><br><span class="line"><span class="comment">// cpp 中定义全局变量</span></span><br><span class="line">QSharedPointer&lt;MyObject&gt; g_ptrMyObj;</span><br><span class="line"></span><br><span class="line">QSharedPointer&lt;MyObject&gt; GetMyObj() &#123;</span><br><span class="line">    <span class="keyword">if</span> (g_ptrMyObj.data() == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        g_ptrMyObj.reset(<span class="keyword">new</span> MyObject());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> g_ptrMyObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="42-QWeakPointer"></a></p>
+<h2 id="4-2-QWeakPointer"><a href="#4-2-QWeakPointer" class="headerlink" title="4.2. QWeakPointer"></a>4.2. QWeakPointer</h2><ul>
+<li>创建: 只能通过 QSharedPointer 的赋值来创建.</li>
+<li>使用: 不可直接使用. 没有重载<code>*</code>和<code>-&gt;</code>. 需要用 <code>toStrongRef()</code> 转换为 QSharedPointer, 并判断是否为 NULL 之后再使用. <ul>
+<li>可使用 <code>data()</code> 取到指针值, 但不确保其有效. 如果想使用该值, 需用户在外部使用其他手段保证其指针值有效. </li>
+<li>曾经有一段时间, Qt 官方想用 QWeakPointer 取代 QPointer, 但在 Qt5 重写了 QPointer 后, 就不再这么建议了. </li>
+<li>所以使用 QWeakPointer 的最佳场景仍然是: 作为 QSharedPointer 的助手类使用. </li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>打开宏 TEST_memory_will_leak, 则因为产生循环引用, 导致内存泄漏, 表现为: 不会打印 “destruct A”, “destruct B”</li>
+<li>关闭宏, 使用 QWeakPointer, 不会产生内存泄漏.</li>
+</ul>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QSharedPointer&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWeakPointer&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TEST_memory_will_leak</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	~A() &#123;</span><br><span class="line">		qDebug() &lt;&lt; <span class="string">"destruct A"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_memory_will_leak</span></span><br><span class="line">	QSharedPointer&lt;B&gt; ptr_B;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	QWeakPointer&lt;B&gt; ptr_B;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//TEST_memory_will_leak</span></span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	~B() &#123;</span><br><span class="line">		qDebug() &lt;&lt; <span class="string">"destruct B"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_memory_will_leak</span></span><br><span class="line">	QSharedPointer&lt;A&gt; ptr_A;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	QWeakPointer&lt;A&gt; ptr_A;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//TEST_memory_will_leak</span></span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	QSharedPointer&lt;A&gt; nA(<span class="keyword">new</span> A());</span><br><span class="line">	QSharedPointer&lt;B&gt; nB(<span class="keyword">new</span> B());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 若内部使用 QSharedPointer, 则此处会形成循环引用.</span></span><br><span class="line">	nA-&gt;ptr_B = nB;</span><br><span class="line">	nB-&gt;ptr_A = nA;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> TEST_memory_will_leak</span></span><br><span class="line">	<span class="keyword">if</span> (!nA-&gt;ptr_B.isNull()) &#123;</span><br><span class="line">		qDebug() &lt;&lt; <span class="string">"use shared ptr"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="keyword">if</span> (!nA-&gt;ptr_B.toStrongRef().isNull()) &#123;</span><br><span class="line">		qDebug() &lt;&lt; <span class="string">"use weak ptr"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> TEST_memory_will_leak</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="5-范围指针"></a></p>
+<h1 id="5-范围指针"><a href="#5-范围指针" class="headerlink" title="5. 范围指针"></a>5. 范围指针</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        QScopedPointer&lt;MyClass&gt; p(<span class="keyword">new</span> MyClass());</span><br><span class="line">        p-&gt;func();</span><br><span class="line">    &#125; <span class="comment">// 退出作用域后析构</span></span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        QScopedArrayPointer&lt;<span class="keyword">int</span>&gt; p(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>] );</span><br><span class="line"></span><br><span class="line">        p[<span class="number">1</span>] = <span class="number">10</span>;</span><br><span class="line">    &#125; <span class="comment">// 退出作用域后析构</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="6-追踪特定QObject对象生命"></a></p>
+<h1 id="6-追踪特定QObject对象生命"><a href="#6-追踪特定QObject对象生命" class="headerlink" title="6. 追踪特定QObject对象生命"></a>6. 追踪特定QObject对象生命</h1><blockquote>
+<p>[***以下描述可搜索 DevBean 的 continue-using-qpointer 一文获取更详细信息***].</p>
+<ul>
+<li>QPointer 在某几个 Qt5 版本中, 被标注为废弃. 且打算使用 QWeakPointer 来代替其原有功能. (为此还允许 QWeakPointer 可独立于 QSharedPointer 使用, 并增加了一系列接口, 引发了接口歧义的副作用). 但经过对 QPointer 的重写后, 解决了之前性能问题, 所以便移除了废弃标志, 并取消了 QWeakPointer 独立使用的相关描述.</li>
+<li>之后还是继续将 QWeakPointer 和 QSharedPointer 捆绑使用. 并继续愉快的使用 QPointer 吧.</li>
+</ul>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHelper</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MyHelper(QPushButton *btn)</span><br><span class="line">        : m_btn(btn)</span><br><span class="line">        , m_btn2(<span class="literal">NULL</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">SetBtn</span><span class="params">(QPushButton *btn)</span> </span>&#123;</span><br><span class="line">        m_btn2 = btn;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">FuncShow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 当外部的 QPushButton 析构后, 该值自动设置为 NULL</span></span><br><span class="line">        <span class="keyword">if</span> (m_btn) &#123;</span><br><span class="line">            m_btn-&gt;show();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (m_btn2) &#123;</span><br><span class="line">            m_btn2-&gt;show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    QPointer&lt;QPushButton&gt; m_btn;</span><br><span class="line">    QPointer&lt;QPushButton&gt; m_btn2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>[^raii]: RAII, Resource Acquisition Is Initialization, 资源获取就是初始化. 是 C++ 的一种管理资源, 避免泄漏的惯用方法. 比如, <code>QMutexLocker</code>为了方便管理<code>QMutex</code>的加锁和解锁, 在构造该对象时加锁, 在析构时解锁.</p>
+<blockquote>
+<p>如果本文有幸激发起你的一些思考, 欢迎通过评论的形式给与反馈, 与你与我都是一种成长.</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
+          
+            <a href="/tags/smart-pointer/" rel="tag"># 智能指针</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/13/Qt 事件与信号槽/" rel="next" title="Qt 事件与信号槽">
+                <i class="fa fa-chevron-left"></i> Qt 事件与信号槽
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/myLogo.png"
+                alt="zhaoyongCNSX" />
+            
+              <p class="site-author-name" itemprop="name">zhaoyongCNSX</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhaoyongCNSX" title="GitHub &rarr; https://github.com/zhaoyongCNSX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhaoyongCNSX@163.com" title="E-Mail &rarr; mailto:zhaoyongCNSX@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://devved.cn" title="Self &rarr; http://devved.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Self</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Qt智能指针概述"><span class="nav-text">1. Qt智能指针概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Qt中的智能指针分类"><span class="nav-text">2. Qt中的智能指针分类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-共享数据"><span class="nav-text">3. 共享数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-隐式共享"><span class="nav-text">3.1. 隐式共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-显式共享"><span class="nav-text">3.2. 显式共享</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-共享指针"><span class="nav-text">4. 共享指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-QSharedPointer"><span class="nav-text">4.1. QSharedPointer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-QWeakPointer"><span class="nav-text">4.2. QWeakPointer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-范围指针"><span class="nav-text">5. 范围指针</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-追踪特定QObject对象生命"><span class="nav-text">6. 追踪特定QObject对象生命</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhaoyongCNSX</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz',
+        appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
+        placeholder: '说点什么呗',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz",
+                'X-LC-Key': "iJ3wKfGYSz4XcXvh96ekdljM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
