@@ -2,24 +2,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 
 
 
-  
-  
-    
-    
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
 
 
 
@@ -57,46 +62,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="zhaoyongCNSX 的个人博客">
-<meta name="keywords" content="C++ Qt Python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="zhaoyongCNSX Blogs">
-<meta property="og:url" content="https://zhaoyongcnsx.github.io/page/2/index.html">
-<meta property="og:site_name" content="zhaoyongCNSX Blogs">
-<meta property="og:description" content="zhaoyongCNSX 的个人博客">
-<meta property="og:locale" content="zh-Hans">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zhaoyongCNSX Blogs">
-<meta name="twitter:description" content="zhaoyongCNSX 的个人博客">
 
 
 
@@ -105,15 +89,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
     fancybox: true,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -125,12 +107,34 @@
 </script>
 
 
-
-  <link rel="canonical" href="https://zhaoyongcnsx.github.io/page/2/"/>
-
+  
 
 
 
+
+  <meta name="keywords" content="C++ Qt Python">
+<meta property="og:type" content="website">
+<meta property="og:title" content="zhaoyongCNSX Blogs">
+<meta property="og:url" content="https://blogs.devved.cn/page/2/index.html">
+<meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zhaoyongCNSX Blogs">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blogs.devved.cn/page/2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>zhaoyongCNSX Blogs</title>
   
@@ -142,9 +146,39 @@
 
 
 
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -161,19 +195,21 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">zhaoyongCNSX Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">学习四步骤: 搜寻知识、模仿实践、思考延伸、传授感悟</p>
       
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -181,66 +217,97 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
         </li>
       
     </ul>
+  
+
+  
+    
+
   
 
   
@@ -271,12 +338,20 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -289,17 +364,19 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaoyongcnsx.github.io/2018/09/06/搭建 ShowDoc 在线文档系统/">
+    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2018/10/07/搭建属于自己的知识管理系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhaoyongCNSX">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
+      <meta itemprop="image" content="/images/myLogo.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -313,11 +390,20 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/06/搭建 ShowDoc 在线文档系统/" itemprop="url">未命名</a></h1>
+                
+                <a href="/2018/10/07/搭建属于自己的知识管理系统/" class="post-title-link" itemprop="https://blogs.devved.cn/page/2/index.html">搭建属于自己的知识管理系统</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -325,43 +411,60 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T23:38:06+08:00">
-                2018-09-06
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-07 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-07T00:00:00+08:00">2018-10-07</time>
             
 
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-02T15:44:17+08:00">
-                2018-09-02
-              </time>
             
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/demo/" itemprop="url" rel="index"><span itemprop="name">小实践</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/07/搭建属于自己的知识管理系统/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/07/搭建属于自己的知识管理系统/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
           
           
-             <span id="/2018/09/06/搭建 ShowDoc 在线文档系统/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2018/10/07/搭建属于自己的知识管理系统/" class="leancloud_visitors" data-flag-title="搭建属于自己的知识管理系统">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
+                 <span class="post-meta-item-text">阅读次数：</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -369,37 +472,6 @@
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  385
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
           
 
           
@@ -418,430 +490,22 @@
 
       
         
+          本博客的第一篇文章. 万事开头难嘛. 写了搭建自己知识管理系统过程中的所思所想. 可能搭建过程不是很具体, 之后会另开多篇文章进行介绍.
+          <!--noindex-->
           
-            <p>[TOC]</p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
-<li>ShowDoc 是一个在线文档管理系统。支持 markdown 语法，很适合 IT 团队编写项目文档。</li>
-<li><a href="http://blog.star7th.com/2016/05/2007.html" target="_blank" rel="noopener">http://blog.star7th.com/2016/05/2007.html</a></li>
-</ul>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
-<li>centos 7</li>
-</ul>
-<h1 id="安装-Nginx"><a href="#安装-Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 安装 Nginx</span></span><br><span class="line"><span class="comment"># 使用 yum 安装 Nginx</span></span><br><span class="line">yum install nginx</span><br><span class="line"> </span><br><span class="line">修改 /etc/nginx/nginx.conf</span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  127.0.0.1;</span><br><span class="line">        root         /var/www/html;</span><br><span class="line">        index index.php index.html</span><br><span class="line">        error_page  404              /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ .php$ &#123;</span><br><span class="line">            root           /var/www/html;</span><br><span class="line">            fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">            fastcgi_index  index.php;</span><br><span class="line">            fastcgi_param  SCRIPT_FILENAME  <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">            include        fastcgi_params;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ /.ht &#123;</span><br><span class="line">            deny  all;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 Nginx 并设置为开机启动</span></span><br><span class="line">service nginx start</span><br><span class="line">chkconfig nginx on</span><br></pre></td></tr></table></figure>
-<h1 id="安装-PHP"><a href="#安装-PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 yum 安装 php-fpm</span></span><br><span class="line">yum install php php-gd php-fpm php-mcrypt php-mbstring php-mysql php-pdo</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 php-fpm 并设置为开机启动</span></span><br><span class="line">service php-fpm start</span><br><span class="line">chkconfig php-fpm on</span><br></pre></td></tr></table></figure>
-<h1 id="下载安装-Composer"><a href="#下载安装-Composer" class="headerlink" title="下载安装 Composer"></a>下载安装 Composer</h1><ul>
-<li>Composer 是 PHP 的一个依赖管理工具，推荐使用 Composer 创建 ShowDoc 项目<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行如下命令 安装 Composer</span></span><br><span class="line">curl -sS https://getcomposer.org/installer | php</span><br><span class="line">mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置 Composer 使用国内镜像</span></span><br><span class="line">composer config -g repo.packagist composer https://packagist.phpcomposer.com</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 Composer 创建项目</span></span><br><span class="line"><span class="built_in">cd</span> /var/www/html/ &amp;&amp; composer create-project  showdoc/showdoc</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 设置 showdoc 目录写权限</span></span><br><span class="line">chmod a+w showdoc/install</span><br><span class="line">chmod a+w showdoc/Sqlite</span><br><span class="line">chmod a+w showdoc/Sqlite/showdoc.db.php</span><br><span class="line">chmod a+w showdoc/Public/Uploads/</span><br><span class="line">chmod a+w showdoc/Application/Runtime</span><br><span class="line">chmod a+w showdoc/server/Application/Runtime</span><br><span class="line">chmod a+w showdoc/Application/Common/Conf/config.php</span><br><span class="line">chmod a+w showdoc/Application/Home/Conf/config.php</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">创建完毕，您现在可以通过浏览器访问 http:<span class="regexp">//</span><span class="number">119.29</span>.<span class="number">239.104</span><span class="regexp">/showdoc/i</span>nstall<span class="regexp">/ ，进行语言的选择以后即可通过 http:/</span><span class="regexp">/119.29.239.104/</span>showdoc 查看站点效果。</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaoyongcnsx.github.io/2018/09/06/搭建 seafile 网盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhaoyongCNSX">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhaoyongCNSX Blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/06/搭建 seafile 网盘/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T23:38:06+08:00">
-                2018-09-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-02T15:44:14+08:00">
-                2018-09-02
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/06/搭建 seafile 网盘/" class="leancloud_visitors" data-flag-title="">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  423
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/07/搭建属于自己的知识管理系统/">
+                阅读全文 &raquo;
+              </a>
             </div>
           
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
-<li>seafile 是一个国人开发的，开源网盘服务。</li>
-<li>官网：<a href="https://www.seafile.com/home/" target="_blank" rel="noopener">https://www.seafile.com/home/</a></li>
-</ul>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
-<li>centos 7 64bit</li>
-</ul>
-<h1 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用 yum 安装 Python 和 MySQL.</span></span><br><span class="line">yum install python python-setuptools python-imaging python-ldap python-memcached MySQL-python mariadb mariadb-server</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 启动 MariaDB 服务</span></span><br><span class="line">sudo systemctl start mariadb.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> mariadb.service</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 配置 MySQL （本人设置密码为 纯常用长数字)</span></span><br><span class="line"><span class="comment"># 配置 New password 和 Re-enter new password 字段，其他一路回车即可。</span></span><br><span class="line">/usr/bin/mysql_secure_installation</span><br></pre></td></tr></table></figure>
-<h1 id="安装-seafile"><a href="#安装-seafile" class="headerlink" title="安装 seafile"></a>安装 seafile</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载 Seafile 安装包</span></span><br><span class="line">wget https://mc.qcloudimg.com/static/archive/3d8addbe52be88df4f6139ec7e35b453/seafile-server_5.1.4_x86-64.tar.gz</span><br><span class="line"> </span><br><span class="line">tar -zxvf seafile-server_5.1.4_x86-64.tar.gz</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 安装 Seafile 安装包</span></span><br><span class="line">sudo mkdir -p /opt/seafile/installed</span><br><span class="line">sudo mv seafile-server_5.1.4_x86-64.tar.gz /opt/seafile/installed</span><br><span class="line">sudo mv seafile-server-5.1.4/ /opt/seafile</span><br><span class="line"><span class="built_in">cd</span> /opt/seafile/seafile-server-5.1.4</span><br><span class="line"> </span><br><span class="line"><span class="comment"># [server name] 字段输入 Seafile</span></span><br><span class="line"><span class="comment"># [ This server's ip or domain ] 字段输入教程第一步申请的域名</span></span><br><span class="line"><span class="comment"># [ 1 or 2 ] 字段选择 1</span></span><br><span class="line"><span class="comment"># mysql 的 [ root password ] 字段输入 之前的密码</span></span><br><span class="line"><span class="comment"># Enter the password for mysql user "seafile": 输一个密码</span></span><br><span class="line"><span class="comment"># 其他字段一路回车使用默认值</span></span><br><span class="line"> </span><br><span class="line">sudo ./setup-seafile-mysql.sh</span><br></pre></td></tr></table></figure>
-<h1 id="启动-Seafile-及修改防火墙规则"><a href="#启动-Seafile-及修改防火墙规则" class="headerlink" title="启动 Seafile 及修改防火墙规则"></a>启动 Seafile 及修改防火墙规则</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动 Seafile</span></span><br><span class="line">sudo ./seafile.sh start</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 其中 [ admin email ] 设置为您登录网盘的帐号，如 admin@qcloudlab.wang，</span></span><br><span class="line"><span class="comment"># [ admin password ] 和 [ admin password again ] 设置为登录网盘的密码，如 admin_1yIv9sWO</span></span><br><span class="line"> </span><br><span class="line">sudo ./seahub.sh start</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改防火墙规则</span></span><br><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8082/tcp</span><br><span class="line">sudo firewall-cmd --zone=public --permanent --add-port=8000/tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<h1 id="访问-seafile"><a href="#访问-seafile" class="headerlink" title="访问 seafile"></a>访问 seafile</h1><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用 ip 访问：<span class="link">http://</span>[<span class="string"> This server's ip or domain </span>] 中的 ip 或域名：8000</span><br><span class="line">输入之前设置的用户名和密码 zhaoyongCNSX@163.com  数字</span><br></pre></td></tr></table></figure>
-<h1 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h1><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">vim</span> /etc/rc.d/rc.local</span><br><span class="line"> </span><br><span class="line"># 增加以下</span><br><span class="line"> </span><br><span class="line">/<span class="keyword">opt</span>/seafile/seafile-server-<span class="number">5.1</span>.<span class="number">4</span>/seafile.<span class="keyword">sh</span> start</span><br><span class="line">/<span class="keyword">opt</span>/seafile/seafile-server-<span class="number">5.1</span>.<span class="number">4</span>/seahub.<span class="keyword">sh</span> start</span><br></pre></td></tr></table></figure>
-          
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaoyongcnsx.github.io/2018/09/06/搭建 Leanote 笔记服务/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhaoyongCNSX">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhaoyongCNSX Blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/06/搭建 Leanote 笔记服务/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T23:37:59+08:00">
-                2018-09-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T22:52:53+08:00">
-                2018-09-05
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/06/搭建 Leanote 笔记服务/" class="leancloud_visitors" data-flag-title="">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  798
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <!-- TOC -->
-<ul>
-<li><a href="#1-概述">1. 概述</a></li>
-<li><a href="#2-安装-mongodb">2. 安装 MongoDB</a></li>
-<li><a href="#3-安装-leanote">3. 安装 Leanote</a><ul>
-<li><a href="#31-二进制安装">3.1. 二进制安装</a></li>
-<li><a href="#32-源码安装">3.2. 源码安装</a></li>
-</ul>
-</li>
-<li><a href="#4-为-mongodb-的-leanote-数据库设置账号和密码">4. 为 MongoDB 的 leanote 数据库设置账号和密码</a></li>
-<li><a href="#5-设置-mongodb-和-leanote-开机自启动">5. 设置 mongodb 和 leanote 开机自启动</a></li>
-</ul>
-<!-- /TOC -->
-<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
-<li>环境：centos 7 64bit</li>
-<li>所需依赖<ul>
-<li>leanote 使用 MongoDB 存储</li>
-</ul>
-</li>
-<li>安装路径<ul>
-<li>安装包都存放于 <code>/home/tools/</code> 下。</li>
-<li>MongoDB 和 leanote 均安装在<code>/home/Apps/</code>下</li>
-<li>MongoDB 数据库路径：<code>/home/data/mongodb</code></li>
-<li>MongoDB 和 leanote log 存放于：<code>/var/log/</code> 下</li>
-</ul>
-</li>
-</ul>
-<h1 id="2-安装-MongoDB"><a href="#2-安装-MongoDB" class="headerlink" title="2. 安装 MongoDB"></a>2. 安装 MongoDB</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##### 下载 MongoDB</span></span><br><span class="line"><span class="built_in">cd</span> /home/tools</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 wget 下载。也可使用附件中的包。</span></span><br><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.0.1.tgz</span><br><span class="line"> </span><br><span class="line">tar -xzvf mongodb-linux-x86_64-3.0.1.tgz</span><br><span class="line">mv mongodb-linux-x86_64-3.0.1 /home/Apps/mongodb</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 创建用于存储的文件夹目录</span></span><br><span class="line">mkdir -p /home/data/mongodb</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 配置 MongoDB 的环境变量：</span></span><br><span class="line">vim /etc/profile</span><br><span class="line"><span class="comment"># 在文件末尾追加</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:/home/Apps/mongodb/bin</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 执行以下命令，使环境变量生效</span></span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 启动 MongoDB( 先不使用 --auth 校验用户密码 方式启动)</span></span><br><span class="line">mongod --dbpath=/home/data/mongodb --logpath=/var/<span class="built_in">log</span>/mongod.log -logappend --port=27017 --fork</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 测试是否启动完成</span></span><br><span class="line"><span class="comment"># 新打开一个终端</span></span><br><span class="line">mongo</span><br><span class="line"></span><br><span class="line">&gt; show dbs</span><br></pre></td></tr></table></figure>
-<h1 id="3-安装-Leanote"><a href="#3-安装-Leanote" class="headerlink" title="3. 安装 Leanote"></a>3. 安装 Leanote</h1><blockquote>
-<ul>
-<li>安装完成后，可以在浏览器输入：<code>http://47.92.146.3:9000</code> <code>admin</code> <code>abc123</code> 登录管理账号。马上修改密码。</li>
-</ul>
-</blockquote>
-<h2 id="3-1-二进制安装"><a href="#3-1-二进制安装" class="headerlink" title="3.1. 二进制安装"></a>3.1. 二进制安装</h2><blockquote>
-<ul>
-<li>也可使用附近中的二进制包，或在 github 下载最新二进制包</li>
-</ul>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/tools</span><br><span class="line"> </span><br><span class="line"><span class="comment">###### 下载 Leanote 二进制包</span></span><br><span class="line">wget https://iweb.dl.sourceforge.net/project/leanote-bin/2.4/leanote-linux-amd64-v2.4.bin.tar.gz</span><br><span class="line"> </span><br><span class="line">tar -zxvf leanote-linux-amd64-v2.4.bin.tar.gz</span><br><span class="line">mv leanote /home/Apps/</span><br><span class="line"> </span><br><span class="line"><span class="comment">###### 编辑 Leanote 配置文件</span></span><br><span class="line"><span class="built_in">cd</span> /home/Apps/leanote</span><br><span class="line"> </span><br><span class="line">vim conf/app.conf</span><br><span class="line"><span class="comment"># 修改 app.secret= 字段的值（修改几个字符即可).</span></span><br><span class="line"><span class="comment"># 修改 site.url=http://47.92.146.3:9000</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 初始化数据库</span></span><br><span class="line">mongorestore -h localhost -d leanote --dir /home/Apps/leanote/mongodb_backup/leanote_install_data/</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line"><span class="comment"># 另起一个窗口，连接 mongod</span></span><br><span class="line">mongo</span><br><span class="line"> </span><br><span class="line">&gt; show dbs</span><br><span class="line"><span class="comment"># 发现新增了 leanote 数据库</span></span><br><span class="line">&gt; use leanote</span><br><span class="line">&gt; show collections <span class="comment"># 查看表（有很多表，其中 user 表中有两项数据，admin 和 demo)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 后台启动 Leanote 服务</span></span><br><span class="line">nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/<span class="built_in">log</span>/leanote.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-源码安装"><a href="#3-2-源码安装" class="headerlink" title="3.2. 源码安装"></a>3.2. 源码安装</h2><h1 id="4-为-MongoDB-的-leanote-数据库设置账号和密码"><a href="#4-为-MongoDB-的-leanote-数据库设置账号和密码" class="headerlink" title="4. 为 MongoDB 的 leanote 数据库设置账号和密码"></a>4. 为 MongoDB 的 leanote 数据库设置账号和密码</h1><ul>
-<li>为了增加安全性，需要给 leanote 数据库设置账号和密码</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">mongo</span><br><span class="line"> </span><br><span class="line">&gt; use leanote;</span><br><span class="line"> </span><br><span class="line">db.createUser(&#123;</span><br><span class="line">    user: <span class="string">'root'</span>,</span><br><span class="line">    <span class="built_in">pwd</span>: <span class="string">'yourpassword'</span>,</span><br><span class="line">    roles: [&#123;role: <span class="string">'dbOwner'</span>, db: <span class="string">'leanote'</span>&#125;]</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 测试：</span></span><br><span class="line">&gt; db.auth(<span class="string">"root"</span>, <span class="string">"yourpassword"</span>); <span class="comment"># 使用账号密码登录。（返回 1 表示成功)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 重启 mongodb</span></span><br><span class="line"><span class="comment"># 安全退出</span></span><br><span class="line">&gt; use admin</span><br><span class="line">&gt; db.shutdownServer()</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用 --auth 参数启动。</span></span><br><span class="line">mongod --dbpath=/home/data/mongodb --logpath=/var/<span class="built_in">log</span>/mongod.log -logappend --auth --port=27017 --fork</span><br><span class="line"> </span><br><span class="line"><span class="comment">##### 设置 leanote</span></span><br><span class="line">vim conf/app.conf</span><br><span class="line"><span class="comment"># 修改这两项</span></span><br><span class="line">db.username=root <span class="comment"># if not exists, please leave it blank</span></span><br><span class="line">db.password=yourpassword <span class="comment"># if not exists, please leave it blank</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 重启 leanote</span></span><br><span class="line">ps -ef | grep leanote</span><br><span class="line"><span class="built_in">kill</span> -9 pid 号</span><br><span class="line">nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/<span class="built_in">log</span>/leanote.log 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-<h1 id="5-设置-mongodb-和-leanote-开机自启动"><a href="#5-设置-mongodb-和-leanote-开机自启动" class="headerlink" title="5. 设置 mongodb 和 leanote 开机自启动"></a>5. 设置 mongodb 和 leanote 开机自启动</h1><blockquote>
-<p>将后台启动命令增加到 /etc/rc.local 文件中即可。</p>
-</blockquote>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加 mongodb 自启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"/home/Apps/mongodb/bin/mongod --dbpath=/home/data/mongodb --logpath=/var/log/mongod.log -logappend --auth -port=27017 --fork"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 增加 leanote 开机自启动</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"nohup /bin/bash /home/Apps/leanote/bin/run.sh &gt;&gt; /var/log/leanote.log 2&gt;&amp;1 &amp;"</span> &gt;&gt; /etc/rc.local</span><br><span class="line"> </span><br><span class="line">chmod +x /etc/rc.d/rc.local</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
     
     
     
@@ -849,187 +513,8 @@
     
 
     
-
+       
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhaoyongcnsx.github.io/2018/09/06/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhaoyongCNSX">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zhaoyongCNSX Blogs">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/06/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T23:18:37+08:00">
-                2018-09-06
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-06T23:18:37+08:00">
-                2018-09-06
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/06/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  73
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
     
 
     
@@ -1058,15 +543,12 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -1096,82 +578,135 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/logo.png"
+                src="/images/myLogo.png"
                 alt="zhaoyongCNSX" />
             
               <p class="site-author-name" itemprop="name">zhaoyongCNSX</p>
-              <p class="site-description motion-element" itemprop="description">zhaoyongCNSX 的个人博客</p>
+              <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/zhaoyongCNSX" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="mailto:zhaoyongCNSX@163.com" target="_blank" title="E-Mail">
-                      
-                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhaoyongCNSX" title="GitHub &rarr; https://github.com/zhaoyongCNSX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhaoyongCNSX@163.com" title="E-Mail &rarr; mailto:zhaoyongCNSX@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://devved.cn" title="Self &rarr; http://devved.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Self</a>
+                </span>
+              
             </div>
           
 
           
-          
-            <div class="cc-license motion-element" itemprop="license">
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
-                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-              </a>
-            </div>
-          
 
           
           
 
+          
+            
+          
           
 
         </div>
@@ -1191,26 +726,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zhaoyongCNSX</span>
 
   
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-    
-      <span class="post-meta-item-text">Site words total count&#58;</span>
-    
-    <span title="Site words total count">7.3k</span>
+
   
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -1218,12 +746,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
         
+
 
 
 
@@ -1245,7 +774,10 @@
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -1264,17 +796,20 @@
 
 
 
-  
-
-
-
-
-
 
 
 
   
-  
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1283,16 +818,6 @@
   
   
     <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
   
 
   
@@ -1310,23 +835,13 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
@@ -1338,27 +853,11 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
 
 
 
@@ -1370,21 +869,31 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
 
-    
-
-    
-
-
-
-
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz',
+        appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
+        placeholder: '说点什么呗',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
 
 
 
@@ -1439,6 +948,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -1472,6 +983,7 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
                 var articleUrl = decodeURIComponent(data.url);
                 var indexOfTitle = [];
@@ -1714,11 +1226,9 @@
   
 
   
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("TDDsUDe2bNJ9AuDLtdMqfUNo-gzGzoHsz", "0RHypA7igWU0QbMnfRg9D6DU");</script>
   <script>
+    
     function showTime(Counter) {
-      var query = new AV.Query(Counter);
       var entries = [];
       var $visitors = $(".leancloud_visitors");
 
@@ -1726,9 +1236,8 @@
         entries.push( $(this).attr("id").trim() );
       });
 
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
+        .done(function ({ results }) {
           var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
 
           if (results.length === 0) {
@@ -1738,8 +1247,8 @@
 
           for (var i = 0; i < results.length; i++) {
             var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
+            var url = item.url;
+            var time = item.time;
             var element = document.getElementById(url);
 
             $(element).find(COUNT_CONTAINER_REF).text(time);
@@ -1753,68 +1262,33 @@
             }
           }
         })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
+        .fail(function ({ responseJSON }) {
+          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
         });
     }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
+    
 
     $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz",
+                'X-LC-Key': "iJ3wKfGYSz4XcXvh96ekdljM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          if ($('.post-title-link').length >= 1) {
+            showTime(Counter);
+          }
+          
+        })
     });
   </script>
 
@@ -1823,6 +1297,25 @@
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
 
   
   
@@ -1830,6 +1323,81 @@
   
 
   
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
 
   
 
