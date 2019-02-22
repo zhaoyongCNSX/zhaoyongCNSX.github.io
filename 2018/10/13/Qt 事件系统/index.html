@@ -506,10 +506,9 @@
 
       
         <blockquote>
-<p>友情提示: 你可以选择以下镜像网站进行阅读:</p>
 <ul>
-<li><a href="https://zhaoyongcnsx.github.io" target="_blank" rel="noopener">GitHub Pages</a></li>
-<li><a href="http://www.devved.cn" target="_blank" rel="noopener">个人网站</a></li>
+<li>本站的镜像网站: <a href="https://zhaoyongcnsx.github.io" target="_blank" rel="noopener">GitHub Pages</a>, <a href="http://www.devved.cn" target="_blank" rel="noopener">个人网站</a></li>
+<li>本人的 CSDN 博客: <a href="https://blog.csdn.net/zhaoyongCNSX" target="_blank" rel="noopener">点这里起飞</a></li>
 </ul>
 </blockquote>
 <p><a id="toc_anchor" name="1-相关资料"></a></p>
@@ -674,7 +673,7 @@
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> QObject::event(QEvent *e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">switch</span> (e-&gt;type()) &#123;</span><br><span class="line">    <span class="keyword">case</span> QEvent::Timer:</span><br><span class="line">        timerEvent((QTimerEvent*)e);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> QEvent::ChildAdded:</span><br><span class="line">    <span class="keyword">case</span> QEvent::ChildPolished:</span><br><span class="line">    <span class="keyword">case</span> QEvent::ChildRemoved:</span><br><span class="line">        childEvent((QChildEvent*)e);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> QEvent::DeferredDelete:</span><br><span class="line">        qDeleteInEventHandler(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> QEvent::MetaCall: &#123;</span><br><span class="line">            <span class="comment">//... 省略</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> QEvent::ThreadChange: &#123;</span><br><span class="line">        <span class="comment">//... 省略</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">// 自定义事件</span></span><br><span class="line">        <span class="keyword">if</span> (e-&gt;type() &gt;= QEvent::User) &#123;</span><br><span class="line">            customEvent(e);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>如果本文有幸激发起你的一些思考, 欢迎通过评论的形式给与反馈, 与你与我都是一种成长.</p>
+<p>— 道理越辩越明, 欢迎留言讨论. —</p>
 </blockquote>
 
       
