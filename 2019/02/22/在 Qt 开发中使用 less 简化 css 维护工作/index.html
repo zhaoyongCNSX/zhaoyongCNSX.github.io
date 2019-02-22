@@ -112,25 +112,25 @@
 
 
 
-  <meta name="description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
-<meta name="keywords" content="Qt,Qt 事件,Qt 信号槽">
+  <meta name="description" content="总结了将 Less 应用于 Qt 开发中时, 出现的问题和解决方法.">
+<meta name="keywords" content="Less,CSS,大前端,Qt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Qt 事件与信号槽">
-<meta property="og:url" content="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/index.html">
+<meta property="og:title" content="在 Qt 开发中使用 less 简化 css 维护工作">
+<meta property="og:url" content="https://blogs.devved.cn/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/index.html">
 <meta property="og:site_name" content="zhaoyongCNSX Blogs">
-<meta property="og:description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
+<meta property="og:description" content="总结了将 Less 应用于 Qt 开发中时, 出现的问题和解决方法.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-12T16:00:00.000Z">
+<meta property="og:updated_time" content="2019-02-21T16:00:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Qt 事件与信号槽">
-<meta name="twitter:description" content="探讨 Qt 事件与信号槽在使用场景上的不同.">
+<meta name="twitter:title" content="在 Qt 开发中使用 less 简化 css 维护工作">
+<meta name="twitter:description" content="总结了将 Less 应用于 Qt 开发中时, 出现的问题和解决方法.">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/"/>
+  <link rel="canonical" href="https://blogs.devved.cn/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/"/>
 
 
 
@@ -140,7 +140,7 @@
   };
 </script>
 
-  <title>Qt 事件与信号槽 | zhaoyongCNSX Blogs</title>
+  <title>在 Qt 开发中使用 less 简化 css 维护工作 | zhaoyongCNSX Blogs</title>
   
 
 
@@ -374,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2018/10/13/Qt 事件与信号槽/">
+    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhaoyongCNSX">
@@ -391,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Qt 事件与信号槽
+          <h1 class="post-title" itemprop="name headline">在 Qt 开发中使用 less 简化 css 维护工作
               
             
           </h1>
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2018-10-13 00:00:00" itemprop="dateCreated datePublished" datetime="2018-10-13T00:00:00+08:00">2018-10-13</time>
+              <time title="创建时间：2019-02-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-22T00:00:00+08:00">2019-02-22</time>
             
 
             
@@ -463,8 +463,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/13/Qt 事件与信号槽/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/10/13/Qt 事件与信号槽/" itemprop="commentCount"></span>
+                <a href="/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -472,7 +472,7 @@
 
           
           
-             <span id="/2018/10/13/Qt 事件与信号槽/" class="leancloud_visitors" data-flag-title="Qt 事件与信号槽">
+             <span id="/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/" class="leancloud_visitors" data-flag-title="在 Qt 开发中使用 less 简化 css 维护工作">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -489,7 +489,7 @@
           
 
           
-              <div class="post-description">探讨 Qt 事件与信号槽在使用场景上的不同.</div>
+              <div class="post-description">总结了将 Less 应用于 Qt 开发中时, 出现的问题和解决方法.</div>
           
 
         </div>
@@ -513,30 +513,54 @@
 </ul>
 </blockquote>
 <p><a id="toc_anchor" name="1-概述"></a></p>
-<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><ul>
-<li>事件机制比信号槽更底层. 在事件中会默认的发送相应信号, 所以一般使用, 只需操作信号槽即可. </li>
-<li>当我们需要<strong>自定义组件</strong>或<strong>修改现有组件的行为</strong>时, 就需要从事件的层面着手了. </li>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p><a id="toc_anchor" name="11-使用CSS遇到的问题"></a></p>
+<h2 id="1-1-使用CSS遇到的问题"><a href="#1-1-使用CSS遇到的问题" class="headerlink" title="1.1. 使用CSS遇到的问题"></a>1.1. 使用CSS遇到的问题</h2><ul>
+<li>多皮肤 CSS 信息冗余. 程序往往有多套皮肤, 而每套皮肤都对应至少一个 CSS, 随着皮肤的增多, 多套CSS的维护成本变得很高. 让我们想想这样一个场景, 设计部对现有皮肤的某一样式做了修改, 我们就得在每套皮肤的CSS中找到该样式的位置, 再一个一个进行修改. 在整个过程中, 有很大部分的时间浪费在了查找和切换文件这些事情上了. </li>
+<li>CSS 注释不友好, 其只支持<code>/* */</code> 格式的注释. 但是这样的注释又无法嵌套, 所以我们通常是不写注释的. CSS 文件内容越多, 就越像天书. 而且很多样式是试验多次后得出的最佳效果, 一旦改了其中一个值, 可能就会有其他令人匪夷所思的问题. </li>
 </ul>
-<p><a id="toc_anchor" name="2-区别"></a></p>
-<h1 id="2-区别"><a href="#2-区别" class="headerlink" title="2. 区别"></a>2. 区别</h1><ul>
-<li>信号槽: 其针对的是对象与对象之间的连接. 当信号发射后, 与其相连的槽函数总是会被执行的. </li>
-<li>事件: 可以经过消息队列传输, 也可直接传输. 在传输过程中, 可经过事件过滤器和事件处理函数等手段来干预其. </li>
+<p><a id="toc_anchor" name="12-Less简介"></a></p>
+<h2 id="1-2-Less简介"><a href="#1-2-Less简介" class="headerlink" title="1.2. Less简介"></a>1.2. Less简介</h2><ul>
+<li>Less 是一种 CSS 预处理语言. </li>
+<li>Less 基于 node.js</li>
+<li>Less 比 CSS 多了变量, Mixin, 可调用的原生函数, 分支语句, 循环语句 等支持. 可以把原本杂乱的 CSS 整理得更加简短和易于维护.</li>
 </ul>
-<p><a id="toc_anchor" name="3-联系"></a></p>
-<h1 id="3-联系"><a href="#3-联系" class="headerlink" title="3. 联系"></a>3. 联系</h1><ul>
-<li>跨线程的<strong>信号槽</strong>机制是通过<strong>事件机制</strong>完成的. </li>
-<li><p>查看相关 Qt 源码可了解调用过程: </p>
-<blockquote>
-<ul>
-<li>以下情况的信号槽连接会通过 <code>poseEvent()</code>实现: <pre><code>- 信号槽为 `Qt::AutoConnection` 连接模式下
-    - 发送信号线程非当前线程时  或  信号与槽不在同一线程
-- 信号槽为 `Qt::QueuedConnection` 连接模式下
-</code></pre></li>
+<p><a id="toc_anchor" name="2-解决多皮肤样式表冗余问题"></a></p>
+<h1 id="2-解决多皮肤样式表冗余问题"><a href="#2-解决多皮肤样式表冗余问题" class="headerlink" title="2. 解决多皮肤样式表冗余问题"></a>2. 解决多皮肤样式表冗余问题</h1><ul>
+<li>需要用到的 less 特性<ul>
+<li>Less 变量值可以为数组, 使用时可配合 <code>extract()</code> 获取数组指定 index 的值. </li>
+<li>Less 可以在调用 lessc 时, 通过命令行参数<code>--modify-var=&quot;变量名=值&quot;</code>来修改 less 文件中的变量值.</li>
 </ul>
-</blockquote>
-  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// (自动连接模式 &amp;&amp; (信号线程非本线程 || 信号与槽非同一线程) || 对列连接模式)</span></span><br><span class="line"><span class="keyword">if</span> ((c-&gt;connectionType == Qt::AutoConnection</span><br><span class="line">　　     &amp;&amp; (currentThreadData != sender-&gt;d_func()-&gt;threadData</span><br><span class="line">　　         || receiver-&gt;d_func()-&gt;threadData != sender-&gt;d_func()-&gt;threadData))</span><br><span class="line">　　    || (c-&gt;connectionType == Qt::QueuedConnection))</span><br><span class="line">&#123;</span><br><span class="line">    queued_activate(sender, signal, *c, argv);</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 阻塞对列模式</span></span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (c-&gt;connectionType == Qt::BlockingQueuedConnection)</span><br><span class="line">&#123;</span><br><span class="line">    blocking_activate(sender, signal, *c, argv);</span><br><span class="line">    <span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 其中 queued_activate 会调用 :</span></span><br><span class="line">QCoreApplication::postEvent(c.receiver, <span class="keyword">new</span> QMetaCallEvent(c.method, sender, signal, nargs, types, args, semaphore));</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<blockquote>
+<p>假设有 blue.css, red.css, white.css 三个 css, 且以最简单的 QPushButton 样式为例.</p>
+</blockquote>
+<p><a id="toc_anchor" name="21-未使用Less前"></a></p>
+<h2 id="2-1-未使用Less前"><a href="#2-1-未使用Less前" class="headerlink" title="2.1. 未使用Less前"></a>2.1. 未使用Less前</h2><ul>
+<li>在各样式表中分别编写, 维护时也得在各样式表中查找, 修改. </li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* blue.css 文件中 */</span></span><br><span class="line"><span class="selector-class">.QPushButton</span> &#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">20px</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#0a0914</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* red.css 文件中 */</span></span><br><span class="line"><span class="selector-class">.QPushButton</span> &#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#170B0C</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* white.css 文件中 */</span></span><br><span class="line"><span class="selector-class">.QPushButton</span> &#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">color</span>: black;</span><br><span class="line">    <span class="attribute">background-color</span>: #white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a id="toc_anchor" name="22-使用less后"></a></p>
+<h2 id="2-2-使用less后"><a href="#2-2-使用less后" class="headerlink" title="2.2. 使用less后"></a>2.2. 使用less后</h2><ol>
+<li><p>编写 main.less</p>
+ <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.less</span></span><br><span class="line"><span class="variable">@skin_blue:</span> <span class="number">1</span>;</span><br><span class="line"><span class="variable">@skin_red:</span> <span class="number">2</span>;</span><br><span class="line"><span class="variable">@skin_white:</span> <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">@mainCol:</span> white, white, black;</span><br><span class="line"><span class="variable">@mainBkColor:</span> <span class="number">#0a0914</span>, <span class="number">#170B0C</span>, white;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前皮肤颜色, 这个值可以在外部修改, 从而改变 @crtSkinIndex 的值</span></span><br><span class="line"><span class="variable">@crtSkinName:</span> skin_blue;</span><br><span class="line"><span class="variable">@crtSkinIndex:</span> <span class="variable">@@crtSkinName</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 举个例子, 给 QPushButton 设置样式</span></span><br><span class="line"><span class="selector-class">.QPushButton</span> &#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">color</span>: extract(<span class="variable">@mainCol</span>, <span class="variable">@crtSkinIndex</span>);</span><br><span class="line">    <span class="attribute">background-color</span>: extract(<span class="variable">@mainBkColor</span>, <span class="variable">@crtSkinIndex</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>执行以下命令, 生成各css: ( 修改 less 文件中的 crtSkinName 变量值 )</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lessc main.less blue.css `--modify-var=<span class="string">"crtSkinName=skin_blue"</span>`</span><br><span class="line">lessc main.less red.css `--modify-var=<span class="string">"crtSkinName=skin_red"</span>`</span><br><span class="line">lessc main.less white.css `--modify-var=<span class="string">"crtSkinName=skin_white"</span>`</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>得到各 css 文件.</p>
+</li>
+</ol>
+<p><a id="toc_anchor" name="3-QSS中url()路径拼接问题"></a></p>
+<h1 id="3-QSS中url-路径拼接问题"><a href="#3-QSS中url-路径拼接问题" class="headerlink" title="3. QSS中url()路径拼接问题"></a>3. QSS中url()路径拼接问题</h1><ul>
+<li>less 中会将 <code>rgba()</code>, <code>url()</code> 等当做函数处理, 但我们不想让它这么做, 可以使用 <code>~&quot;&quot;</code> 转义.</li>
+<li>要对 <code>url()</code> 中的路径进行拼接时, 需要使用字符串拼接函数</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 %("%s %d", "123", 10) 实现字符串替换. 且当第一个参数为 ~"" 时, 最后生成的字符串无 引号</span></span><br><span class="line"><span class="selector-class">.Mixin_path</span>(<span class="variable">@filepath</span>) &#123;</span><br><span class="line">    <span class="variable">@rtnVal:</span> %(<span class="string">~"url(:/%s/Resources/%s)"</span>, <span class="variable">@crtImgDir</span>, <span class="variable">@filepath</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.QCheckBox</span> &#123;</span><br><span class="line">    <span class="selector-tag">&amp;</span>&#123;</span><br><span class="line">        <span class="attribute">color</span>: extract(<span class="variable">@mainCol</span>, <span class="variable">@crtSkinIndex</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">&amp;</span><span class="selector-pseudo">::indicator</span> &#123;</span><br><span class="line">        <span class="selector-tag">&amp;</span><span class="selector-pseudo">:unchecked</span>&#123;</span><br><span class="line">            <span class="selector-class">.Mixin_path</span>(<span class="variable">@filepath</span>:<span class="string">~"checkbox_uc_n.png"</span>);</span><br><span class="line">            <span class="attribute">border-image</span>: <span class="variable">@rtnVal</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">&amp;</span><span class="selector-pseudo">:unchecked</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">            <span class="selector-class">.Mixin_path</span>(<span class="variable">@filepath</span>:<span class="string">~"checkbox_uc_h.png"</span>);</span><br><span class="line">            <span class="attribute">border-image</span>: <span class="variable">@rtnVal</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">&amp;</span><span class="selector-pseudo">:checked</span>&#123;</span><br><span class="line">            <span class="selector-class">.Mixin_path</span>(<span class="variable">@filepath</span>:<span class="string">~"checkbox_c_na.png"</span>);</span><br><span class="line">            <span class="attribute">border-image</span>: <span class="variable">@rtnVal</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">&amp;</span><span class="selector-pseudo">:checked</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">            <span class="selector-class">.Mixin_path</span>(<span class="variable">@filepath</span>:<span class="string">~"checkbox_c_h.png"</span>);</span><br><span class="line">            <span class="attribute">border-image</span>: <span class="variable">@rtnVal</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>生成的 CSS 内容如下</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.QCheckBox</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.QCheckBox</span><span class="selector-pseudo">::indicator</span><span class="selector-pseudo">:unchecked</span> &#123;</span><br><span class="line">  <span class="attribute">border-image</span>: <span class="built_in">url</span>(:/blue/Resources/checkbox_uc_n.png);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.QCheckBox</span><span class="selector-pseudo">::indicator</span><span class="selector-pseudo">:unchecked</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">border-image</span>: <span class="built_in">url</span>(:/blue/Resources/checkbox_uc_h.png);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.QCheckBox</span><span class="selector-pseudo">::indicator</span><span class="selector-pseudo">:checked</span> &#123;</span><br><span class="line">  <span class="attribute">border-image</span>: <span class="built_in">url</span>(:/blue/Resources/checkbox_c_na.png);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.QCheckBox</span><span class="selector-pseudo">::indicator</span><span class="selector-pseudo">:checked</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">border-image</span>: <span class="built_in">url</span>(:/blue/Resources/checkbox_c_h.png);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>如果本文有幸激发起你的一些思考, 欢迎通过评论的形式给与反馈, 与你与我都是一种成长.</p>
 </blockquote>
@@ -563,11 +587,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Less/" rel="tag"># Less</a>
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/tags/ui/" rel="tag"># 大前端</a>
+          
             <a href="/tags/Qt/" rel="tag"># Qt</a>
-          
-            <a href="/tags/qt-event/" rel="tag"># Qt 事件</a>
-          
-            <a href="/tags/qt-sigandslot/" rel="tag"># Qt 信号槽</a>
           
         </div>
       
@@ -580,8 +606,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/13/Qt 事件系统/" rel="next" title="Qt 事件系统">
-                <i class="fa fa-chevron-left"></i> Qt 事件系统
+              <a href="/2019/02/05/Less 使用笔记/" rel="next" title="Less 使用笔记">
+                <i class="fa fa-chevron-left"></i> Less 使用笔记
               </a>
             
           </div>
@@ -589,10 +615,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/08/Qt 中的智能指针/" rel="prev" title="Qt 中的智能指针">
-                Qt 中的智能指针 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -802,7 +824,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-区别"><span class="nav-text">2. 区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-联系"><span class="nav-text">3. 联系</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-使用CSS遇到的问题"><span class="nav-text">1.1. 使用CSS遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Less简介"><span class="nav-text">1.2. Less简介</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-解决多皮肤样式表冗余问题"><span class="nav-text">2. 解决多皮肤样式表冗余问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-未使用Less前"><span class="nav-text">2.1. 未使用Less前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-使用less后"><span class="nav-text">2.2. 使用less后</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-QSS中url-路径拼接问题"><span class="nav-text">3. QSS中url()路径拼接问题</span></a></li></ol></div>
             
 
           </div>
