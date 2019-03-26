@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="探究 Qt 信号槽自动连接机制...">
+<meta name="keywords" content="Qt,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt 源码剖析 - 信号槽的自动连接机制">
+<meta property="og:url" content="https://blogs.devved.cn/2019/03/26/Qt 源码剖析 - 信号槽的自动连接机制/index.html">
+<meta property="og:site_name" content="zhaoyongCNSX Blogs">
+<meta property="og:description" content="探究 Qt 信号槽自动连接机制...">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-25T16:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt 源码剖析 - 信号槽的自动连接机制">
+<meta name="twitter:description" content="探究 Qt 信号槽自动连接机制...">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blogs.devved.cn/2019/03/26/Qt 源码剖析 - 信号槽的自动连接机制/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Qt 源码剖析 - 信号槽的自动连接机制 | zhaoyongCNSX Blogs</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zhaoyongCNSX Blogs</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">学习四步骤: 搜寻知识、模仿实践、思考延伸、传授感悟</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blogs.devved.cn/2019/03/26/Qt 源码剖析 - 信号槽的自动连接机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhaoyongCNSX">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/myLogo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zhaoyongCNSX Blogs">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Qt 源码剖析 - 信号槽的自动连接机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-26T00:00:00+08:00">2019-03-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/QtSrcCode/" itemprop="url" rel="index"><span itemprop="name">Qt 源码剖析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/26/Qt 源码剖析 - 信号槽的自动连接机制/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/26/Qt 源码剖析 - 信号槽的自动连接机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/03/26/Qt 源码剖析 - 信号槽的自动连接机制/" class="leancloud_visitors" data-flag-title="Qt 源码剖析 - 信号槽的自动连接机制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">探究 Qt 信号槽自动连接机制...</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li>本站的镜像网站: <a href="https://zhaoyongcnsx.github.io" target="_blank" rel="noopener">GitHub Pages</a>, <a href="http://www.devved.cn" target="_blank" rel="noopener">个人网站</a></li>
+<li>本人的 CSDN 博客: <a href="https://blog.csdn.net/zhaoyongCNSX" target="_blank" rel="noopener">点这里起飞</a></li>
+</ul>
+</blockquote>
+<p><a id="toc_anchor" name="1-概述"></a></p>
+<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h1><p>我们在使用 Qt 创建一个窗口 MyWidget 时, Qt Creator 会帮我们创建出 “MyWidget.h”, “MyWidget.cpp”, “MyWidget.ui” 这三个文件. 我们使用 Qt Designer 打开 MyWidget.ui 文件, 拖一个 QPushButton 上去, Qt Designer 默认给这个按钮设置一个对象名 “pushButton”. 在该按钮上右键选择转到槽, 选择<code>clicked()</code>信号, Qt Creator 就会在 MyWidget 类中生成一个槽函数 <code>void on_pushButton_clicked()</code>. 我们只需要在这个槽函数中添加自己的逻辑就行了. </p>
+<p>有没有感觉到和平时自己写信号槽的时候不一样? 没有 connect? 但是程序跑起来, 按下按钮就自动执行该槽函数了呀. 从结果看, 肯定是 connect 过了. 所以我们不难想到, 一定是信号槽被自动 connect 了.</p>
+<p><a id="toc_anchor" name="2-猜测"></a></p>
+<h1 id="2-猜测"><a href="#2-猜测" class="headerlink" title="2. 猜测"></a>2. 猜测</h1><p>如果让我们自己实现的话, 将一个对象的槽函数与其UI文件中定义的某对象的信号连接起来, 需要以下几步:  </p>
+<ol>
+<li>规定一个 可自动连接的槽函数 的命名格式, 其中需要包含这些信息: 哪个对象发送了信号, 发送了什么信号. 这样我们就知道需要自动连接哪些槽函数了.</li>
+<li>遍历传入的这个对象的所有方法. 找到符合命名规范的槽函数.</li>
+<li>遍历这个对象及其子对象, 找到信号的发送对象, 再找到该对象的相应信号. 完成连接.</li>
+</ol>
+<p><a id="toc_anchor" name="3-源码剖析"></a></p>
+<h1 id="3-源码剖析"><a href="#3-源码剖析" class="headerlink" title="3. 源码剖析"></a>3. 源码剖析</h1><p>我们知道 “MyWidget.ui” 文件会被处理, 并生成 “ui_MyWidget.h” 文件. 这个文件会被包含在 MyWidget 类的实现中. 那我们就先来看看这个 “ui_MyWidget.h” 文件吧. </p>
+<p>ui_MyWidget.h 中有一个 Ui_MyWidget 类. 我们在类成员变量中发现了<code>QPushButton *pushButton;</code>, 这个就是我们之前拖上去的按钮. 除此之外, 还有两个成员函数<code>void setupUi(QWidget *MyWidget)</code> 和 <code>void retranslateUi(QWidget *MyWidget)</code>. </p>
+<p>我们知道 retranslateUi 函数是在当程序语言改变时, 用来刷新UI中显示语言的. 是国际化相关的内容, 在这里我们先忽略. 我们先看看 setupUi 函数中做了些什么.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setupUi</span><span class="params">(QWidget *MyWidget)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (MyWidget-&gt;objectName().isEmpty())</span><br><span class="line">		MyWidget-&gt;setObjectName(QStringLiteral(<span class="string">"MyWidget"</span>));</span><br><span class="line">	MyWidget-&gt;resize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">	pushButton = <span class="keyword">new</span> QPushButton(MyWidget);</span><br><span class="line">	pushButton-&gt;setObjectName(QStringLiteral(<span class="string">"pushButton"</span>));</span><br><span class="line">	pushButton-&gt;setGeometry(QRect(<span class="number">220</span>, <span class="number">220</span>, <span class="number">75</span>, <span class="number">23</span>));</span><br><span class="line">	retranslateUi(MyWidget);</span><br></pre></td></tr></table></figure>
+<p>这半部分用来将控件创建出来, 进行一些设置并使其作为 MyWidget 的子对象. 我们接着往下看.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	QMetaObject::connectSlotsByName(MyWidget);</span><br><span class="line">&#125; <span class="comment">// setupUi</span></span><br></pre></td></tr></table></figure>
+<p>在最后调用了 <code>QMetaObject::connectSlotsByName()</code> 函数, 从函数名我们就知道其功能是 “通过名字连接槽函数”. 这么看来, 自动连接信号槽就是它做的了. QMetaObject 在 “qobjectdefs.h” 中定义, 在 “qobject.cpp” 中实现.</p>
+<blockquote>
+<p>qobjectdefs.h</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Q_CORE_EXPORT</span> <span class="title">QMetaObject</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="comment">// internal slot-name based connect</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">connectSlotsByName</span><span class="params">(QObject *o)</span></span>;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们先看一下该函数的文档说明:</p>
+<ul>
+<li><p>递归的搜索 object 及其子对象, 如果发现符合以下格式的槽函数, 则会自动连接</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> on_&lt;object name&gt;_&lt;signal name&gt;(&lt;signal parameters&gt;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>举个例子: 如果有一个子对象, 其类型为 QPushButton, object name 为 button1, 要关联该按钮 clicked() 信号的槽函数签名应该为:</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">on_button1_clicked</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们再看它是如何实现的:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> QMetaObject::connectSlotsByName(QObject *o)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!o)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> QMetaObject *mo = o-&gt;metaObject();</span><br><span class="line">    Q_ASSERT(mo);</span><br><span class="line">	<span class="comment">// list of all objects to look for matching signals including...</span></span><br><span class="line">    <span class="keyword">const</span> QObjectList <span class="built_in">list</span> = </span><br><span class="line">            o-&gt;findChildren&lt;QObject *&gt;(QString()) <span class="comment">// all children of 'o'...</span></span><br><span class="line">            &lt;&lt; o; <span class="comment">// and the object 'o' itself</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/* [1] */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>QObjectList list</code> 中存储了 o 及其所有子对象. 接下来看 “[1]”代码.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for each method/slot of o ...</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mo-&gt;methodCount(); ++i) &#123;</span><br><span class="line">	<span class="keyword">const</span> QByteArray slotSignature = mo-&gt;method(i).methodSignature();</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *slot = slotSignature.constData();</span><br><span class="line">	Q_ASSERT(slot);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...that starts with "on_", ...</span></span><br><span class="line">	<span class="keyword">if</span> (slot[<span class="number">0</span>] != <span class="string">'o'</span> || slot[<span class="number">1</span>] != <span class="string">'n'</span> || slot[<span class="number">2</span>] != <span class="string">'_'</span>)</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...we check each object in our list, ...</span></span><br><span class="line">	<span class="keyword">bool</span> foundIt = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* [2] 遍历对象列表, foundIt */</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (foundIt) &#123;</span><br><span class="line">		<span class="comment">// we found our slot, now skip all overloads</span></span><br><span class="line">		<span class="keyword">while</span> (mo-&gt;method(i + <span class="number">1</span>).attributes() &amp; QMetaMethod::Cloned)</span><br><span class="line">				++i;</span><br><span class="line">	&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!(mo-&gt;method(i).attributes() &amp; QMetaMethod::Cloned)) &#123;</span><br><span class="line">		<span class="comment">// check if the slot has the following signature: "on_..._...(..."</span></span><br><span class="line">		<span class="keyword">int</span> iParen = slotSignature.indexOf(<span class="string">'('</span>);</span><br><span class="line">		<span class="keyword">int</span> iLastUnderscore = slotSignature.lastIndexOf(<span class="string">'_'</span>, iParen<span class="number">-1</span>);</span><br><span class="line">		<span class="keyword">if</span> (iLastUnderscore &gt; <span class="number">3</span>)</span><br><span class="line">			qWarning(<span class="string">"QMetaObject::connectSlotsByName: No matching signal for %s"</span>, slot);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>开始遍历该对象的所有成员方法, 找到以<code>on_</code>开头的方法. 然后遍历存储所有对象的列表 list. (遍历过程后面再说). 如果找到匹配的了, 就跳过该方法的重载函数. 如果未找到, 确定该函数符合<code>on_&lt;objectName&gt;_&lt;signal&gt;()</code>格式, 然后打印 warning 信息.</p>
+<blockquote>
+<ul>
+<li>刚开始看到直接使用 slot[0], slot[1], slot[2] 的时候, 还很好奇, 如果函数名只有一个字母, 不就数组越界了吗? 后来自己把函数签名打出来, 发现其实不会的. slotSignature 获取到的为函数签名, 即使函数名为f, 其签名也为 “f()”. 所以函数签名至少是三个字符. </li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>[???] 这里还有一个疑问, 找到匹配该槽函数的信号, 执行完connect后, 为什么要跳过该槽函数的重载版本呢? 猜测: 信号发射后, 在调用槽时, 会根据信号参数来确定发送给哪个重载的槽函数? 这个需要在后续查看信号槽调用部分的源码时, 再进行解释.</li>
+</ul>
+</blockquote>
+<p>接下来就看 “[2]” 代码. 看看在遍历对象列表时都做了些什么.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="built_in">list</span>.count(); ++j) &#123;</span><br><span class="line">	<span class="keyword">const</span> QObject *co = <span class="built_in">list</span>.at(j);</span><br><span class="line">	<span class="keyword">const</span> QByteArray coName = co-&gt;objectName().toLatin1();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...discarding those whose objectName is not fitting the pattern "on_&lt;objectName&gt;_...", ...</span></span><br><span class="line">	<span class="keyword">if</span> (coName.isEmpty() || qstrncmp(slot + <span class="number">3</span>, coName.constData(), coName.size()) || slot[coName.size()+<span class="number">3</span>] != <span class="string">'_'</span>)</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *signal = slot + coName.size() + <span class="number">4</span>; <span class="comment">// the 'signal' part of the slot name</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// ...for the presence of a matching signal "on_&lt;objectName&gt;_&lt;signal&gt;".</span></span><br><span class="line">	<span class="keyword">const</span> QMetaObject *smeta;</span><br><span class="line">	<span class="keyword">int</span> sigIndex = co-&gt;d_func()-&gt;signalIndex(signal, &amp;smeta);</span><br><span class="line">	<span class="keyword">if</span> (sigIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">		QList&lt;QByteArray&gt; compatibleSignals;</span><br><span class="line">		<span class="keyword">const</span> QMetaObject *smo = co-&gt;metaObject();</span><br><span class="line">		<span class="keyword">int</span> sigLen = qstrlen(signal) - <span class="number">1</span>; <span class="comment">// ignore the trailing ')'</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = QMetaObjectPrivate::absoluteSignalCount(smo)<span class="number">-1</span>; k &gt;= <span class="number">0</span>; --k) &#123;</span><br><span class="line">			<span class="keyword">const</span> QMetaMethod method = QMetaObjectPrivate::signal(smo, k);</span><br><span class="line">			<span class="keyword">if</span> (!qstrncmp(method.methodSignature().constData(), signal, sigLen)) &#123;</span><br><span class="line">				smeta = method.enclosingMetaObject();</span><br><span class="line">				sigIndex = k;</span><br><span class="line">				compatibleSignals.prepend(method.methodSignature());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (compatibleSignals.size() &gt; <span class="number">1</span>)</span><br><span class="line">			qWarning() &lt;&lt; <span class="string">"QMetaObject::connectSlotsByName: Connecting slot"</span> &lt;&lt; slot</span><br><span class="line">						&lt;&lt; <span class="string">"with the first of the following compatible signals:"</span> &lt;&lt; compatibleSignals;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (sigIndex &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// we connect it...</span></span><br><span class="line">	<span class="keyword">if</span> (Connection(QMetaObjectPrivate::connect(co, sigIndex, smeta, o, i))) &#123;</span><br><span class="line">		foundIt = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>遍历对象列表, 找到符合本槽函数 object name 的对象. 然后查找该对象的是否有完全符合 singnalName + 参数列表 的信号. </p>
+<p>如果没有找到, 则继续查找至少满足该槽参数列表的信号. (因为信号的参数个数可以大于槽参数个数). 如果多个信号都符合要求, 就按照信号在源文件中的声明顺序, 选择第一个, 并打印一个 warning 信息.</p>
+<p>之后, 将该信号与槽进行连接, 并退出该循环. 所以说, 如果存在相同 object name 的对象, 也只连接第一个. 其他的都会被忽略. (Qt Designer 会确保 object name 的唯一性, 但其他代码添加的 object name 就不受控制了).</p>
+<p><a id="toc_anchor" name="4-相关源码"></a></p>
+<h1 id="4-相关源码"><a href="#4-相关源码" class="headerlink" title="4. 相关源码"></a>4. 相关源码</h1><details><br><summary>MyWidget.h</summary><br><br><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> MYWIDGET_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MYWIDGET_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QWidget&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Ui &#123;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyWidget</span>;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyWidget</span> :</span> <span class="keyword">public</span> QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">MyWidget</span><span class="params">(QWidget *parent = <span class="number">0</span>)</span></span>;</span><br><span class="line">    ~MyWidget();</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> slots:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">on_pushButton_clicked</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    Ui::MyWidget *ui;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// MYWIDGET_H</span></span></span><br></pre></td></tr></table></figure><br><br></details>
+
+
+
+<details><br><summary>MyWidget.cpp</summary><br><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"MyWidget.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"ui_MyWidget.h"</span></span></span><br><span class="line"></span><br><span class="line">MyWidget::MyWidget(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(<span class="keyword">new</span> Ui::MyWidget)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyWidget::~MyWidget()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">delete</span> ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> MyWidget::on_pushButton_clicked()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+
+<details><br><summary>ui_MyWidget.h</summary><br><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/********************************************************************************</span></span><br><span class="line"><span class="comment">** Form generated from reading UI file 'MyWidget.ui'</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** Created by: Qt User Interface Compiler version 5.6.0</span></span><br><span class="line"><span class="comment">**</span></span><br><span class="line"><span class="comment">** WARNING! All changes made in this file will be lost when recompiling UI file!</span></span><br><span class="line"><span class="comment">********************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> UI_MYWIDGET_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> UI_MYWIDGET_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtCore/QVariant&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtWidgets/QAction&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtWidgets/QApplication&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtWidgets/QButtonGroup&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtWidgets/QHeaderView&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtWidgets/QPushButton&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QtWidgets/QWidget&gt;</span></span></span><br><span class="line"></span><br><span class="line">QT_BEGIN_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ui_MyWidget</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    QPushButton *pushButton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setupUi</span><span class="params">(QWidget *MyWidget)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (MyWidget-&gt;objectName().isEmpty())</span><br><span class="line">            MyWidget-&gt;setObjectName(QStringLiteral(<span class="string">"MyWidget"</span>));</span><br><span class="line">        MyWidget-&gt;resize(<span class="number">400</span>, <span class="number">300</span>);</span><br><span class="line">        pushButton = <span class="keyword">new</span> QPushButton(MyWidget);</span><br><span class="line">        pushButton-&gt;setObjectName(QStringLiteral(<span class="string">"pushButton"</span>));</span><br><span class="line">        pushButton-&gt;setGeometry(QRect(<span class="number">220</span>, <span class="number">220</span>, <span class="number">75</span>, <span class="number">23</span>));</span><br><span class="line"></span><br><span class="line">        retranslateUi(MyWidget);</span><br><span class="line"></span><br><span class="line">        QMetaObject::connectSlotsByName(MyWidget);</span><br><span class="line">    &#125; <span class="comment">// setupUi</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">retranslateUi</span><span class="params">(QWidget *MyWidget)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        MyWidget-&gt;setWindowTitle(QApplication::translate(<span class="string">"MyWidget"</span>, <span class="string">"Form"</span>, <span class="number">0</span>));</span><br><span class="line">        pushButton-&gt;setText(QApplication::translate(<span class="string">"MyWidget"</span>, <span class="string">"PushButton"</span>, <span class="number">0</span>));</span><br><span class="line">    &#125; <span class="comment">// retranslateUi</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Ui &#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">MyWidget</span>:</span> <span class="keyword">public</span> Ui_MyWidget &#123;&#125;;</span><br><span class="line">&#125; <span class="comment">// namespace Ui</span></span><br><span class="line"></span><br><span class="line">QT_END_NAMESPACE</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// UI_MYWIDGET_H</span></span></span><br></pre></td></tr></table></figure><br><br></details>
+
+
+
+<details><br><summary>QMetaObject::connectSlotsByName</summary><br><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*!</span></span><br><span class="line"><span class="comment">    \fn void QMetaObject::connectSlotsByName(QObject *object)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Searches recursively for all child objects of the given \a object, and connects</span></span><br><span class="line"><span class="comment">    matching signals from them to slots of \a object that follow the following form:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    \snippet code/src_corelib_kernel_qobject.cpp 33</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Let's assume our object has a child object of type \c&#123;QPushButton&#125; with</span></span><br><span class="line"><span class="comment">    the \l&#123;QObject::objectName&#125;&#123;object name&#125; \c&#123;button1&#125;. The slot to catch the</span></span><br><span class="line"><span class="comment">    button's \c&#123;clicked()&#125; signal would be:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    \snippet code/src_corelib_kernel_qobject.cpp 34</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    If \a object itself has a properly set object name, its own signals are also</span></span><br><span class="line"><span class="comment">    connected to its respective slots.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    \sa QObject::setObjectName()</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> QMetaObject::connectSlotsByName(QObject *o)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!o)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">const</span> QMetaObject *mo = o-&gt;metaObject();</span><br><span class="line">    Q_ASSERT(mo);</span><br><span class="line">    <span class="keyword">const</span> QObjectList <span class="built_in">list</span> = <span class="comment">// list of all objects to look for matching signals including...</span></span><br><span class="line">            o-&gt;findChildren&lt;QObject *&gt;(QString()) <span class="comment">// all children of 'o'...</span></span><br><span class="line">            &lt;&lt; o; <span class="comment">// and the object 'o' itself</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// for each method/slot of o ...</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mo-&gt;methodCount(); ++i) &#123;</span><br><span class="line">        <span class="keyword">const</span> QByteArray slotSignature = mo-&gt;method(i).methodSignature();</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">char</span> *slot = slotSignature.constData();</span><br><span class="line">        Q_ASSERT(slot);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ...that starts with "on_", ...</span></span><br><span class="line">        <span class="keyword">if</span> (slot[<span class="number">0</span>] != <span class="string">'o'</span> || slot[<span class="number">1</span>] != <span class="string">'n'</span> || slot[<span class="number">2</span>] != <span class="string">'_'</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// ...we check each object in our list, ...</span></span><br><span class="line">        <span class="keyword">bool</span> foundIt = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="built_in">list</span>.count(); ++j) &#123;</span><br><span class="line">            <span class="keyword">const</span> QObject *co = <span class="built_in">list</span>.at(j);</span><br><span class="line">            <span class="keyword">const</span> QByteArray coName = co-&gt;objectName().toLatin1();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// ...discarding those whose objectName is not fitting the pattern "on_&lt;objectName&gt;_...", ...</span></span><br><span class="line">            <span class="keyword">if</span> (coName.isEmpty() || qstrncmp(slot + <span class="number">3</span>, coName.constData(), coName.size()) || slot[coName.size()+<span class="number">3</span>] != <span class="string">'_'</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">const</span> <span class="keyword">char</span> *signal = slot + coName.size() + <span class="number">4</span>; <span class="comment">// the 'signal' part of the slot name</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// ...for the presence of a matching signal "on_&lt;objectName&gt;_&lt;signal&gt;".</span></span><br><span class="line">            <span class="keyword">const</span> QMetaObject *smeta;</span><br><span class="line">            <span class="keyword">int</span> sigIndex = co-&gt;d_func()-&gt;signalIndex(signal, &amp;smeta);</span><br><span class="line">            <span class="keyword">if</span> (sigIndex &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// if no exactly fitting signal (name + complete parameter type list) could be found</span></span><br><span class="line">                <span class="comment">// look for just any signal with the correct name and at least the slot's parameter list.</span></span><br><span class="line">                <span class="comment">// <span class="doctag">Note:</span> if more than one of thoses signals exist, the one that gets connected is</span></span><br><span class="line">                <span class="comment">// chosen 'at random' (order of declaration in source file)</span></span><br><span class="line">                QList&lt;QByteArray&gt; compatibleSignals;</span><br><span class="line">                <span class="keyword">const</span> QMetaObject *smo = co-&gt;metaObject();</span><br><span class="line">                <span class="keyword">int</span> sigLen = qstrlen(signal) - <span class="number">1</span>; <span class="comment">// ignore the trailing ')'</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> k = QMetaObjectPrivate::absoluteSignalCount(smo)<span class="number">-1</span>; k &gt;= <span class="number">0</span>; --k) &#123;</span><br><span class="line">                    <span class="keyword">const</span> QMetaMethod method = QMetaObjectPrivate::signal(smo, k);</span><br><span class="line">                    <span class="keyword">if</span> (!qstrncmp(method.methodSignature().constData(), signal, sigLen)) &#123;</span><br><span class="line">                        smeta = method.enclosingMetaObject();</span><br><span class="line">                        sigIndex = k;</span><br><span class="line">                        compatibleSignals.prepend(method.methodSignature());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (compatibleSignals.size() &gt; <span class="number">1</span>)</span><br><span class="line">                    qWarning() &lt;&lt; <span class="string">"QMetaObject::connectSlotsByName: Connecting slot"</span> &lt;&lt; slot</span><br><span class="line">                               &lt;&lt; <span class="string">"with the first of the following compatible signals:"</span> &lt;&lt; compatibleSignals;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (sigIndex &lt; <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// we connect it...</span></span><br><span class="line">            <span class="keyword">if</span> (Connection(QMetaObjectPrivate::connect(co, sigIndex, smeta, o, i))) &#123;</span><br><span class="line">                foundIt = <span class="literal">true</span>;</span><br><span class="line">                <span class="comment">// ...and stop looking for further objects with the same name.</span></span><br><span class="line">                <span class="comment">// <span class="doctag">Note:</span> the Designer will make sure each object name is unique in the above</span></span><br><span class="line">                <span class="comment">// 'list' but other code may create two child objects with the same name. In</span></span><br><span class="line">                <span class="comment">// this case one is chosen 'at random'.</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (foundIt) &#123;</span><br><span class="line">            <span class="comment">// we found our slot, now skip all overloads</span></span><br><span class="line">            <span class="keyword">while</span> (mo-&gt;method(i + <span class="number">1</span>).attributes() &amp; QMetaMethod::Cloned)</span><br><span class="line">                  ++i;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!(mo-&gt;method(i).attributes() &amp; QMetaMethod::Cloned)) &#123;</span><br><span class="line">            <span class="comment">// check if the slot has the following signature: "on_..._...(..."</span></span><br><span class="line">            <span class="keyword">int</span> iParen = slotSignature.indexOf(<span class="string">'('</span>);</span><br><span class="line">            <span class="keyword">int</span> iLastUnderscore = slotSignature.lastIndexOf(<span class="string">'_'</span>, iParen<span class="number">-1</span>);</span><br><span class="line">            <span class="keyword">if</span> (iLastUnderscore &gt; <span class="number">3</span>)</span><br><span class="line">                qWarning(<span class="string">"QMetaObject::connectSlotsByName: No matching signal for %s"</span>, slot);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+
+
+<blockquote>
+<p>— 道理越辩越明, 欢迎留言讨论. —</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Qt/" rel="tag"># Qt</a>
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/22/在 Qt 开发中使用 less 简化 css 维护工作/" rel="next" title="在 Qt 开发中使用 less 简化 css 维护工作">
+                <i class="fa fa-chevron-left"></i> 在 Qt 开发中使用 less 简化 css 维护工作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/myLogo.png"
+                alt="zhaoyongCNSX" />
+            
+              <p class="site-author-name" itemprop="name">zhaoyongCNSX</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhaoyongCNSX" title="GitHub &rarr; https://github.com/zhaoyongCNSX" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhaoyongCNSX@163.com" title="E-Mail &rarr; mailto:zhaoyongCNSX@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://devved.cn" title="Self &rarr; http://devved.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Self</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-猜测"><span class="nav-text">2. 猜测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-源码剖析"><span class="nav-text">3. 源码剖析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-相关源码"><span class="nav-text">4. 相关源码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18060797号 </a>&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhaoyongCNSX</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz',
+        appKey: 'iJ3wKfGYSz4XcXvh96ekdljM',
+        placeholder: '说点什么呗',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "FjjtcgAi0MmlyWgIxGaSkLIB-gzGzoHsz",
+                'X-LC-Key': "iJ3wKfGYSz4XcXvh96ekdljM",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+          if(result)$(this).text('复制成功')
+          else $(this).text('复制失败')
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('复制')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
